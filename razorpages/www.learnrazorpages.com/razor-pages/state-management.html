@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from www.learnrazorpages.com/razor-pages/state-management by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:16:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Managing state in Razor Pages is the process of retaining user or application-related data over the duration of a number of requests." />
+    <meta name="google-site-verification" content="MpV6gEoCh9OASgnoi656klwnlkni3_qOenITGlxBrjc" />
+    <title>State Management In Razor Pages | Learn Razor Pages</title>
+    <link rel="canonical" href="state-management.html" />
+    <link rel="stylesheet" href="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i|Roboto:300i,500,700" />
+    <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <link rel="stylesheet" href="../css/site8249.css?v=PCA7f9VuZUscxMwrePJfyFKXCF9mh2dMpXEDQU8oP3o" />
+    <link rel="stylesheet" href="../css/rp14c5.css?v=ZxkVB0StHjR5-UMElJII7nwWe6Wmc6_qgJ97GsY4yNw" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-8046723421340367",
+                enable_page_level_ads: true
+            });
+        </script>
+</head>
+<body id="page-top">
+    <div class="navbar navbar-default navbar-static-top">
+        <div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <i class="fas fa-graduation-cap"></i> <a href="../index.html">Learn Razor Pages</a>
+                    <br />
+                    <span class="byline">Your guide to using ASP.NET Core Razor Pages</span>
+                </div>
+                <div class="banner">
+                    
+                        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                        <!-- EF Core Leaderboard -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:728px;height:90px"
+                             data-ad-client="ca-pub-8046723421340367"
+                             data-ad-slot="1832525889"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <nav class="main-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+    <ul class="nav nav-level-one" id="side-menu">
+        <li>
+            <a itemprop="url" href="../index.html">Home</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../first-look.html">A First Look</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../asp-net-core.html">ASP.NET Core</a>
+        </li>
+        <li><a itemprop="url" href="tutorial/bakery.html">Tutorials</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="tutorial/bakery.html">The Bakery</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages.html">Razor Page Files</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="files/index.html">Razor Files</a></li>
+                <li><a itemprop="url" href="partial-pages.html">Partial Pages</a></li>
+                <li><a itemprop="url" href="files/layout.html">Layout Files</a></li>
+                <li><a itemprop="url" href="files/viewimports.html">ViewImports File</a></li>
+                <li><a itemprop="url" href="files/viewstart.html">ViewStart File</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-syntax.html">Razor Syntax</a>
+        </li>
+        <li>
+            <a itemprop="url" href="pagemodel.html">Page Models</a>
+            <ul class="nav-level-two">
+                <li>
+                    <a itemprop="url" href="handler-methods.html">Handler Methods</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="viewdata.html">ViewData</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="action-results.html">Action Results</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="tag-helpers/index.html">Tag Helpers</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="tag-helpers/anchor-tag-helper.html">Anchor Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/cache-tag-helper.html">Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/distributed-cache-tag-helper.html">Distributed Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/environment-tag-helper.html">Environment Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/form-action-tag-helper.html">Form Action Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/form-tag-helper.html">Form Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/image-tag-helper.html">Image Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/input-tag-helper.html">Input Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/label-tag-helper.html">Label Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/link-tag-helper.html">Link Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/option-tag-helper.html">Option Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/partial-tag-helper.html">Partial Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/script-tag-helper.html">Script Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/select-tag-helper.html">Select Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/textarea-tag-helper.html">TextArea Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/validation-message-tag-helper.html">Validation Message Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/validation-summary-tag-helper.html">Validation Summary Tag Helper</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="view-components.html">View Components</a>
+        </li>
+        <li>
+            <a itemprop="url" href="routing.html">Routing and URLs</a>
+            <ul class="nav-level-two">
+                <li><a href="../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../startup.html">Startup</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../configuration.html">Configuration</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../configuration/global-error-handling.html">Global Error Handling And Logging</a></li>
+                <li><a itemprop="url" href="../configuration/custom-errors.html">Custom Error Pages</a></li>
+                <li><a itemprop="url" href="../configuration/https.html">Configuring HTTPS</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../middleware.html">Middleware</a>
+        </li>
+        <li>
+            <a itemprop="url" href="forms.html">Working With Forms</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="forms/file-upload.html">Uploading Files in Razor Pages</a></li>
+                <li><a itemprop="url" href="forms/checkboxes.html">Working With Checkboxes</a></li>
+                <li><a itemprop="url" href="forms/select-lists.html">Select Lists in a Razor Pages Form</a></li>
+                <li><a itemprop="url" href="forms/radios.html">Working With Radio Buttons</a></li>
+                <li><a itemprop="url" href="../security/request-verification.html">Request Verification</a></li>
+            </ul>
+        </li>
+        <li><a itemprop="url" href="validation.html">Validation</a></li>
+        <li>
+            <a itemprop="url" href="model-binding.html">Model Binding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="state-management.html">State Management</a>
+        </li>
+        <li>
+            <a itemprop="url" href="caching.html">Caching</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../identity.html">Managing Security With ASP.NET Identity</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../identity/customising-identity.html">Customising Identity</a></li>
+            </ul>
+        </li>
+        <li>
+		<a itemprop="url" href="ajax.html">Using AJAX</a>
+		<ul class="nav-level-two">
+			<li><a itemprop="url" href="ajax/form-post.html">Posting Forms</a>    </li>
+			<li><a itemprop="url" href="ajax/partial-update.html">Partial Page Updates</a></li>
+			<li><a itemprop="url" href="ajax/upload-files.html">Uploading Files</a></li>
+			<li><a itemprop="url" href="ajax/unobtrusive-ajax.html">Unobtrusive AJAX</a></li>
+		</ul>
+	</li>
+        <li>
+            <a itemprop="url" href="../web-api.html">Working with JSON</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../miscellaneous/scaffolding.html">Scaffolding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../publishing/publish-to-iis.html">Publishing To IIS</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../advanced.html">Advanced</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../advanced/areas.html">Areas</a></li>
+                <li><a itemprop="url" href="../advanced/custom-tag-helpers.html">Custom Tag Helpers</a></li>
+                <li><a itemprop="url" href="../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+                <li><a itemprop="url" href="../advanced/custom-constraints.html">Custom Route Constraints</a></li>
+                <li><a itemprop="url" href="../advanced/route-parameter-transformers.html">Parameter Transformers For Routes</a></li>
+                <li><a itemprop="url" href="../advanced/dependency-injection.html">Dependency Injection</a></li>
+                <li><a itemprop="url" href="filters.html">Filters</a></li>
+                <li><a itemprop="url" href="../advanced/razor-class-library.html">Razor Class Libraries</a></li>
+                <li><a itemprop="url" href="../advanced/render-partial-to-string.html">Rendering A Partial View To A String</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../table-of-contents.html">Table Of Contents</a>
+        </li>
+    </ul>
+</nav>
+
+            <footer>
+                <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+            </footer>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+
+    <div id="page-wrapper">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-md-9">
+                    
+<div id="article">
+    <h1 itemprop="headline" id="state-management-in-razor-pages">State Management In Razor Pages</h1>
+<div itemprop="articleBody"><p>Managing state in Razor Pages is the process of retaining user or application-related data over the duration of a number of requests.</p>
+<p>HTTP is a stateless protocol. Being stateless, there is no requirement placed on HTTP (Web) Servers to retain information about each request or user. By default, multiple requests from the same user are treated as a series of individual unconnected requests. In fact, the server has no concept of a &quot;user&quot; as such. If you want to retain user or application-related data over a number of requests, you have to implement strategies for managing that yourself.</p>
+<p>Razor Pages, along with its underlying MVC framework provides a number of mechanisms for retaining information (or state) across requests, each with its benefits and drawbacks:</p>
+<ul>
+<li><a href="#hidden-form-fields">Hidden Form Fields</a></li>
+<li><a href="#query-strings">Query Strings</a></li>
+<li><a href="#route-data">Route Data</a></li>
+<li><a href="#cookies">Cookies</a></li>
+<li><a href="#tempdata">TempData</a></li>
+<li><a href="#session-variables">Session Variables</a></li>
+<li><a href="#application-variables">Application Variables</a></li>
+<li><a href="#caching">Caching</a></li>
+</ul>
+<h2 id="hidden-form-fields">Hidden Form Fields</h2>
+<p>A hidden form field is a form field that is not visible to the user. However, its value is included in the collection passed back to the server when the form is submitted. You use the <code>input type=&quot;hidden&quot;</code> HTML element or <a href="tag-helpers/input-tag-helper.html">input taghelper</a> to add a hidden field to a form, or you can use the <code>Html.Hidden()</code> or <code>Html.HiddenFor()</code> helper methods.</p>
+<p>Hidden field values are typically set from client-side or server-side code. While a hidden field is not visible to the user, that does not make it secure. Values are stored and transmitted in plain text and are accessible in the HTTP request as well as the HTML source that your browser makes available to you. You should not use hidden fields to store sensitive data. Since they form part of the DOM, hidden fields are not tamper-proof, and their values should really be validated just like any other user input. As with any form field, if the POST method is used, there is no limit to the number of characters that can be stored in a hidden field.</p>
+<p>You can read more about <a href="forms.html">using forms in Razor Pages here</a>.</p>
+<h2 id="query-strings">Query Strings</h2>
+<p>A query string is a collection of name/value pairs which are appended to a URL. They are separated from the location of the resource by a question mark <code>?</code>. An example might look like this:</p>
+<p><code>http://www.mydomain.com?name1=value1&amp;name2=value2&amp;name3=value3</code></p>
+<p>Each name/value pair is separated from the others by the <code>&amp;</code> sign. The values are obtained from the <code>Query</code> property of the <code>HttpRequest</code> object, which is exposed in a Razor page via the <code>Request</code> property. For example, <code>Request.Query[&quot;name1&quot;]</code> will yield <code>value1</code>.</p>
+<p>Values are passed from one page to another as query string values automatically if you have a form that uses the <code>GET</code> method. The Razor Pages framework will pass values as query strings if you add route values that aren't included in the <a href="routing.html#route-templates">template for the route</a>.</p>
+<p>The following route template defines a route parameter named <code>name1</code> in a page called <em>Query.cshtml</em>:</p>
+<pre><code class="language-csharp">@page &quot;{name1}&quot;
+@model QueryModel
+</code></pre>
+<p>In the next snippet, the user is redirected to to the <em>Query</em> page with two route values provided:</p>
+<pre><code class="language-csharp">public IActionResult OnGet()
+{
+    return RedirectToPage(&quot;Query&quot;, new { name1 = &quot;value1&quot;, name2 = &quot;value2&quot; });
+}
+</code></pre>
+<p>The resulting URL shows how <code>name2</code> and its associated value is appended as a query string name/value pair, while the route value that's catered for in the template is passed as a segment: <code>http://localhost:xxx/Query/value1?name2=value2</code></p>
+<p>Like hidden fields, query strings should not be used for sensitive data and it is even easier for a user to manipulate query string values so input validation is really important. Just because you generated the query string from your code, that doesn't mean that a malicious user can't generate their own or alter yours in their browser address bar. Unvalidated query string values are the primary route to attacks on web sites. Most browsers limit query strings to around 2000 characters so they are not suitable for managing large amounts of data. However, search engines can follow links with query string values and index their location.</p>
+<h2 id="route-data">Route Data</h2>
+<p>Route Data is also passed from one page to another via the URL. You can <a href="routing.html#route-data">read more about route data here</a></p>
+<h2 id="cookies">Cookies</h2>
+<p>Cookies are small pieces of text that are passed between browser and web server with every request and are commonly used to store relatively small amounts of data. Read about <a href="cookies.html">how to use cookies in a Razor Pages application</a>.</p>
+<h2 id="tempdata">TempData</h2>
+<p>TempData is a container for short-life data that is only intended to be used or read once. More details on <a href="tempdata.html">how TempData works in  Razor Pages can be found here</a></p>
+<h2 id="session-variables">Session Variables</h2>
+<p>Session State provides a mechanism that enables you to tie together requests from the same user for a limited period - the duration of a session. As such, you can store user-related values and retrieve them at any stage during a session. Full details on <a href="session-state.html">using Sessions within Razor Pages can be found here</a></p>
+<h2 id="application-variables">Application Variables</h2>
+<p>Previous versions of ASP.NET provided APIs for storing and retrieving values globally, which revolved around usage of a dictionary-like structure represented by the <code>System.Web.HttpApplicationState</code> object.  ASP.NET Core doesn't offer anything equivalent to this. Instead, you are encouraged to implement your own solutions for managing data globally.</p>
+<h2 id="caching">Caching</h2>
+<p>Caching is primarily used to improve performance in applications, but can also be used in web applications as a state management strategy. An overview of <a href="caching.html">caching in Razor Pages is available here</a></p>
+
+</div>
+</div>
+<section id="file-meta">
+    <span class="file-meta-label">Last updated:</span> <span itemprop="dateModified">24/07/2018 09:45:55</span><br />
+</section>
+
+                </div>
+                <div class="col-md-3 right-col">
+                    
+                            <script>
+                        (function() {
+                            var cx = 'partner-pub-8046723421340367:6108194070';
+                            var gcse = document.createElement('script');
+                            gcse.type = 'text/javascript';
+                            gcse.async = true;
+                            gcse.src = '../../cse.google.com/cse07b6.html?cx=' + cx;
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(gcse, s);
+                        })();
+                            </script>
+                        <gcse:searchbox-only></gcse:searchbox-only>
+                    
+                    <div id="doc-outline" class="doc-outline well">
+                            <h3 class="doc-outline">On this page</h3>
+                            <nav class="doc-outline">
+                                <ul>
+                                        <li><a itemprop="url" href="#state-management-in-razor-pages" class="page-scroll">State Management In Razor Pages</a></li>
+                                        <li><a itemprop="url" href="#hidden-form-fields" class="page-scroll">Hidden Form Fields</a></li>
+                                        <li><a itemprop="url" href="#query-strings" class="page-scroll">Query Strings</a></li>
+                                        <li><a itemprop="url" href="#route-data" class="page-scroll">Route Data</a></li>
+                                        <li><a itemprop="url" href="#cookies" class="page-scroll">Cookies</a></li>
+                                        <li><a itemprop="url" href="#tempdata" class="page-scroll">TempData</a></li>
+                                        <li><a itemprop="url" href="#session-variables" class="page-scroll">Session Variables</a></li>
+                                        <li><a itemprop="url" href="#application-variables" class="page-scroll">Application Variables</a></li>
+                                        <li><a itemprop="url" href="#caching" class="page-scroll">Caching</a></li>
+                                </ul>
+                            </nav>
+
+                    </div>
+                    <div class="rectangle">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Rectangle -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:250px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="7622896857"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <div class="doc-outline well">
+                        <h3 class="doc-outline">Latest Updates</h3>
+                        <nav class="doc-outline">
+                            <ul>
+                                    <li><a itemprop="url" href="tutorial/bakery/migration.html">Creating A Migration</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/create-model.html">Working With A Model</a></li>
+                                    <li><a itemprop="url" href="routing.html">Routing in Razor Pages</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/working-with-data.html">Working With Data</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/new-page.html">Adding a New Page</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery.html">Creating an Application</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="skyscraper">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Skyscraper -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:600px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="4239197376"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <footer>
+                        <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <a href="#page-top" id="back-to-top" class="page-scroll" title="Back to top"><i class="fas fa-arrow-alt-circle-up"></i></a>
+    </div>
+    <div class="cookie-box" id="cookie-warning">
+        <div class="cookie-box-contents" id="learnrazorpages">This site uses cookies to analyse traffic, remember your preferences, and optimise your experience.</div>
+        <div class="cookie-box-buttons"><a href="../privacy.html" class="cookie-button">Learn more</a><a href="#" class="cookie-button" id="cookie-close">Close</a></div>
+    </div>
+    <script src="../../ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+    <script src="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="../../code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="../js/site59f2.js?v=gJZRD7PDF8oEm1Xb0uhLZcpf7Vs12fGO-q0DErBSF_Y"></script>
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1264020-21"></script>
+        <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-1264020-21');
+        </script>
+    
+    
+</body>
+
+<!-- Mirrored from www.learnrazorpages.com/razor-pages/state-management by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:16:30 GMT -->
+</html>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from www.learnrazorpages.com/advanced/route-parameter-transformers by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:20:25 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Parameter transformers enable the centralisation of logic for modifying the value of routes and route parameters in URLs in Razor Pages" />
+    <meta name="google-site-verification" content="MpV6gEoCh9OASgnoi656klwnlkni3_qOenITGlxBrjc" />
+    <title>Using Parameter Transformers in Razor Pages Routing | Learn Razor Pages</title>
+    <link rel="canonical" href="route-parameter-transformers.html" />
+    <link rel="stylesheet" href="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i|Roboto:300i,500,700" />
+    <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <link rel="stylesheet" href="../css/site8249.css?v=PCA7f9VuZUscxMwrePJfyFKXCF9mh2dMpXEDQU8oP3o" />
+    <link rel="stylesheet" href="../css/rp14c5.css?v=ZxkVB0StHjR5-UMElJII7nwWe6Wmc6_qgJ97GsY4yNw" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-8046723421340367",
+                enable_page_level_ads: true
+            });
+        </script>
+</head>
+<body id="page-top">
+    <div class="navbar navbar-default navbar-static-top">
+        <div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <i class="fas fa-graduation-cap"></i> <a href="../index.html">Learn Razor Pages</a>
+                    <br />
+                    <span class="byline">Your guide to using ASP.NET Core Razor Pages</span>
+                </div>
+                <div class="banner">
+                    
+                        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                        <!-- EF Core Leaderboard -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:728px;height:90px"
+                             data-ad-client="ca-pub-8046723421340367"
+                             data-ad-slot="1832525889"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <nav class="main-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+    <ul class="nav nav-level-one" id="side-menu">
+        <li>
+            <a itemprop="url" href="../index.html">Home</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../first-look.html">A First Look</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../asp-net-core.html">ASP.NET Core</a>
+        </li>
+        <li><a itemprop="url" href="../razor-pages/tutorial/bakery.html">Tutorials</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/tutorial/bakery.html">The Bakery</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages.html">Razor Page Files</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/files/index.html">Razor Files</a></li>
+                <li><a itemprop="url" href="../razor-pages/partial-pages.html">Partial Pages</a></li>
+                <li><a itemprop="url" href="../razor-pages/files/layout.html">Layout Files</a></li>
+                <li><a itemprop="url" href="../razor-pages/files/viewimports.html">ViewImports File</a></li>
+                <li><a itemprop="url" href="../razor-pages/files/viewstart.html">ViewStart File</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-syntax.html">Razor Syntax</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/pagemodel.html">Page Models</a>
+            <ul class="nav-level-two">
+                <li>
+                    <a itemprop="url" href="../razor-pages/handler-methods.html">Handler Methods</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="../razor-pages/viewdata.html">ViewData</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="../razor-pages/action-results.html">Action Results</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/tag-helpers/index.html">Tag Helpers</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/anchor-tag-helper.html">Anchor Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/cache-tag-helper.html">Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/distributed-cache-tag-helper.html">Distributed Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/environment-tag-helper.html">Environment Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/form-action-tag-helper.html">Form Action Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/form-tag-helper.html">Form Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/image-tag-helper.html">Image Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/input-tag-helper.html">Input Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/label-tag-helper.html">Label Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/link-tag-helper.html">Link Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/option-tag-helper.html">Option Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/partial-tag-helper.html">Partial Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/script-tag-helper.html">Script Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/select-tag-helper.html">Select Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/textarea-tag-helper.html">TextArea Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/validation-message-tag-helper.html">Validation Message Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/validation-summary-tag-helper.html">Validation Summary Tag Helper</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/view-components.html">View Components</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/routing.html">Routing and URLs</a>
+            <ul class="nav-level-two">
+                <li><a href="custom-route-conventions.html">Customising Route Conventions</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../startup.html">Startup</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../configuration.html">Configuration</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../configuration/global-error-handling.html">Global Error Handling And Logging</a></li>
+                <li><a itemprop="url" href="../configuration/custom-errors.html">Custom Error Pages</a></li>
+                <li><a itemprop="url" href="../configuration/https.html">Configuring HTTPS</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../middleware.html">Middleware</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/forms.html">Working With Forms</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/forms/file-upload.html">Uploading Files in Razor Pages</a></li>
+                <li><a itemprop="url" href="../razor-pages/forms/checkboxes.html">Working With Checkboxes</a></li>
+                <li><a itemprop="url" href="../razor-pages/forms/select-lists.html">Select Lists in a Razor Pages Form</a></li>
+                <li><a itemprop="url" href="../razor-pages/forms/radios.html">Working With Radio Buttons</a></li>
+                <li><a itemprop="url" href="../security/request-verification.html">Request Verification</a></li>
+            </ul>
+        </li>
+        <li><a itemprop="url" href="../razor-pages/validation.html">Validation</a></li>
+        <li>
+            <a itemprop="url" href="../razor-pages/model-binding.html">Model Binding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/state-management.html">State Management</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/caching.html">Caching</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../identity.html">Managing Security With ASP.NET Identity</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../identity/customising-identity.html">Customising Identity</a></li>
+            </ul>
+        </li>
+        <li>
+		<a itemprop="url" href="../razor-pages/ajax.html">Using AJAX</a>
+		<ul class="nav-level-two">
+			<li><a itemprop="url" href="../razor-pages/ajax/form-post.html">Posting Forms</a>    </li>
+			<li><a itemprop="url" href="../razor-pages/ajax/partial-update.html">Partial Page Updates</a></li>
+			<li><a itemprop="url" href="../razor-pages/ajax/upload-files.html">Uploading Files</a></li>
+			<li><a itemprop="url" href="../razor-pages/ajax/unobtrusive-ajax.html">Unobtrusive AJAX</a></li>
+		</ul>
+	</li>
+        <li>
+            <a itemprop="url" href="../web-api.html">Working with JSON</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../miscellaneous/scaffolding.html">Scaffolding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../publishing/publish-to-iis.html">Publishing To IIS</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../advanced.html">Advanced</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="areas.html">Areas</a></li>
+                <li><a itemprop="url" href="custom-tag-helpers.html">Custom Tag Helpers</a></li>
+                <li><a itemprop="url" href="custom-route-conventions.html">Customising Route Conventions</a></li>
+                <li><a itemprop="url" href="custom-constraints.html">Custom Route Constraints</a></li>
+                <li><a itemprop="url" href="route-parameter-transformers.html">Parameter Transformers For Routes</a></li>
+                <li><a itemprop="url" href="dependency-injection.html">Dependency Injection</a></li>
+                <li><a itemprop="url" href="../razor-pages/filters.html">Filters</a></li>
+                <li><a itemprop="url" href="razor-class-library.html">Razor Class Libraries</a></li>
+                <li><a itemprop="url" href="render-partial-to-string.html">Rendering A Partial View To A String</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../table-of-contents.html">Table Of Contents</a>
+        </li>
+    </ul>
+</nav>
+
+            <footer>
+                <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+            </footer>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+
+    <div id="page-wrapper">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-md-9">
+                    
+<div id="article">
+    <h1 itemprop="headline" id="using-parameter-transformers-to-modify-route-and-parameter-values">Using Parameter Transformers To Modify Route And Parameter Values</h1>
+<div itemprop="articleBody"><p>Available from ASP.NET Core 2.2, parameter transformers enable the centralisation of logic for modifying the value of routes and route parameters in URLs generated by the <a href="../razor-pages/tag-helpers/anchor-tag-helper.html">anchor tag helper</a> or the Url helper.</p>
+<p>There are two cases where parameter transformers can be used:</p>
+<ol>
+<li>To modify the route that the framework generates automatically from the location of a Razor Page</li>
+<li>To modify a parameter value in a route</li>
+</ol>
+<h2 id="modifying-page-routes">Modifying Page Routes</h2>
+<p>By default, the route for a particular page is constructed from its file location and name. For example, a Razor page located at <em>/Pages/SalesReports/RevenueReport.cshtml</em> will have a route template of <code>SalesReports/RevenueReport</code> generated for it. Let's say that you prefer to have the page reachable at <code>sales-reports/revenue-report</code> instead. You could apply an <a href="../razor-pages/routing.html#override-routes">override route</a>, but if you have multiple pages to override in the same manner, this approach can be time-consuming and brittle. Instead, you can create a parameter transformer to manage the process for all pages in the application.</p>
+<p>A parameter transformer is a class that implements <code>IOutboundParameterTransformer</code>. This interface has one method, <code>TransformOutbound</code> which returns a string. The body of the method performs the transformation:</p>
+<pre><code class="language-csharp">using Microsoft.AspNetCore.Routing;
+using System.Text.RegularExpressions;
+
+public class HyphenateRouteParameterTransformer : IOutboundParameterTransformer
+{
+    public string TransformOutbound(object value)
+    {
+        if (value == null) 
+        { 
+            return null; 
+        }
+        return Regex.Replace(value.ToString(), &quot;([a-z])([A-Z])&quot;, &quot;$1-$2&quot;).ToLower();
+    }
+}
+</code></pre>
+<p>In this simple example, the regular expression identifies separate words in a Pascal case string. It looks for instances in the string  - the part of the route's default template that relates to the file path of the page - where an upper case letter follows a lower case letter (i.e. where a new word starts) and then inserts a hyphen between them. The resulting string is then converted to lower case and returned, replacing the default template for the route.</p>
+<p>To get this to work, the parameter transformer needs to be registered in <code>Startup</code>:</p>
+<pre><code class="language-csharp">services.AddMvc().AddRazorPagesOptions(options =&gt;
+{
+    options.Conventions.Add(new PageRouteTransformerConvention(new HyphenateRouteParameterTransformer()));
+});
+</code></pre>
+<p>The <code>asp-page</code> attribute on the anchor tag helper still takes the original file name and path:</p>
+<pre><code class="language-html">&lt;a asp-page=&quot;salesreports/revenuereport&quot;&gt;Revenue Report&lt;/a&gt;
+</code></pre>
+<p>This is converted to the correct template at runtime:</p>
+<pre><code class="language-html">&lt;a href=&quot;/sales-reports/revenue-report&quot;&gt;Revenue Report&lt;/a&gt;
+</code></pre>
+<h2 id="modifying-parameter-values">Modifying Parameter Values</h2>
+<p>An obvious application for this feature is modifying route parameter values obtained dynamically from a database or similar, so that the resulting URL is SEO-friendly. The parameter value can be anything - the title of a news story, a product name and so on. In this case, the parameter transformer is registered and used in the same way as a <a href="custom-constraints.html">custom constraint</a>.</p>
+<p>The following illustration features an extension method, borrowed from the answer to a Stackoverflow question: <a href="https://stackoverflow.com/questions/25259/how-does-stack-overflow-generate-its-seo-friendly-urls">How does Stack Overflow generate its SEO-friendly URLs?</a></p>
+<pre><code class="language-csharp">using System.Text; 
+
+public static class Extensions
+{
+    public static string ToSlug(this string value, bool toLower = true)
+    {
+        if (value == null)
+            return &quot;&quot;;
+
+        var normalised = value.Normalize(NormalizationForm.FormKD);
+
+        const int maxlen = 80;
+        int len = normalised.Length;
+        bool prevDash = false;
+        var sb = new StringBuilder(len);
+        char c;
+
+        for (int i = 0; i &lt; len; i++)
+        {
+            c = normalised[i];
+            if ((c &gt;= 'a' &amp;&amp; c &lt;= 'z') || (c &gt;= '0' &amp;&amp; c &lt;= '9'))
+            {
+                if (prevDash)
+                {
+                    sb.Append('-');
+                    prevDash = false;
+                }
+                sb.Append(c);
+            }
+            else if (c &gt;= 'A' &amp;&amp; c &lt;= 'Z')
+            {
+                if (prevDash)
+                {
+                    sb.Append('-');
+                    prevDash = false;
+                }
+                // Tricky way to convert to lowercase
+                if (toLower)
+                    sb.Append((char)(c | 32));
+                else
+                    sb.Append(c);
+            }
+            else if (c == ' ' || c == ',' || c == '.' || c == '/' || c == '\\' || c == '-' || c == '_' || c == '=')
+            {
+                if (!prevDash &amp;&amp; sb.Length &gt; 0)
+                {
+                    prevDash = true;
+                }
+            }
+            else
+            {
+                string swap = ConvertEdgeCases(c, toLower);
+
+                if (swap != null)
+                {
+                    if (prevDash)
+                    {
+                        sb.Append('-');
+                        prevDash = false;
+                    }
+                    sb.Append(swap);
+                }
+            }
+
+            if (sb.Length == maxlen)
+                break;
+        }
+        return sb.ToString();
+    }
+
+    static string ConvertEdgeCases(char c, bool toLower)
+    {
+        string swap = null;
+        switch (c)
+        {
+            case 'ı':
+                swap = &quot;i&quot;;
+                break;
+            case 'ł':
+                swap = &quot;l&quot;;
+                break;
+            case 'Ł':
+                swap = toLower ? &quot;l&quot; : &quot;L&quot;;
+                break;
+            case 'đ':
+                swap = &quot;d&quot;;
+                break;
+            case 'ß':
+                swap = &quot;ss&quot;;
+                break;
+            case 'ø':
+                swap = &quot;o&quot;;
+                break;
+            case 'Þ':
+                swap = &quot;th&quot;;
+                break;
+        }
+        return swap;
+    }
+}
+</code></pre>
+<p>This is a pretty robust way to convert characters in any string to their ASCII equivalents so that they are safe to use in a URL, and then insert hyphens between words. If you want to use the <code>ToSlug</code> method prior to ASP.NET Core 2.2, you can do so in an anchor tag helper:</p>
+<pre><code class="language-html">&lt;a asp-page=&quot;product&quot; asp-route-name=&quot;@Model.ProductName.ToSlug()&quot;&gt;@Model.ProductName&lt;/a&gt;
+</code></pre>
+<p>Rather than remembering to use this method in all places throughout the application where it is needed, you can instead create a parameter transformer that uses it:</p>
+<pre><code class="language-csharp">public class SlugParameterTransformer : IOutboundParameterTransformer
+{
+    public string TransformOutbound(object value)
+    {
+        return value?.ToString().ToSlug();
+    }
+}
+</code></pre>
+<p>This is registered in the <code>ConfigureServices</code> method:</p>
+<pre><code class="language-csharp">services.Configure&lt;RouteOptions&gt;(options =&gt;
+{
+    options.ConstraintMap.Add(&quot;slug&quot;, typeof(SlugParameterTransformer));
+});
+</code></pre>
+<p>It is added to the <code>ConstraintMap</code> in the same way as a custom constraint. However, it is not a constraint. But you add it to the route template as part of the <code>@page</code> directive in the same way as a constraint:</p>
+<pre><code class="language-html">@page &quot;{name:slug}&quot;
+</code></pre>
+<p>Now, there is no need to use the <code>ToSlug</code> method on the value provided to the <code>name</code> route parameter value in anchor tags. The parameter transformer calls it instead:</p>
+<pre><code class="language-html">&lt;a asp-page=&quot;product&quot; asp-route-name=&quot;@Model.ProductName&quot;&gt;@Model.ProductName&lt;/a&gt;
+</code></pre>
+<p>Assuming that the the value represented by <code>Model.ProductName</code> is &quot;Original Frankfurter grüne Soße&quot; ,the generated output for the anchor tag helper is:</p>
+<pre><code>&lt;a href=&quot;/product/original-frankfurter-grune-sosse&quot;&gt;Original Frankfurter grüne Soße&lt;/a&gt;
+</code></pre>
+<h2 id="summary">Summary</h2>
+<p>Parameter transformers implement <code>IOutboundParameterTransformer</code> and can act on two parts of the route: those added as a <code>PageRouteTransformerConvention</code> act on the part of the route generated from the location of the page. Those added to the <code>ConstraintMap</code> act on specific route parameters.</p>
+
+</div>
+</div>
+<section id="file-meta">
+    <span class="file-meta-label">Last updated:</span> <span itemprop="dateModified">28/04/2019 18:54:40</span><br />
+</section>
+
+                </div>
+                <div class="col-md-3 right-col">
+                    
+                            <script>
+                        (function() {
+                            var cx = 'partner-pub-8046723421340367:6108194070';
+                            var gcse = document.createElement('script');
+                            gcse.type = 'text/javascript';
+                            gcse.async = true;
+                            gcse.src = '../../cse.google.com/cse07b6.html?cx=' + cx;
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(gcse, s);
+                        })();
+                            </script>
+                        <gcse:searchbox-only></gcse:searchbox-only>
+                    
+                    <div id="doc-outline" class="doc-outline well">
+                            <h3 class="doc-outline">On this page</h3>
+                            <nav class="doc-outline">
+                                <ul>
+                                        <li><a itemprop="url" href="#using-parameter-transformers-to-modify-route-and-parameter-values" class="page-scroll">Using Parameter Transformers To Modify Route And Parameter Values</a></li>
+                                        <li><a itemprop="url" href="#modifying-page-routes" class="page-scroll">Modifying Page Routes</a></li>
+                                        <li><a itemprop="url" href="#modifying-parameter-values" class="page-scroll">Modifying Parameter Values</a></li>
+                                        <li><a itemprop="url" href="#summary" class="page-scroll">Summary</a></li>
+                                </ul>
+                            </nav>
+
+                    </div>
+                    <div class="rectangle">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Rectangle -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:250px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="7622896857"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <div class="doc-outline well">
+                        <h3 class="doc-outline">Latest Updates</h3>
+                        <nav class="doc-outline">
+                            <ul>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/migration.html">Creating A Migration</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/create-model.html">Working With A Model</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/routing.html">Routing in Razor Pages</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/working-with-data.html">Working With Data</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/new-page.html">Adding a New Page</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery.html">Creating an Application</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="skyscraper">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Skyscraper -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:600px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="4239197376"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <footer>
+                        <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <a href="#page-top" id="back-to-top" class="page-scroll" title="Back to top"><i class="fas fa-arrow-alt-circle-up"></i></a>
+    </div>
+    <div class="cookie-box" id="cookie-warning">
+        <div class="cookie-box-contents" id="learnrazorpages">This site uses cookies to analyse traffic, remember your preferences, and optimise your experience.</div>
+        <div class="cookie-box-buttons"><a href="../privacy.html" class="cookie-button">Learn more</a><a href="#" class="cookie-button" id="cookie-close">Close</a></div>
+    </div>
+    <script src="../../ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+    <script src="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="../../code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="../js/site59f2.js?v=gJZRD7PDF8oEm1Xb0uhLZcpf7Vs12fGO-q0DErBSF_Y"></script>
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1264020-21"></script>
+        <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-1264020-21');
+        </script>
+    
+    
+</body>
+
+<!-- Mirrored from www.learnrazorpages.com/advanced/route-parameter-transformers by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:20:25 GMT -->
+</html>

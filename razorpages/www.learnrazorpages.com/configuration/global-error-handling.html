@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from www.learnrazorpages.com/configuration/global-error-handling by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:14:03 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="How to configure global error handling and logging in am ASP.NET Core Razor Pages application" />
+    <meta name="google-site-verification" content="MpV6gEoCh9OASgnoi656klwnlkni3_qOenITGlxBrjc" />
+    <title>Global Error Handling And Logging In Razor Pages | Learn Razor Pages</title>
+    <link rel="canonical" href="global-error-handling.html" />
+    <link rel="stylesheet" href="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i|Roboto:300i,500,700" />
+    <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <link rel="stylesheet" href="../css/site8249.css?v=PCA7f9VuZUscxMwrePJfyFKXCF9mh2dMpXEDQU8oP3o" />
+    <link rel="stylesheet" href="../css/rp14c5.css?v=ZxkVB0StHjR5-UMElJII7nwWe6Wmc6_qgJ97GsY4yNw" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-8046723421340367",
+                enable_page_level_ads: true
+            });
+        </script>
+</head>
+<body id="page-top">
+    <div class="navbar navbar-default navbar-static-top">
+        <div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <i class="fas fa-graduation-cap"></i> <a href="../index.html">Learn Razor Pages</a>
+                    <br />
+                    <span class="byline">Your guide to using ASP.NET Core Razor Pages</span>
+                </div>
+                <div class="banner">
+                    
+                        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                        <!-- EF Core Leaderboard -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:728px;height:90px"
+                             data-ad-client="ca-pub-8046723421340367"
+                             data-ad-slot="1832525889"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <nav class="main-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+    <ul class="nav nav-level-one" id="side-menu">
+        <li>
+            <a itemprop="url" href="../index.html">Home</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../first-look.html">A First Look</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../asp-net-core.html">ASP.NET Core</a>
+        </li>
+        <li><a itemprop="url" href="../razor-pages/tutorial/bakery.html">Tutorials</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/tutorial/bakery.html">The Bakery</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages.html">Razor Page Files</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/files/index.html">Razor Files</a></li>
+                <li><a itemprop="url" href="../razor-pages/partial-pages.html">Partial Pages</a></li>
+                <li><a itemprop="url" href="../razor-pages/files/layout.html">Layout Files</a></li>
+                <li><a itemprop="url" href="../razor-pages/files/viewimports.html">ViewImports File</a></li>
+                <li><a itemprop="url" href="../razor-pages/files/viewstart.html">ViewStart File</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-syntax.html">Razor Syntax</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/pagemodel.html">Page Models</a>
+            <ul class="nav-level-two">
+                <li>
+                    <a itemprop="url" href="../razor-pages/handler-methods.html">Handler Methods</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="../razor-pages/viewdata.html">ViewData</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="../razor-pages/action-results.html">Action Results</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/tag-helpers/index.html">Tag Helpers</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/anchor-tag-helper.html">Anchor Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/cache-tag-helper.html">Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/distributed-cache-tag-helper.html">Distributed Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/environment-tag-helper.html">Environment Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/form-action-tag-helper.html">Form Action Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/form-tag-helper.html">Form Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/image-tag-helper.html">Image Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/input-tag-helper.html">Input Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/label-tag-helper.html">Label Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/link-tag-helper.html">Link Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/option-tag-helper.html">Option Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/partial-tag-helper.html">Partial Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/script-tag-helper.html">Script Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/select-tag-helper.html">Select Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/textarea-tag-helper.html">TextArea Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/validation-message-tag-helper.html">Validation Message Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/validation-summary-tag-helper.html">Validation Summary Tag Helper</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/view-components.html">View Components</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/routing.html">Routing and URLs</a>
+            <ul class="nav-level-two">
+                <li><a href="../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../startup.html">Startup</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../configuration.html">Configuration</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="global-error-handling.html">Global Error Handling And Logging</a></li>
+                <li><a itemprop="url" href="custom-errors.html">Custom Error Pages</a></li>
+                <li><a itemprop="url" href="https.html">Configuring HTTPS</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../middleware.html">Middleware</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/forms.html">Working With Forms</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/forms/file-upload.html">Uploading Files in Razor Pages</a></li>
+                <li><a itemprop="url" href="../razor-pages/forms/checkboxes.html">Working With Checkboxes</a></li>
+                <li><a itemprop="url" href="../razor-pages/forms/select-lists.html">Select Lists in a Razor Pages Form</a></li>
+                <li><a itemprop="url" href="../razor-pages/forms/radios.html">Working With Radio Buttons</a></li>
+                <li><a itemprop="url" href="../security/request-verification.html">Request Verification</a></li>
+            </ul>
+        </li>
+        <li><a itemprop="url" href="../razor-pages/validation.html">Validation</a></li>
+        <li>
+            <a itemprop="url" href="../razor-pages/model-binding.html">Model Binding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/state-management.html">State Management</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/caching.html">Caching</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../identity.html">Managing Security With ASP.NET Identity</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../identity/customising-identity.html">Customising Identity</a></li>
+            </ul>
+        </li>
+        <li>
+		<a itemprop="url" href="../razor-pages/ajax.html">Using AJAX</a>
+		<ul class="nav-level-two">
+			<li><a itemprop="url" href="../razor-pages/ajax/form-post.html">Posting Forms</a>    </li>
+			<li><a itemprop="url" href="../razor-pages/ajax/partial-update.html">Partial Page Updates</a></li>
+			<li><a itemprop="url" href="../razor-pages/ajax/upload-files.html">Uploading Files</a></li>
+			<li><a itemprop="url" href="../razor-pages/ajax/unobtrusive-ajax.html">Unobtrusive AJAX</a></li>
+		</ul>
+	</li>
+        <li>
+            <a itemprop="url" href="../web-api.html">Working with JSON</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../miscellaneous/scaffolding.html">Scaffolding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../publishing/publish-to-iis.html">Publishing To IIS</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../advanced.html">Advanced</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../advanced/areas.html">Areas</a></li>
+                <li><a itemprop="url" href="../advanced/custom-tag-helpers.html">Custom Tag Helpers</a></li>
+                <li><a itemprop="url" href="../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+                <li><a itemprop="url" href="../advanced/custom-constraints.html">Custom Route Constraints</a></li>
+                <li><a itemprop="url" href="../advanced/route-parameter-transformers.html">Parameter Transformers For Routes</a></li>
+                <li><a itemprop="url" href="../advanced/dependency-injection.html">Dependency Injection</a></li>
+                <li><a itemprop="url" href="../razor-pages/filters.html">Filters</a></li>
+                <li><a itemprop="url" href="../advanced/razor-class-library.html">Razor Class Libraries</a></li>
+                <li><a itemprop="url" href="../advanced/render-partial-to-string.html">Rendering A Partial View To A String</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../table-of-contents.html">Table Of Contents</a>
+        </li>
+    </ul>
+</nav>
+
+            <footer>
+                <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+            </footer>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+
+    <div id="page-wrapper">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-md-9">
+                    
+<div id="article">
+    <h1 itemprop="headline" id="global-error-handling-and-logging-in-razor-pages">Global Error Handling And Logging In Razor Pages</h1>
+<div itemprop="articleBody"><p>Exceptions in .NET represent an error condition in an executing program. Error conditions can come about as a result of a large number of causes, each represented by its own exception type. Most exceptions arise from logical errors in code, such as an attempt to work with an object that has not been instantiated (<code>NullRefrenceException</code>), or to divide by zero (<code>DivideByZeroException</code>). Other types of exceptions result from technical issues, which may or may not be temporary. Examples of such issues might include a database or mail server being unavailable, or insufficient file system permissions.</p>
+<p>The recommendation is that you should try to minimise the impact of exceptions (otherwise known as <em>handling</em> them) by <a href="https://en.wikipedia.org/wiki/Defensive_programming">coding defensively</a> rather than allowing them to crash your application. Options include wrapping code that might raise exceptions in <code>try-catch</code> blocks, and <a href="../razor-pages/validation.html">validating user input</a> instead of assuming that it conforms to expectations. Despite your best efforts, however, chances are that even in a moderately complex application, there will be something that you overlooked that will go wrong.</p>
+<h2 id="default-exception-handling">Default Exception Handling</h2>
+<p>The standard project template for a Razor Page site includes code that configures global exception handling middleware which is responsible for capturing any <em>unhandled</em> exception and dealing with it:</p>
+<pre><code>public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    if (env.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
+    }
+    else
+    {
+        app.UseExceptionHandler(&quot;/Error&quot;);
+    }
+}
+</code></pre>
+<p>This strategy offers three benefits:</p>
+<ol>
+<li>It provides one central place to configure exception handling.</li>
+<li>It reduces the amount of <code>try-catch</code> blocks that you need to sprinkle throughout the application.</li>
+<li>It enables you to handle exceptions in a different way, depending on the environment.</li>
+</ol>
+<p>When you are running the site in development, the application is configured to use the <em>Developer Exception Page</em>, which is designed to output as much detail about the exception as possible to make it easier to diagnose the root cause:</p>
+<p><img src="../images/25-01-2019-14-12-15.png" class="img-fluid" alt="Developer Exception Page" /></p>
+<p>The middleware captures unhandled exceptions within the processing pipeline and ensures that the correct HTTP status code is returned along with the HTML output above.</p>
+<p>This information is very useful during the development phase of a web site, but it should not be displayed once the site has gone live. Apart from the fact that it is pretty unfriendly from a user's point of view, the details revealed here might prove helpful to someone whose intentions are not honourable.</p>
+<p>So the default site is configured to use <code>ExceptionHandlerMiddleware</code> in all other environments.  This is registered in Startup by the <code>UseExceptionHandler</code> method, which takes the relative path to a page that should be executed in the event that an unhandled exception occurs while the application is running:</p>
+<p><img src="../images/30-01-2019-09-09-33.png" class="img-fluid" alt="Image" /></p>
+<p>This page (<em>Error.cshtml</em>) forms part of the standard template and is fully customisable.</p>
+<h2 id="logging-error-details">Logging Error Details</h2>
+<p>Now that the application reacts appropriately when an exception occurs, you need to be able to review the details of any exception so that you can implement strategies to prevent it happening in future, or to handle it more gracefully where possible. So you need to be able to log as much information about the exception as possible.</p>
+<p>Logging is included as part of the ASP.NET Core framework with a number of built-in logging providers. The simplest way to collect and store logs is in a file, but, none of the built-in providers enable this (at the moment). Therefore you will need to rely on a third party logging component. There are several good, free and open source ones that work with .NET Core, with <a href="https://nlog-project.org/">NLog</a> probably being one of the best known.</p>
+<h3 id="installing-and-configuring-nlog">Installing and Configuring NLog</h3>
+<p>NLog is available as a Nuget package and can be installed via the Package Manager Console in Visual Studio using the following commands:</p>
+<pre><code>install-package NLog
+install-package NLog.Web.AspNetCore
+</code></pre>
+<p>Alternatively, if you are using Visual Studio Code, you can use the <code>dotnet</code> CLI to install the required packages:</p>
+<pre><code>dotnet add package NLog
+dotnet add package NLog.Web.AspNetCore
+</code></pre>
+<p>Once installed, you need to configure options for NLog. You can do this in two ways: you can provide configuration in an xml-based file, or you can use the configuration API to set the configuration programmatically.</p>
+<h3 id="using-a-config-file">Using A Config File</h3>
+<p>First, create a file named nlog.config in the root folder of your application. Then add the following to it:</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+&lt;nlog xmlns=&quot;http://www.nlog-project.org/schemas/NLog.xsd&quot;
+      xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+      autoReload=&quot;true&quot;&gt;
+  &lt;extensions&gt;
+    &lt;add assembly=&quot;NLog.Web.AspNetCore&quot;/&gt;
+  &lt;/extensions&gt;
+
+  &lt;targets&gt;
+    &lt;target xsi:type=&quot;File&quot; name=&quot;myLogFile&quot; fileName=&quot;c:\logs\mylog-${shortdate}.log&quot;
+            layout=&quot;${longdate}|${event-properties:item=EventId_Id}|${uppercase:${level}}|${logger}|${message} ${exception:format=tostring}&quot; /&gt;
+  &lt;/targets&gt;
+
+  &lt;rules&gt;
+    &lt;logger name=&quot;*&quot; minlevel=&quot;Warn&quot; writeTo=&quot;myLogFile&quot; /&gt;
+  &lt;/rules&gt;
+&lt;/nlog&gt;
+</code></pre>
+<p>NLog works with <strong>targets</strong> and <strong>rules</strong>. A target is the destination for logging output. NLog supports a <a href="https://nlog-project.org/config/?tab=targets">huge number of targets</a>, but the one that we are using is File. The file name and the layout of the log are specified using templates composed from <a href="https://nlog-project.org/config/?tab=layout-renderers">layout renderers</a>.</p>
+<p>Rules affect loggers. The simple one added above specifies that all loggers in the application should write to the the target named <code>myLogFile</code>, but only if the log level is <code>WARN</code> or above. Log levels are (in ascending order of severity):</p>
+<ul>
+<li>TRACE</li>
+<li>DEBUG</li>
+<li>INFO</li>
+<li>WARN</li>
+<li>ERROR</li>
+<li>FATAL</li>
+</ul>
+<p>Finally, the logging configuration is registered in the <code>Main</code> method, and logging is configured as part of the <code>CreateWebHostBuilder</code> method call:</p>
+<pre><code class="language-csharp" data-lines="10,18,25-30">using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using NLog.Web;  
+
+namespace ErrorHandling
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var logger = NLog.Web.NLogBuilder.ConfigureNLog(&quot;nlog.config&quot;).GetCurrentClassLogger();
+            CreateWebHostBuilder(args).Build().Run();
+        }
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =&gt;
+            WebHost.CreateDefaultBuilder(args)
+            .UseStartup&lt;Startup&gt;()
+            .ConfigureLogging(logging =&gt;
+            {
+                logging.ClearProviders();
+                logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+            })
+            .UseNLog();
+    }
+}
+</code></pre>
+<p>If you prefer to use the configuration API, the equivalent configuration is created using the following code within the <code>Main</code> method:</p>
+<pre><code class="language-csharp">public static void Main(string[] args)
+{
+    var config = new LoggingConfiguration();
+    
+    // targets
+    var fileTarget = new FileTarget(&quot;fileTarget&quot;)
+    {
+        FileName = @&quot;c:\logs\mylog-${shortdate}.log&quot;,
+        Layout = &quot;${longdate}|${event-properties:item=EventId_Id}|${uppercase:${level}}|${logger}|${message} ${exception:format=tostring}&quot;
+    };
+    config.AddTarget(fileTarget);
+
+    // rules
+    config.AddRuleForOneLevel(NLog.LogLevel.Warn, fileTarget); 
+    config.AddRuleForOneLevel(NLog.LogLevel.Error, fileTarget);
+    config.AddRuleForOneLevel(NLog.LogLevel.Fatal, fileTarget);  
+
+    LogManager.Configuration = config;
+    CreateWebHostBuilder(args).Build().Run();
+}
+</code></pre>
+<p>Now when you encounter an exception, details will be written to the specified log file. The file name template includes the <code>${shortdate}</code> renderer, which ensures that a new log file will be created each day.</p>
+<p><img src="../images/07-02-2019-10-50-20.png" class="img-fluid" alt="NLog in ASP.NET Core Razor Pages" /></p>
+<h3 id="further-reading">Further Reading</h3>
+<ul>
+<li><a href="https://github.com/NLog/NLog.Web/wiki/Getting-started-with-ASP.NET-Core-2">NLog - Getting started with ASP.NET Core 2</a></li>
+</ul>
+
+</div>
+</div>
+<section id="file-meta">
+    <span class="file-meta-label">Last updated:</span> <span itemprop="dateModified">06/03/2019 09:39:54</span><br />
+</section>
+
+                </div>
+                <div class="col-md-3 right-col">
+                    
+                            <script>
+                        (function() {
+                            var cx = 'partner-pub-8046723421340367:6108194070';
+                            var gcse = document.createElement('script');
+                            gcse.type = 'text/javascript';
+                            gcse.async = true;
+                            gcse.src = '../../cse.google.com/cse07b6.html?cx=' + cx;
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(gcse, s);
+                        })();
+                            </script>
+                        <gcse:searchbox-only></gcse:searchbox-only>
+                    
+                    <div id="doc-outline" class="doc-outline well">
+                            <h3 class="doc-outline">On this page</h3>
+                            <nav class="doc-outline">
+                                <ul>
+                                        <li><a itemprop="url" href="#global-error-handling-and-logging-in-razor-pages" class="page-scroll">Global Error Handling And Logging In Razor Pages</a></li>
+                                        <li><a itemprop="url" href="#default-exception-handling" class="page-scroll">Default Exception Handling</a></li>
+                                        <li><a itemprop="url" href="#logging-error-details" class="page-scroll">Logging Error Details</a></li>
+                                        <li><a itemprop="url" href="#installing-and-configuring-nlog" class="page-scroll">Installing and Configuring NLog</a></li>
+                                        <li><a itemprop="url" href="#using-a-config-file" class="page-scroll">Using A Config File</a></li>
+                                        <li><a itemprop="url" href="#further-reading" class="page-scroll">Further Reading</a></li>
+                                </ul>
+                            </nav>
+
+                    </div>
+                    <div class="rectangle">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Rectangle -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:250px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="7622896857"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <div class="doc-outline well">
+                        <h3 class="doc-outline">Latest Updates</h3>
+                        <nav class="doc-outline">
+                            <ul>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/migration.html">Creating A Migration</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/create-model.html">Working With A Model</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/routing.html">Routing in Razor Pages</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/working-with-data.html">Working With Data</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/new-page.html">Adding a New Page</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery.html">Creating an Application</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="skyscraper">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Skyscraper -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:600px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="4239197376"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <footer>
+                        <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <a href="#page-top" id="back-to-top" class="page-scroll" title="Back to top"><i class="fas fa-arrow-alt-circle-up"></i></a>
+    </div>
+    <div class="cookie-box" id="cookie-warning">
+        <div class="cookie-box-contents" id="learnrazorpages">This site uses cookies to analyse traffic, remember your preferences, and optimise your experience.</div>
+        <div class="cookie-box-buttons"><a href="../privacy.html" class="cookie-button">Learn more</a><a href="#" class="cookie-button" id="cookie-close">Close</a></div>
+    </div>
+    <script src="../../ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+    <script src="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="../../code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="../js/site59f2.js?v=gJZRD7PDF8oEm1Xb0uhLZcpf7Vs12fGO-q0DErBSF_Y"></script>
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1264020-21"></script>
+        <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-1264020-21');
+        </script>
+    
+    
+</body>
+
+<!-- Mirrored from www.learnrazorpages.com/configuration/global-error-handling by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:14:04 GMT -->
+</html>

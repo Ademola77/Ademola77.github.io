@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from www.learnrazorpages.com/razor-pages/viewdata by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:07:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="ViewData is a container for data to be passed from the Razor PageModel to the content page. ViewData is a dictionary of objects with a string-based key." />
+    <meta name="google-site-verification" content="MpV6gEoCh9OASgnoi656klwnlkni3_qOenITGlxBrjc" />
+    <title>ViewData In Razor Pages | Learn Razor Pages</title>
+    <link rel="canonical" href="viewdata.html" />
+    <link rel="stylesheet" href="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i|Roboto:300i,500,700" />
+    <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <link rel="stylesheet" href="../css/site8249.css?v=PCA7f9VuZUscxMwrePJfyFKXCF9mh2dMpXEDQU8oP3o" />
+    <link rel="stylesheet" href="../css/rp14c5.css?v=ZxkVB0StHjR5-UMElJII7nwWe6Wmc6_qgJ97GsY4yNw" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-8046723421340367",
+                enable_page_level_ads: true
+            });
+        </script>
+</head>
+<body id="page-top">
+    <div class="navbar navbar-default navbar-static-top">
+        <div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <i class="fas fa-graduation-cap"></i> <a href="../index.html">Learn Razor Pages</a>
+                    <br />
+                    <span class="byline">Your guide to using ASP.NET Core Razor Pages</span>
+                </div>
+                <div class="banner">
+                    
+                        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                        <!-- EF Core Leaderboard -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:728px;height:90px"
+                             data-ad-client="ca-pub-8046723421340367"
+                             data-ad-slot="1832525889"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <nav class="main-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+    <ul class="nav nav-level-one" id="side-menu">
+        <li>
+            <a itemprop="url" href="../index.html">Home</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../first-look.html">A First Look</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../asp-net-core.html">ASP.NET Core</a>
+        </li>
+        <li><a itemprop="url" href="tutorial/bakery.html">Tutorials</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="tutorial/bakery.html">The Bakery</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages.html">Razor Page Files</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="files/index.html">Razor Files</a></li>
+                <li><a itemprop="url" href="partial-pages.html">Partial Pages</a></li>
+                <li><a itemprop="url" href="files/layout.html">Layout Files</a></li>
+                <li><a itemprop="url" href="files/viewimports.html">ViewImports File</a></li>
+                <li><a itemprop="url" href="files/viewstart.html">ViewStart File</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-syntax.html">Razor Syntax</a>
+        </li>
+        <li>
+            <a itemprop="url" href="pagemodel.html">Page Models</a>
+            <ul class="nav-level-two">
+                <li>
+                    <a itemprop="url" href="handler-methods.html">Handler Methods</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="viewdata.html">ViewData</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="action-results.html">Action Results</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="tag-helpers/index.html">Tag Helpers</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="tag-helpers/anchor-tag-helper.html">Anchor Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/cache-tag-helper.html">Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/distributed-cache-tag-helper.html">Distributed Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/environment-tag-helper.html">Environment Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/form-action-tag-helper.html">Form Action Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/form-tag-helper.html">Form Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/image-tag-helper.html">Image Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/input-tag-helper.html">Input Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/label-tag-helper.html">Label Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/link-tag-helper.html">Link Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/option-tag-helper.html">Option Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/partial-tag-helper.html">Partial Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/script-tag-helper.html">Script Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/select-tag-helper.html">Select Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/textarea-tag-helper.html">TextArea Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/validation-message-tag-helper.html">Validation Message Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/validation-summary-tag-helper.html">Validation Summary Tag Helper</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="view-components.html">View Components</a>
+        </li>
+        <li>
+            <a itemprop="url" href="routing.html">Routing and URLs</a>
+            <ul class="nav-level-two">
+                <li><a href="../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../startup.html">Startup</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../configuration.html">Configuration</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../configuration/global-error-handling.html">Global Error Handling And Logging</a></li>
+                <li><a itemprop="url" href="../configuration/custom-errors.html">Custom Error Pages</a></li>
+                <li><a itemprop="url" href="../configuration/https.html">Configuring HTTPS</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../middleware.html">Middleware</a>
+        </li>
+        <li>
+            <a itemprop="url" href="forms.html">Working With Forms</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="forms/file-upload.html">Uploading Files in Razor Pages</a></li>
+                <li><a itemprop="url" href="forms/checkboxes.html">Working With Checkboxes</a></li>
+                <li><a itemprop="url" href="forms/select-lists.html">Select Lists in a Razor Pages Form</a></li>
+                <li><a itemprop="url" href="forms/radios.html">Working With Radio Buttons</a></li>
+                <li><a itemprop="url" href="../security/request-verification.html">Request Verification</a></li>
+            </ul>
+        </li>
+        <li><a itemprop="url" href="validation.html">Validation</a></li>
+        <li>
+            <a itemprop="url" href="model-binding.html">Model Binding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="state-management.html">State Management</a>
+        </li>
+        <li>
+            <a itemprop="url" href="caching.html">Caching</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../identity.html">Managing Security With ASP.NET Identity</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../identity/customising-identity.html">Customising Identity</a></li>
+            </ul>
+        </li>
+        <li>
+		<a itemprop="url" href="ajax.html">Using AJAX</a>
+		<ul class="nav-level-two">
+			<li><a itemprop="url" href="ajax/form-post.html">Posting Forms</a>    </li>
+			<li><a itemprop="url" href="ajax/partial-update.html">Partial Page Updates</a></li>
+			<li><a itemprop="url" href="ajax/upload-files.html">Uploading Files</a></li>
+			<li><a itemprop="url" href="ajax/unobtrusive-ajax.html">Unobtrusive AJAX</a></li>
+		</ul>
+	</li>
+        <li>
+            <a itemprop="url" href="../web-api.html">Working with JSON</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../miscellaneous/scaffolding.html">Scaffolding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../publishing/publish-to-iis.html">Publishing To IIS</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../advanced.html">Advanced</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../advanced/areas.html">Areas</a></li>
+                <li><a itemprop="url" href="../advanced/custom-tag-helpers.html">Custom Tag Helpers</a></li>
+                <li><a itemprop="url" href="../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+                <li><a itemprop="url" href="../advanced/custom-constraints.html">Custom Route Constraints</a></li>
+                <li><a itemprop="url" href="../advanced/route-parameter-transformers.html">Parameter Transformers For Routes</a></li>
+                <li><a itemprop="url" href="../advanced/dependency-injection.html">Dependency Injection</a></li>
+                <li><a itemprop="url" href="filters.html">Filters</a></li>
+                <li><a itemprop="url" href="../advanced/razor-class-library.html">Razor Class Libraries</a></li>
+                <li><a itemprop="url" href="../advanced/render-partial-to-string.html">Rendering A Partial View To A String</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../table-of-contents.html">Table Of Contents</a>
+        </li>
+    </ul>
+</nav>
+
+            <footer>
+                <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+            </footer>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+
+    <div id="page-wrapper">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-md-9">
+                    
+<div id="article">
+    <h1 itemprop="headline" id="working-with-viewdata-in-razor-pages">Working With ViewData in Razor Pages</h1>
+<div itemprop="articleBody"><p>ViewData is a container for data to be passed from the <a href="pagemodel.html">PageModel</a> to the content page. ViewData is a dictionary of objects with a string-based key. You add items to ViewData as follows:</p>
+<pre><code class="language-csharp">public class IndexModel : PageModel
+{
+
+    public void OnGet()
+    {
+        ViewData[&quot;MyNumber&quot;] = 42;
+        ViewData[&quot;MyString&quot;] = &quot;Hello World&quot;;
+        ViewData[&quot;MyComplexObject&quot;] = new Book { 
+                                    Title = &quot;Sum Of All Fears&quot;,  
+                                    Author = new Author { Name = &quot;Tom Clancy&quot; },
+                                    Price = 5.99m
+                                    };
+    }
+}
+</code></pre>
+<p>The ViewData dictionary is automatically made available to the content page. Therefore, in order to reference values stored in it, you just refer to their item by key:</p>
+<pre><code class="language-html">@page
+@model IndexModel
+@{
+}
+&lt;h2&gt;@ViewData[&quot;MyString&quot;]&lt;/h2&gt;
+&lt;p&gt;The answer to everything is @ViewData[&quot;MyNumber&quot;]&lt;/p&gt;
+</code></pre>
+<p>When working with complex values, you need to cast them to their correct type in the content page:</p>
+<pre><code>@page
+@model IndexModel
+@{
+    var book = (Book)ViewData[&quot;MyComplexObject&quot;];
+}
+
+&lt;h2&gt;@book.Title&lt;/h2&gt;
+&lt;p&gt;@book.Author.Name&lt;/p&gt;
+&lt;p&gt;@book.Price&lt;/p&gt;
+</code></pre>
+<h2 id="viewdata-attribute">ViewData Attribute</h2>
+<p>The ViewData attribute was introduced in ASP.NET Core 2.1. PageModel properties decorated with this attribute are automatically added as keys to the ViewData dictionary along with any value that has been assigned to them. In the following example, the <code>Message</code> property has been automatically added to ViewData:</p>
+<pre><code class="language-csharp">public class IndexModel : PageModel
+{
+    [ViewData]
+    public string Message { get; set; }
+
+    public void OnGet()
+    {
+        Message = &quot;Hello World&quot;;
+    }
+}
+</code></pre>
+<p>Now the <code>Message</code> property can be accessed in the view via the <code>Model</code> property or the ViewData dictionary:</p>
+<pre><code class="language-csharp">@page
+@model IndexModel
+@{
+    
+}
+
+&lt;h2&gt;@Model.Message&lt;/h2&gt;
+&lt;h2&gt;@ViewData[&quot;Message&quot;]&lt;/h&gt;
+
+</code></pre>
+<p>You should prefer to access properties of the <code>Model</code> in a content page because you benefit from strong typing: IntelliSense and compile-time checking. So why should you use the ViewData attribute on model properties? The real benefit of this feature comes when working with <a href="files/layout.html">layout pages</a>. ViewData is shared with the layout page (and any <a href="partial-pages.html">partial pages</a> called by the content page or the layout), so the attribute makes it easy to pass typed data from the PageModel to the layout page or partials without having to explicitly assign it to the ViewData dictionary.</p>
+<p>Building on the previous example, the following snippet is a partial named _<em>HelloWorldPartial</em>:</p>
+<pre><code class="language-html">&lt;p&gt;@ViewData[&quot;Message&quot;] from the Hello World partial&lt;/p&gt;
+</code></pre>
+<p>This is called from within the layout page using the partial tag helper:</p>
+<pre><code class="language-html">&lt;partial name=&quot;_HelloWorldPartial&quot; /&gt;
+</code></pre>
+<p>The PageModel <code>Message</code> property was set in the <code>OnGet</code> handler and assigned to ViewData via the attribute, which ensures that it is passed from content page to layout to partial where it is rendered:</p>
+<p><img src="../images/05-09-2018-09-22-53.png" class="img-fluid" alt="ViewData in Razor Pages" /></p>
+
+</div>
+</div>
+
+                </div>
+                <div class="col-md-3 right-col">
+                    
+                            <script>
+                        (function() {
+                            var cx = 'partner-pub-8046723421340367:6108194070';
+                            var gcse = document.createElement('script');
+                            gcse.type = 'text/javascript';
+                            gcse.async = true;
+                            gcse.src = '../../cse.google.com/cse07b6.html?cx=' + cx;
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(gcse, s);
+                        })();
+                            </script>
+                        <gcse:searchbox-only></gcse:searchbox-only>
+                    
+                    <div id="doc-outline" class="doc-outline well">
+                            <h3 class="doc-outline">On this page</h3>
+                            <nav class="doc-outline">
+                                <ul>
+                                        <li><a itemprop="url" href="#working-with-viewdata-in-razor-pages" class="page-scroll">Working With ViewData in Razor Pages</a></li>
+                                        <li><a itemprop="url" href="#viewdata-attribute" class="page-scroll">ViewData Attribute</a></li>
+                                </ul>
+                            </nav>
+
+                    </div>
+                    <div class="rectangle">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Rectangle -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:250px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="7622896857"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <div class="doc-outline well">
+                        <h3 class="doc-outline">Latest Updates</h3>
+                        <nav class="doc-outline">
+                            <ul>
+                                    <li><a itemprop="url" href="tutorial/bakery/migration.html">Creating A Migration</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/create-model.html">Working With A Model</a></li>
+                                    <li><a itemprop="url" href="routing.html">Routing in Razor Pages</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/working-with-data.html">Working With Data</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/new-page.html">Adding a New Page</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery.html">Creating an Application</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="skyscraper">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Skyscraper -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:600px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="4239197376"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <footer>
+                        <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <a href="#page-top" id="back-to-top" class="page-scroll" title="Back to top"><i class="fas fa-arrow-alt-circle-up"></i></a>
+    </div>
+    <div class="cookie-box" id="cookie-warning">
+        <div class="cookie-box-contents" id="learnrazorpages">This site uses cookies to analyse traffic, remember your preferences, and optimise your experience.</div>
+        <div class="cookie-box-buttons"><a href="../privacy.html" class="cookie-button">Learn more</a><a href="#" class="cookie-button" id="cookie-close">Close</a></div>
+    </div>
+    <script src="../../ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+    <script src="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="../../code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="../js/site59f2.js?v=gJZRD7PDF8oEm1Xb0uhLZcpf7Vs12fGO-q0DErBSF_Y"></script>
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1264020-21"></script>
+        <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-1264020-21');
+        </script>
+    
+    
+</body>
+
+<!-- Mirrored from www.learnrazorpages.com/razor-pages/viewdata by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:07:06 GMT -->
+</html>

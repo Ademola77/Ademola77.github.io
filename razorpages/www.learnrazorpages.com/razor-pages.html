@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from www.learnrazorpages.com/razor-pages by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:06:59 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="An introduction to the main Razor Pages files, including content pages and PageModel files" />
+    <meta name="google-site-verification" content="MpV6gEoCh9OASgnoi656klwnlkni3_qOenITGlxBrjc" />
+    <title>Razor Pages Files | Learn Razor Pages</title>
+    <link rel="canonical" href="razor-pages/index.html" />
+    <link rel="stylesheet" href="../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i|Roboto:300i,500,700" />
+    <link rel="stylesheet" href="../use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <link rel="stylesheet" href="css/site8249.css?v=PCA7f9VuZUscxMwrePJfyFKXCF9mh2dMpXEDQU8oP3o" />
+    <link rel="stylesheet" href="css/rp14c5.css?v=ZxkVB0StHjR5-UMElJII7nwWe6Wmc6_qgJ97GsY4yNw" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-8046723421340367",
+                enable_page_level_ads: true
+            });
+        </script>
+</head>
+<body id="page-top">
+    <div class="navbar navbar-default navbar-static-top">
+        <div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <i class="fas fa-graduation-cap"></i> <a href="index.html">Learn Razor Pages</a>
+                    <br />
+                    <span class="byline">Your guide to using ASP.NET Core Razor Pages</span>
+                </div>
+                <div class="banner">
+                    
+                        <script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                        <!-- EF Core Leaderboard -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:728px;height:90px"
+                             data-ad-client="ca-pub-8046723421340367"
+                             data-ad-slot="1832525889"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <nav class="main-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+    <ul class="nav nav-level-one" id="side-menu">
+        <li>
+            <a itemprop="url" href="index.html">Home</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="first-look.html">A First Look</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="asp-net-core.html">ASP.NET Core</a>
+        </li>
+        <li><a itemprop="url" href="razor-pages/tutorial/bakery.html">Tutorials</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="razor-pages/tutorial/bakery.html">The Bakery</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="razor-pages.html">Razor Page Files</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="razor-pages/files/index.html">Razor Files</a></li>
+                <li><a itemprop="url" href="razor-pages/partial-pages.html">Partial Pages</a></li>
+                <li><a itemprop="url" href="razor-pages/files/layout.html">Layout Files</a></li>
+                <li><a itemprop="url" href="razor-pages/files/viewimports.html">ViewImports File</a></li>
+                <li><a itemprop="url" href="razor-pages/files/viewstart.html">ViewStart File</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="razor-syntax.html">Razor Syntax</a>
+        </li>
+        <li>
+            <a itemprop="url" href="razor-pages/pagemodel.html">Page Models</a>
+            <ul class="nav-level-two">
+                <li>
+                    <a itemprop="url" href="razor-pages/handler-methods.html">Handler Methods</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="razor-pages/viewdata.html">ViewData</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="razor-pages/action-results.html">Action Results</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="razor-pages/tag-helpers/index.html">Tag Helpers</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="razor-pages/tag-helpers/anchor-tag-helper.html">Anchor Tag Helper</a></li>
+                <li><a itemprop="url" href="razor-pages/tag-helpers/cache-tag-helper.html">Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="razor-pages/tag-helpers/distributed-cache-tag-helper.html">Distributed Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="razor-pages/tag-helpers/environment-tag-helper.html">Environment Tag Helper</a></li>
+                <li><a itemprop="url" href="razor-pages/tag-helpers/form-action-tag-helper.html">Form Action Tag Helper</a></li>
+                <li><a itemprop="url" href="razor-pages/tag-helpers/form-tag-helper.html">Form Tag Helper</a></li>
+                <li><a itemprop="url" href="razor-pages/tag-helpers/image-tag-helper.html">Image Tag Helper</a></li>
+                <li><a itemprop="url" href="razor-pages/tag-helpers/input-tag-helper.html">Input Tag Helper</a></li>
+                <li><a itemprop="url" href="razor-pages/tag-helpers/label-tag-helper.html">Label Tag Helper</a></li>
+                <li><a itemprop="url" href="razor-pages/tag-helpers/link-tag-helper.html">Link Tag Helper</a></li>
+                <li><a itemprop="url" href="razor-pages/tag-helpers/option-tag-helper.html">Option Tag Helper</a></li>
+                <li><a itemprop="url" href="razor-pages/tag-helpers/partial-tag-helper.html">Partial Tag Helper</a></li>
+                <li><a itemprop="url" href="razor-pages/tag-helpers/script-tag-helper.html">Script Tag Helper</a></li>
+                <li><a itemprop="url" href="razor-pages/tag-helpers/select-tag-helper.html">Select Tag Helper</a></li>
+                <li><a itemprop="url" href="razor-pages/tag-helpers/textarea-tag-helper.html">TextArea Tag Helper</a></li>
+                <li><a itemprop="url" href="razor-pages/tag-helpers/validation-message-tag-helper.html">Validation Message Tag Helper</a></li>
+                <li><a itemprop="url" href="razor-pages/tag-helpers/validation-summary-tag-helper.html">Validation Summary Tag Helper</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="razor-pages/view-components.html">View Components</a>
+        </li>
+        <li>
+            <a itemprop="url" href="razor-pages/routing.html">Routing and URLs</a>
+            <ul class="nav-level-two">
+                <li><a href="advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="startup.html">Startup</a>
+        </li>
+        <li>
+            <a itemprop="url" href="configuration.html">Configuration</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="configuration/global-error-handling.html">Global Error Handling And Logging</a></li>
+                <li><a itemprop="url" href="configuration/custom-errors.html">Custom Error Pages</a></li>
+                <li><a itemprop="url" href="configuration/https.html">Configuring HTTPS</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="middleware.html">Middleware</a>
+        </li>
+        <li>
+            <a itemprop="url" href="razor-pages/forms.html">Working With Forms</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="razor-pages/forms/file-upload.html">Uploading Files in Razor Pages</a></li>
+                <li><a itemprop="url" href="razor-pages/forms/checkboxes.html">Working With Checkboxes</a></li>
+                <li><a itemprop="url" href="razor-pages/forms/select-lists.html">Select Lists in a Razor Pages Form</a></li>
+                <li><a itemprop="url" href="razor-pages/forms/radios.html">Working With Radio Buttons</a></li>
+                <li><a itemprop="url" href="security/request-verification.html">Request Verification</a></li>
+            </ul>
+        </li>
+        <li><a itemprop="url" href="razor-pages/validation.html">Validation</a></li>
+        <li>
+            <a itemprop="url" href="razor-pages/model-binding.html">Model Binding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="razor-pages/state-management.html">State Management</a>
+        </li>
+        <li>
+            <a itemprop="url" href="razor-pages/caching.html">Caching</a>
+        </li>
+        <li>
+            <a itemprop="url" href="identity.html">Managing Security With ASP.NET Identity</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="identity/customising-identity.html">Customising Identity</a></li>
+            </ul>
+        </li>
+        <li>
+		<a itemprop="url" href="razor-pages/ajax.html">Using AJAX</a>
+		<ul class="nav-level-two">
+			<li><a itemprop="url" href="razor-pages/ajax/form-post.html">Posting Forms</a>    </li>
+			<li><a itemprop="url" href="razor-pages/ajax/partial-update.html">Partial Page Updates</a></li>
+			<li><a itemprop="url" href="razor-pages/ajax/upload-files.html">Uploading Files</a></li>
+			<li><a itemprop="url" href="razor-pages/ajax/unobtrusive-ajax.html">Unobtrusive AJAX</a></li>
+		</ul>
+	</li>
+        <li>
+            <a itemprop="url" href="web-api.html">Working with JSON</a>
+        </li>
+        <li>
+            <a itemprop="url" href="miscellaneous/scaffolding.html">Scaffolding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="publishing/publish-to-iis.html">Publishing To IIS</a>
+        </li>
+        <li>
+            <a itemprop="url" href="advanced.html">Advanced</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="advanced/areas.html">Areas</a></li>
+                <li><a itemprop="url" href="advanced/custom-tag-helpers.html">Custom Tag Helpers</a></li>
+                <li><a itemprop="url" href="advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+                <li><a itemprop="url" href="advanced/custom-constraints.html">Custom Route Constraints</a></li>
+                <li><a itemprop="url" href="advanced/route-parameter-transformers.html">Parameter Transformers For Routes</a></li>
+                <li><a itemprop="url" href="advanced/dependency-injection.html">Dependency Injection</a></li>
+                <li><a itemprop="url" href="razor-pages/filters.html">Filters</a></li>
+                <li><a itemprop="url" href="advanced/razor-class-library.html">Razor Class Libraries</a></li>
+                <li><a itemprop="url" href="advanced/render-partial-to-string.html">Rendering A Partial View To A String</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="table-of-contents.html">Table Of Contents</a>
+        </li>
+    </ul>
+</nav>
+
+            <footer>
+                <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+            </footer>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+
+    <div id="page-wrapper">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-md-9">
+                    
+<div id="article">
+    <h1 itemprop="headline" id="razor-pages">Razor Pages</h1>
+<div itemprop="articleBody"><p>All Razor files end with <em>.cshtml</em>. Most Razor files are intended to be browsable and contain a mixture of client-side and server-side code, which, when processed, results in HTML being sent to the browser. These pages are usually referred to as &quot;content pages&quot;. This section takes a deeper look at content pages, and their associated <a href="razor-pages/pagemodel.html">PageModel</a> files.</p>
+<h2 id="content-pages">Content Pages</h2>
+<p>For a file to act as a Razor content page, it must have three characteristics:</p>
+<ul>
+<li>It cannot have a leading underscore in its file name</li>
+<li>The file extension is <em>.cshtml</em></li>
+<li>The first line in the file is <code>@page</code></li>
+</ul>
+<p>Placing the <code>@page</code> directive as the first line of code is critical. If this is not done, the file will not be seen as a Razor page, and will not be found if you try to browse to it. There can be empty space before the <code>@page</code> directive, but there cannot be any other characters, even an empty code block. The only other content permitted on the same line as the <code>@page</code> directive is a <a href="razor-pages/routing.html#adding-constraints">route template</a>.</p>
+<p>Content pages can have a <a href="razor-pages/files/layout.html">layout file</a> specified, but this is not mandatory. They can optionally include code blocks, HTML, JavaScript and inline Razor code.</p>
+<h2 id="razor-syntax">Razor Syntax</h2>
+<p>Content pages are largely comprised of HTML, but they also include <a href="https://www.mikesdotnetting.com/article/153/inline-razor-syntax-overview">Razor syntax</a> which enables the inclusion of executable C# code within the content. The C# code is executed on the server, and typically results in dynamic content being included within the response sent to the browser.</p>
+<h2 id="single-file-approach">Single File Approach</h2>
+<p>Although not recommended, it is possible to develop Razor Page applications that rely solely on content pages. The following example features an approach that is most like that which is familiar to developers with a scripting background, like PHP or classic ASP:</p>
+<p><em>Example.cshtml</em>:</p>
+<pre><code class="language-html">@page 
+@{
+    var name = string.Empty;
+    if (Request.HasFormContentType)
+    {
+        name = Request.Form[&quot;name&quot;];
+    }
+}
+
+&lt;div style=&quot;margin-top:30px;&quot;&gt;
+    &lt;form method=&quot;post&quot;&gt;
+        &lt;div&gt;Name: &lt;input name=&quot;name&quot; /&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;input type=&quot;submit&quot; /&gt;&lt;/div&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+&lt;div&gt;
+    @if (!string.IsNullOrEmpty(name))
+    {
+        &lt;p&gt;Hello @name!&lt;/p&gt;
+    }
+&lt;/div&gt;
+</code></pre>
+<p>The Razor content page requires the @page directive at the top of the file. The <code>HasFormContentType</code> property is used to determine whether a form has been posted and the Request.Form collection is referenced within a Razor code block with the relevant value within it assigned to the <code>name</code> variable.</p>
+<p>The Razor code block is denoted by and opening <code>@{</code> and is temrinated with a closing <code>}</code>. The content within the block is standard C# code.</p>
+<p>Single control structures do not need a code block. You can simpy prefix them with the <code>@</code> sign. This is illustrated by the <code>if</code> block in the preceding example.</p>
+<p>To render the value of a C# variable or expression, you prefix it with the <code>@</code> sign as shown with the <code>name</code> variable within the <code>if</code> block.</p>
+<p>The next example results in the same functionality as the previous example, but it uses an <code>@functions</code> block to declare a public property which is decorated with the <code>BindProperty</code> attribute, ensuring that the property takes part in <a href="razor-pages/model-binding.html">model binding</a>, removing the need to manually assign form values to variables.</p>
+<p><em>Example.cshtml</em>:</p>
+<pre><code class="language-html">@page
+
+@functions {
+    [BindProperty]
+    public string Name { get; set; }
+}
+
+&lt;div style=&quot;margin-top:30px;&quot;&gt;
+    &lt;form method=&quot;post&quot;&gt;
+        &lt;div&gt;Name: &lt;input name=&quot;name&quot; /&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;input type=&quot;submit&quot; /&gt;&lt;/div&gt;
+    &lt;/form&gt;
+    @if (!string.IsNullOrEmpty(Name))
+    {
+        &lt;p&gt;Hello @Name!&lt;/p&gt;
+    }
+&lt;/div&gt;
+</code></pre>
+<p>This approach is an improvement on the previous in that is makes use of strong typing, and while the processing logic can be restricted to the <code>@functions</code> block, the page will become more difficult to maintain and test.</p>
+<h2 id="pagemodel-files">PageModel Files</h2>
+<p>The recommended way to develop Razor Pages applications is to minimise the amount of server-side code in the content page to the barest minimum. Any code relating to the processing of user input or data should be placed in <a href="razor-pages/pagemodel.html">PageModel files</a>, which share a one-to-one mapping with their associated content page. They even share the same file name, albeit with an additional <em>.cs</em> on the end to denote the fact that they are actually C# class files.</p>
+<p>The following code shows the <em>Example.cshtml</em> file adapted to work with a PageModel:</p>
+<p><em>Example.cshtml</em>:</p>
+<pre><code class="language-html">@page
+@model ExampleModel
+
+&lt;div style=&quot;margin-top:30px;&quot;&gt;
+    &lt;form method=&quot;post&quot;&gt;
+        &lt;div&gt;Name: &lt;input asp-for=&quot;Name&quot; /&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;input type=&quot;submit&quot; /&gt;&lt;/div&gt;
+    &lt;/form&gt;
+    @if (!string.IsNullOrEmpty(Model.Name))
+    {
+        &lt;p&gt;Hello @Model.Name!&lt;/p&gt;
+    }
+&lt;/div&gt;
+</code></pre>
+<p>And this is the code for the PageModel class:</p>
+<p><em>Example.cshtml.cs</em>:</p>
+<pre><code class="language-csharp">using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace RazorPages.Pages
+{
+    public class ExampleModel : PageModel
+    {
+        [BindProperty]
+        public string Name { get; set; }
+    }
+}
+</code></pre>
+<p>The PageModel class has a single property defined as in the previous example, and it is decorated with the <code>BindProperty</code> attribute. The content page no longer has the <code>@functions</code> block, but it now includes an <code>@model</code> directive, specifying that the <code>ExampleModel</code> is the model for the page. This also enables <a href="razor-pages/tag-helpers.html">Tag helpers</a> in the page, further taking advantage of compile-time type checking.</p>
+<p>The default projects generate content pages paired with PageModel files. This is the recommended approach. However, it is also useful to know how to work with content pages without a PageModel for circumstances where they are not needed.</p>
+
+</div>
+</div>
+<section id="file-meta">
+    <span class="file-meta-label">Last updated:</span> <span itemprop="dateModified">08/05/2019 14:29:04</span><br />
+</section>
+
+                </div>
+                <div class="col-md-3 right-col">
+                    
+                            <script>
+                        (function() {
+                            var cx = 'partner-pub-8046723421340367:6108194070';
+                            var gcse = document.createElement('script');
+                            gcse.type = 'text/javascript';
+                            gcse.async = true;
+                            gcse.src = '../cse.google.com/cse07b6.html?cx=' + cx;
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(gcse, s);
+                        })();
+                            </script>
+                        <gcse:searchbox-only></gcse:searchbox-only>
+                    
+                    <div id="doc-outline" class="doc-outline well">
+                            <h3 class="doc-outline">On this page</h3>
+                            <nav class="doc-outline">
+                                <ul>
+                                        <li><a itemprop="url" href="#razor-pages" class="page-scroll">Razor Pages</a></li>
+                                        <li><a itemprop="url" href="#content-pages" class="page-scroll">Content Pages</a></li>
+                                        <li><a itemprop="url" href="#razor-syntax" class="page-scroll">Razor Syntax</a></li>
+                                        <li><a itemprop="url" href="#single-file-approach" class="page-scroll">Single File Approach</a></li>
+                                        <li><a itemprop="url" href="#pagemodel-files" class="page-scroll">PageModel Files</a></li>
+                                </ul>
+                            </nav>
+
+                    </div>
+                    <div class="rectangle">
+                        
+                                <script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Rectangle -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:250px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="7622896857"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <div class="doc-outline well">
+                        <h3 class="doc-outline">Latest Updates</h3>
+                        <nav class="doc-outline">
+                            <ul>
+                                    <li><a itemprop="url" href="razor-pages/tutorial/bakery/migration.html">Creating A Migration</a></li>
+                                    <li><a itemprop="url" href="razor-pages/tutorial/bakery/create-model.html">Working With A Model</a></li>
+                                    <li><a itemprop="url" href="razor-pages/routing.html">Routing in Razor Pages</a></li>
+                                    <li><a itemprop="url" href="razor-pages/tutorial/bakery/working-with-data.html">Working With Data</a></li>
+                                    <li><a itemprop="url" href="razor-pages/tutorial/bakery/new-page.html">Adding a New Page</a></li>
+                                    <li><a itemprop="url" href="razor-pages/tutorial/bakery.html">Creating an Application</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="skyscraper">
+                        
+                                <script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Skyscraper -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:600px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="4239197376"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <footer>
+                        <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <a href="#page-top" id="back-to-top" class="page-scroll" title="Back to top"><i class="fas fa-arrow-alt-circle-up"></i></a>
+    </div>
+    <div class="cookie-box" id="cookie-warning">
+        <div class="cookie-box-contents" id="learnrazorpages">This site uses cookies to analyse traffic, remember your preferences, and optimise your experience.</div>
+        <div class="cookie-box-buttons"><a href="privacy.html" class="cookie-button">Learn more</a><a href="#" class="cookie-button" id="cookie-close">Close</a></div>
+    </div>
+    <script src="../ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+    <script src="../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="../code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    
+    <script src="../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="js/site59f2.js?v=gJZRD7PDF8oEm1Xb0uhLZcpf7Vs12fGO-q0DErBSF_Y"></script>
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1264020-21"></script>
+        <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-1264020-21');
+        </script>
+    
+    
+</body>
+
+<!-- Mirrored from www.learnrazorpages.com/razor-pages by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:06:59 GMT -->
+</html>

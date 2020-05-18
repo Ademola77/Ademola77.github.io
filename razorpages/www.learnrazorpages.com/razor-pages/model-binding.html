@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from www.learnrazorpages.com/razor-pages/model-binding by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:16:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Model Binding in Razor Pages is the process that takes values from an HTTP requests and maps them to Razor Pages PageModel properties or handler method parameters." />
+    <meta name="google-site-verification" content="MpV6gEoCh9OASgnoi656klwnlkni3_qOenITGlxBrjc" />
+    <title>Model Binding in Razor Pages | Learn Razor Pages</title>
+    <link rel="canonical" />
+    <link rel="stylesheet" href="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i|Roboto:300i,500,700" />
+    <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <link rel="stylesheet" href="../css/site8249.css?v=PCA7f9VuZUscxMwrePJfyFKXCF9mh2dMpXEDQU8oP3o" />
+    <link rel="stylesheet" href="../css/rp14c5.css?v=ZxkVB0StHjR5-UMElJII7nwWe6Wmc6_qgJ97GsY4yNw" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-8046723421340367",
+                enable_page_level_ads: true
+            });
+        </script>
+</head>
+<body id="page-top">
+    <div class="navbar navbar-default navbar-static-top">
+        <div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <i class="fas fa-graduation-cap"></i> <a href="../index.html">Learn Razor Pages</a>
+                    <br />
+                    <span class="byline">Your guide to using ASP.NET Core Razor Pages</span>
+                </div>
+                <div class="banner">
+                    
+                        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                        <!-- EF Core Leaderboard -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:728px;height:90px"
+                             data-ad-client="ca-pub-8046723421340367"
+                             data-ad-slot="1832525889"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <nav class="main-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+    <ul class="nav nav-level-one" id="side-menu">
+        <li>
+            <a itemprop="url" href="../index.html">Home</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../first-look.html">A First Look</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../asp-net-core.html">ASP.NET Core</a>
+        </li>
+        <li><a itemprop="url" href="tutorial/bakery.html">Tutorials</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="tutorial/bakery.html">The Bakery</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages.html">Razor Page Files</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="files/index.html">Razor Files</a></li>
+                <li><a itemprop="url" href="partial-pages.html">Partial Pages</a></li>
+                <li><a itemprop="url" href="files/layout.html">Layout Files</a></li>
+                <li><a itemprop="url" href="files/viewimports.html">ViewImports File</a></li>
+                <li><a itemprop="url" href="files/viewstart.html">ViewStart File</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-syntax.html">Razor Syntax</a>
+        </li>
+        <li>
+            <a itemprop="url" href="pagemodel.html">Page Models</a>
+            <ul class="nav-level-two">
+                <li>
+                    <a itemprop="url" href="handler-methods.html">Handler Methods</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="viewdata.html">ViewData</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="action-results.html">Action Results</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="tag-helpers/index.html">Tag Helpers</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="tag-helpers/anchor-tag-helper.html">Anchor Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/cache-tag-helper.html">Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/distributed-cache-tag-helper.html">Distributed Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/environment-tag-helper.html">Environment Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/form-action-tag-helper.html">Form Action Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/form-tag-helper.html">Form Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/image-tag-helper.html">Image Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/input-tag-helper.html">Input Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/label-tag-helper.html">Label Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/link-tag-helper.html">Link Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/option-tag-helper.html">Option Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/partial-tag-helper.html">Partial Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/script-tag-helper.html">Script Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/select-tag-helper.html">Select Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/textarea-tag-helper.html">TextArea Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/validation-message-tag-helper.html">Validation Message Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/validation-summary-tag-helper.html">Validation Summary Tag Helper</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="view-components.html">View Components</a>
+        </li>
+        <li>
+            <a itemprop="url" href="routing.html">Routing and URLs</a>
+            <ul class="nav-level-two">
+                <li><a href="../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../startup.html">Startup</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../configuration.html">Configuration</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../configuration/global-error-handling.html">Global Error Handling And Logging</a></li>
+                <li><a itemprop="url" href="../configuration/custom-errors.html">Custom Error Pages</a></li>
+                <li><a itemprop="url" href="../configuration/https.html">Configuring HTTPS</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../middleware.html">Middleware</a>
+        </li>
+        <li>
+            <a itemprop="url" href="forms.html">Working With Forms</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="forms/file-upload.html">Uploading Files in Razor Pages</a></li>
+                <li><a itemprop="url" href="forms/checkboxes.html">Working With Checkboxes</a></li>
+                <li><a itemprop="url" href="forms/select-lists.html">Select Lists in a Razor Pages Form</a></li>
+                <li><a itemprop="url" href="forms/radios.html">Working With Radio Buttons</a></li>
+                <li><a itemprop="url" href="../security/request-verification.html">Request Verification</a></li>
+            </ul>
+        </li>
+        <li><a itemprop="url" href="validation.html">Validation</a></li>
+        <li>
+            <a itemprop="url" href="model-binding.html">Model Binding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="state-management.html">State Management</a>
+        </li>
+        <li>
+            <a itemprop="url" href="caching.html">Caching</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../identity.html">Managing Security With ASP.NET Identity</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../identity/customising-identity.html">Customising Identity</a></li>
+            </ul>
+        </li>
+        <li>
+		<a itemprop="url" href="ajax.html">Using AJAX</a>
+		<ul class="nav-level-two">
+			<li><a itemprop="url" href="ajax/form-post.html">Posting Forms</a>    </li>
+			<li><a itemprop="url" href="ajax/partial-update.html">Partial Page Updates</a></li>
+			<li><a itemprop="url" href="ajax/upload-files.html">Uploading Files</a></li>
+			<li><a itemprop="url" href="ajax/unobtrusive-ajax.html">Unobtrusive AJAX</a></li>
+		</ul>
+	</li>
+        <li>
+            <a itemprop="url" href="../web-api.html">Working with JSON</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../miscellaneous/scaffolding.html">Scaffolding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../publishing/publish-to-iis.html">Publishing To IIS</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../advanced.html">Advanced</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../advanced/areas.html">Areas</a></li>
+                <li><a itemprop="url" href="../advanced/custom-tag-helpers.html">Custom Tag Helpers</a></li>
+                <li><a itemprop="url" href="../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+                <li><a itemprop="url" href="../advanced/custom-constraints.html">Custom Route Constraints</a></li>
+                <li><a itemprop="url" href="../advanced/route-parameter-transformers.html">Parameter Transformers For Routes</a></li>
+                <li><a itemprop="url" href="../advanced/dependency-injection.html">Dependency Injection</a></li>
+                <li><a itemprop="url" href="filters.html">Filters</a></li>
+                <li><a itemprop="url" href="../advanced/razor-class-library.html">Razor Class Libraries</a></li>
+                <li><a itemprop="url" href="../advanced/render-partial-to-string.html">Rendering A Partial View To A String</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../table-of-contents.html">Table Of Contents</a>
+        </li>
+    </ul>
+</nav>
+
+            <footer>
+                <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+            </footer>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+
+    <div id="page-wrapper">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-md-9">
+                    
+<div id="article">
+    <h1 itemprop="headline" id="model-binding">Model Binding</h1>
+<div itemprop="articleBody"><p>Model Binding in Razor Pages is the process that takes values from HTTP requests and maps them to <a href="handler-methods.html">handler method</a> parameters or <a href="pagemodel.html">PageModel</a> properties. Model binding reduces the need for the developer to manually extract values from the request and then assign them, one by one, to variables or properties for later processing. This work is repetitive, tedious and error prone, mainly because request values are usually only exposed via string-based indexes.</p>
+<h2 id="the-problem">The Problem</h2>
+<p>To illustrate the role that model binding plays, create a new Razor page with a PageModel and name it <em>ModelBinding.cshtml</em>. Change the code in the content page to the following:</p>
+<pre><code class="language-html">@page 
+@model ModelBindingModel
+@{
+}
+
+&lt;h3&gt;@ViewData[&quot;confirmation&quot;]&lt;/h3&gt;
+&lt;form class=&quot;form-horizontal&quot; method=&quot;post&quot;&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;Name&quot; class=&quot;col-sm-2 control-label&quot;&gt;Name&lt;/label&gt;
+        &lt;div class=&quot;col-sm-10&quot;&gt;
+            &lt;input type=&quot;text&quot; class=&quot;form-control&quot; name=&quot;Name&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;Email&quot; class=&quot;col-sm-2 control-label&quot;&gt;Email&lt;/label&gt;
+        &lt;div class=&quot;col-sm-10&quot;&gt;
+            &lt;input type=&quot;text&quot; class=&quot;form-control&quot; name=&quot;Email&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;div class=&quot;col-sm-offset-2 col-sm-10&quot;&gt;
+            &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;Register&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+<p>It represents a standard HTML form accepting a name and a email address (such as might be used to capture requests for information, for example), with a confirmation message at the top of the page.
+When the form is completed and submitted, the values are sent in the request body in name/value pairs, where the &quot;name&quot; represents the <code>name</code> attribute of the input, and the value is what was supplied by the user. You can see this in the Network tab of your preferred browser if it supports developer tools:</p>
+<p><img src="../images/2017-07-22_16-52-57.png" class="img-fluid" alt="Posted values" /></p>
+<p>Add the following handler method code to the PageModel class in <em>ModelBinding.cshtml.cs</em>:</p>
+<pre><code class="language-csharp">public void OnPost()
+{
+    var name = Request.Form[&quot;Name&quot;];
+    var email = Request.Form[&quot;Email&quot;];
+    ViewData[&quot;confirmation&quot;] = $&quot;{name}, information will be sent to {email}&quot;;
+}
+</code></pre>
+<p>This represents the  traditional way that values in server-side code are processed in many web frameworks. The appropriate <code>Request</code> collection is accessed by string-based index and then values from the collection are assigned to local variables for further processing.</p>
+<p>Launch the page in a browser and enter some values into the form. Then submit it and you should see those values included in the confirmation message:</p>
+<p>This approach is sustainable for small forms, but if you are dealing with large forms, such as one representing an order for multiple items complete with shipping details, for example, the assignment code can become very tedious. And, because development tools provide no code-completion or Intellisense support for string indices, it is fairly easy to mistype <code>Request.Form[&quot;Email&quot;]</code> as <code>Request.Form[&quot;Emial&quot;]</code>, thereby introducing a subtle but damaging bug that may be difficult to track down among 30 or 40 other form fields.</p>
+<h2 id="binding-posted-form-values-to-handler-method-parameters">Binding Posted Form Values To Handler Method Parameters</h2>
+<p>Razor Pages provides two approaches to leveraging model binding. The first approach involves adding parameters to the handler method. The parameters are named after the form fields, and given an appropriate type for the expected data. To see this approach in action, remove the assignment code in the <code>OnPost</code> handler method and add two parameters to the method:</p>
+<pre><code class="language-csharp">public void OnPost(string name, string email)
+{
+     ViewData[&quot;confirmation&quot;] = $&quot;{name}, information will be sent to {email}&quot;;
+}
+</code></pre>
+<p>When the form is posted, the Razor Pages framework calls the <code>OnPost</code> method and sees that it has two parameters. It extracts posted form values that match the names of the parameters and automatically assigns the values from the form to the parameters if the value can be converted to the type represented by the parameter. There is no need for any assignment code.</p>
+<h2 id="binding-posted-form-values-to-pagemodel-properties">Binding Posted Form Values to PageModel Properties</h2>
+<p>The previous approach is suitable when the values are not needed outside of the handler method to which the parameters belong. The second approach is more suitable if you need to access the values outside of the handler method (for display on the page, perhaps), or if you prefer to work in a strongly typed manner within the Razor content page. This approach involves adding public properties to the <a href="pagemodel.html">PageModel</a> (or to a <code>@functions</code> block if you don't want to use the PageModel approach) and then  decorating them with the <code>BindProperty</code> attribute. To try this out, alter the PageModel code as follows:</p>
+<pre><code class="language-csharp">public class ModelBindingModel : PageModel
+{
+    [BindProperty]
+    public string Name { get; set; }
+    [BindProperty]
+    public string Email { get; set; }
+    public void OnGet()
+    {
+    }
+
+    public void OnPost()
+    {
+        ViewData[&quot;confirmation&quot;] = $&quot;{Name}, information will be sent to {Email}&quot;;
+    }
+}
+</code></pre>
+<p>From version 2.1 of ASP.NET Core, you can add the new <code>[BindProperties]</code> attribute to the PageModel class rather than applying <code>[BindPRoperty]</code> to individual properties, which results in all the public properties in the PageModel taking part in model binding:</p>
+<pre><code class="language-csharp">[BindProperties]
+public class ModelBindingModel : PageModel
+{
+    public string Name { get; set; }
+    public string Email { get; set; }
+    
+    public void OnGet()
+    {
+    }
+
+    public void OnPost()
+    {
+        ViewData[&quot;confirmation&quot;] = $&quot;{Name}, information will be sent to {Email}&quot;;
+    }
+}
+</code></pre>
+<p>When doing this, take care to note the advice about <a href="#preventing-overposting-or-mass-assignment-attacks">preventing over-posting attacks below</a>.</p>
+<p>Note that the case of the variables in the format string has altered to refer to the public property names. Model binding itself is not case sensitive. It performs case-insensitive matches between the names of incoming values and the names or parameters or properties that it attempts to bind the values to.  Now when you run the page, the result is exactly the same as before:</p>
+<p><img src="../images/2017-07-22_17-18-09.png" class="img-fluid" alt="Model binding to page model properties" /></p>
+<h2 id="binding-data-from-get-requests">Binding Data From GET Requests</h2>
+<p>The same options apply if you want to bind data from <code>GET</code> requests (which is appended to the URL as a query string). Binding to handler method parameters is automatic and requires no additional configuration. However, by default, only values that form part of a <code>POST</code> request are considered for model binding when you use the <code>BindProperty</code> attribute. The <code>BindProperty</code> attribute has a property called <code>SupportsGet</code>, which is <code>false</code> by default. You have to set this to <code>true</code> to opt in to model binding to PageModel properties on <code>GET</code> requests:</p>
+<pre><code class="language-csharp">public class ModelBindingModel : PageModel
+{
+    [BindProperty(SupportsGet = true)]
+    public string Email { get; set; }
+    [BindProperty(SupportsGet = true)]
+    public string Password { get; set; }
+    public void OnGet()
+    {
+        ViewData[&quot;welcome&quot;] = $&quot;Welcome {Email}&quot;;
+    }
+}
+</code></pre>
+<div class="alert alert-warning"><p>Note: Obviously it is not a good idea to create a login form that supports <code>GET</code>. Form values will appear in the URL, which could well be a security breach.</p>
+</div>
+<h2 id="binding-route-data">Binding Route Data</h2>
+<p>So far the examples have featured how model binding works with form values. It also works with <a href="routing.html#route-data">Route Data</a>, which is part of the routing system that Razor Pages uses. To test this, alter the code in <em>ModelBinding.cshtml</em> as follows:</p>
+<pre><code class="language-csharp">@page &quot;{id}&quot;
+@model ModelBindingModel
+@{
+}
+
+&lt;h3&gt;Id = @ViewData[&quot;id&quot;]&lt;/h3&gt;
+</code></pre>
+<p>A route parameter named <code>id</code> has been added and the content of the <code>h3</code> heading has been altered to print the value of a <code>ViewData</code> entry named <code>id</code>.</p>
+<p>Next, remove the public properties from the PageModel and add a parameter named <code>id</code> of type <code>int</code> to the <code>OnGet</code> handler method, and in the body of the method, assign its value to <code>ViewData</code>:</p>
+<pre><code class="language-csharp">public class ModelBindingModel : PageModel
+{
+    public void OnGet(int id)
+    {
+        ViewData[&quot;id&quot;] = id;
+    }
+}
+</code></pre>
+<p>Once again, model binding takes care of assigning the value in the route to the handler method parameter. This also works for public properties on the PageModel in exactly the same way as for form values:</p>
+<pre><code class="language-csharp">public class ModelBindingModel : PageModel
+{
+    [BindProperty(SupportsGet= true )]
+    public int Id { get; set; }
+
+    public void OnGet()
+    {
+        ViewData[&quot;id&quot;] = Id;
+    }
+
+    public void OnPost()
+    {
+            
+    }
+}
+</code></pre>
+<h2 id="binding-complex-objects">Binding Complex Objects</h2>
+<p>Up to this point, you have seen how to use model binding to populate simple properties. As the number of form fields grows, the PageModel class will start to creak with either a long list of properties, all decorated with the <code>BindProperty</code> attribute, or a large number of parameters applied to a handler method. Fortunately model binding also works with complex objects. So the properties to be bound can be wrapped in an object that can be exposed as a property of the PageModel or a parameter for the handler method.  Here's a class named <code>Login</code> that represents the form fields from the previous examples:</p>
+<pre><code class="language-csharp">public class Login
+{
+    public string Email { get; set; }
+    public string Password { get; set; }
+}
+</code></pre>
+<p>Now this can be added as a property on the PageModel class:</p>
+<pre><code class="language-csharp">public class ModelBindingModel : PageModel
+{
+    [BindProperty]
+    public Login Login { get; set; }
+    public void OnGet()
+    {
+    }
+
+    public void OnPost()
+    {
+        ViewData[&quot;welcome&quot;] = $&quot;Welcome {Login.Email}&quot;;
+    }
+}
+</code></pre>
+<p>Or it can be applied as a parameter to the <code>OnPost</code> method depending on your usage needs:</p>
+<pre><code class="language-csharp">public class ModelBindingModel : PageModel
+{
+    public void OnGet()
+    {
+    }
+
+    public void OnPost(Login Login)
+    {
+        ViewData[&quot;welcome&quot;] = $&quot;Welcome {Login.Email}&quot;;
+    }
+}
+</code></pre>
+<p>The form field names have to be altered to reflect the fact that the property has changed:</p>
+<pre><code class="language-html">&lt;input type=&quot;text&quot; class=&quot;form-control&quot; name=&quot;Login.Email&quot;&gt;
+</code></pre>
+<h2 id="binding-simple-collections">Binding Simple Collections</h2>
+<p>The next code example shows a form where the user is allowed to select more than one option. In this case, the user is invited to specify which film categories they like:</p>
+<pre><code class="language-html">&lt;form class=&quot;form-horizontal&quot; method=&quot;post&quot;&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;CategoryId&quot; class=&quot;col-sm-2 control-label&quot;&gt;Which types of film do you like? (Tick all that apply)&lt;/label&gt;
+        &lt;div class=&quot;col-sm-10&quot;&gt;
+            &lt;input type=&quot;checkbox&quot; name=&quot;CategoryId&quot; value=&quot;1&quot;&gt; Factual&lt;br /&gt;
+            &lt;input type=&quot;checkbox&quot; name=&quot;CategoryId&quot; value=&quot;2&quot;&gt; Horror&lt;br /&gt;
+            &lt;input type=&quot;checkbox&quot; name=&quot;CategoryId&quot; value=&quot;3&quot;&gt; Historical&lt;br /&gt;
+            &lt;input type=&quot;checkbox&quot; name=&quot;CategoryId&quot; value=&quot;4&quot;&gt; SciFi&lt;br /&gt;
+            &lt;input type=&quot;checkbox&quot; name=&quot;CategoryId&quot; value=&quot;5&quot;&gt; Comedy&lt;br /&gt;
+            &lt;input type=&quot;checkbox&quot; name=&quot;CategoryId&quot; value=&quot;6&quot;&gt; Fantasy&lt;br /&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;div class=&quot;col-sm-offset-2 col-sm-10&quot;&gt;
+            &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;Submit&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+<p>The form includes multiple checkboxes, each with the same <code>name</code> attribute value: <code>CategoryId</code>. When the form is submitted, the posted values look something like this (depending on the selection made):</p>
+<pre><code>CategoryId=1&amp;CategoryId=3&amp;CategoryId=6
+</code></pre>
+<p>ASP.NET Core will take those values and transform them into a <code>StringValues</code> type, which represents zero/null, one, or many strings. This can be converted by the model binder to an array of any type that the values can be converted to - strings or integers will work in this example. The code for binding to a handler method parameter and passing the posted values to <code>ViewData</code> looks like this:</p>
+<pre><code class="language-csharp">public void OnPost(int[] categoryId)
+{
+    ViewData[&quot;categoryId&quot;] = categoryId;
+}
+</code></pre>
+<p>If there are no values posted, <code>categoryId</code> will be <code>null</code> as will <code>ViewData[&quot;categoryId&quot;]</code>. Therefore you must test for <code>null</code> (as well as casting to the relevant type):</p>
+<pre><code class="language-html">@if (ViewData[&quot;categoryId&quot;] != null)
+{
+&lt;h3&gt;You selected the following categories: @string.Join(&quot;,&quot;, (int[])ViewData[&quot;categoryId&quot;])&lt;/h3&gt;
+}
+</code></pre>
+<p>If you choose to bind to a PageModel property, you can initiate the collection as part of its declaration:</p>
+<pre><code class="language-csharp">public class ModelBindingModel : PageModel
+{
+    [BindProperty]
+    public int[] CategoryId { get; set; } = new int[0];
+
+    public void OnPost()
+    {
+            
+    }
+}
+</code></pre>
+<p>Then you can use <code>Any()</code> to check whether the collection has been populated:</p>
+<pre><code class="language-html">@if (Model.CategoryId.Any())
+{
+&lt;h3&gt;You selected the following categories: @string.Join(&quot;,&quot;, Model.CategoryId)&lt;/h3&gt;
+}
+</code></pre>
+<h2 id="binding-complex-collections">Binding Complex Collections</h2>
+<p>The model binder also supports binding to collections of complex objects. The following class represents a contact:</p>
+<pre><code class="language-csharp">public class Contact
+{
+    public int ContactId { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Email { get; set; }
+}
+</code></pre>
+<p>Here is a form that enables a user to submit multiple contacts in one go:</p>
+<pre><code class="language-html">&lt;form class=&quot;form-horizontal&quot; method=&quot;post&quot;&gt;
+    &lt;table class=&quot;table table-striped&quot;&gt;
+            &lt;tr&gt;
+                &lt;th&gt;First Name&lt;/th&gt;
+                &lt;th&gt;Last Name&lt;/th&gt;
+                &lt;th&gt;Email&lt;/th&gt;
+            &lt;/tr&gt;
+        @for (var i = 0; i &lt; 5; i++)
+        {
+            &lt;tr&gt;
+                &lt;td&gt;
+                    &lt;input type=&quot;text&quot; name=&quot;[@i].FirstName&quot; /&gt;
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;input type=&quot;text&quot; name=&quot;[@i].LastName&quot; /&gt;
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;input type=&quot;text&quot; name=&quot;[@i].Email&quot; /&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        }
+    &lt;/table&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;div class=&quot;col-sm-offset-2 col-sm-10&quot;&gt;
+            &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;Submit&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+<p><img src="../images/2017-07-25_08-17-46.png" class="img-fluid" alt="Multiple contacts" /></p>
+<p>The model binder will bind the posted values to a collection of Contact objects, which is usually represented by a <code>List&lt;T&gt;</code>. This can be a property of the PageModel:</p>
+<pre><code class="language-csharp">[BindProperty]
+public List&lt;Contact&gt; Contacts { get; set; }
+</code></pre>
+<p>Or it can be a handler method parameter:</p>
+<pre><code class="language-csharp">public void OnPost(List&lt;Contact&gt; contacts)
+{
+    // process the contacts
+}
+</code></pre>
+<p>This approach to complex object binding makes use of a <em>sequential index</em>. The index must start at 0, and it must be sequential, as its name suggests. There must be no gaps. The index is placed in square brackets and added to the form field's <code>name</code> attribute e.g <code>[0].FirstName</code>. The code below shows the generated HTML for the first 2 rows in the form:</p>
+<pre><code class="language-html">&lt;tr&gt;
+    &lt;td&gt;
+        &lt;input type=&quot;text&quot; name=&quot;[0].FirstName&quot; /&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+        &lt;input type=&quot;text&quot; name=&quot;[0].LastName&quot; /&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+        &lt;input type=&quot;text&quot; name=&quot;[0].Email&quot; /&gt;
+    &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;
+        &lt;input type=&quot;text&quot; name=&quot;[1].FirstName&quot; /&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+        &lt;input type=&quot;text&quot; name=&quot;[1].LastName&quot; /&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+        &lt;input type=&quot;text&quot; name=&quot;[1].Email&quot; /&gt;
+    &lt;/td&gt;
+&lt;/tr&gt;
+</code></pre>
+<p>In this example, for format that is used for the form field names is <code>[index].propertyname</code>. The process also works with <code>parametername[index].propertyname</code> if you prefer e.g.:</p>
+<pre><code class="language-html">@for (var i = 0; i &lt; 5; i++)
+{
+    &lt;tr&gt;
+        &lt;td&gt;
+            &lt;input type=&quot;text&quot; name=&quot;Contacts[@i].FirstName&quot; /&gt;
+        &lt;/td&gt;
+        &lt;td&gt;
+            &lt;input type=&quot;text&quot; name=&quot;Contacts[@i].LastName&quot; /&gt;
+        &lt;/td&gt;
+        &lt;td&gt;
+            &lt;input type=&quot;text&quot; name=&quot;Contacts[@i].Email&quot; /&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+}
+</code></pre>
+<p>When the form is submitted, a collection of five (in this example) <code>Contact</code> objects is instantiated and populated with the posted values. If the user only provides values for the first three contacts, the final two will have their properties set to the default for the type - <code>null</code> for strings.</p>
+<p>The same approach works when you bind to a PageModel property. However, you can also use the <code>asp-for</code> attribute of an <a href="tag-helpers/input-tag-helper.html">input tag helper</a>:</p>
+<pre><code class="language-html">@for (var i = 0; i &lt; 5; i++)
+{
+    &lt;tr&gt;
+        &lt;td&gt;
+            &lt;input type=&quot;text&quot; asp-for=&quot;Contacts[i].FirstName&quot; /&gt;
+        &lt;/td&gt;
+        &lt;td&gt;
+            &lt;input type=&quot;text&quot; asp-for=&quot;Contacts[i].LastName&quot; /&gt;
+        &lt;/td&gt;
+        &lt;td&gt;
+            &lt;input type=&quot;text&quot; asp-for=&quot;Contacts[i].Email&quot; /&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+}
+</code></pre>
+<pre><code class="language-csharp">public class ModelBindingModel : PageModel
+{
+    [BindProperty]
+    public List&lt;Contact&gt; Contacts { get; set; } 
+
+
+    public void OnPost()
+    {
+        // process the contacts
+    }
+}
+</code></pre>
+<p>You can also use an <em>explicit index</em>. This approach requires an additional hidden field for each item, named <code>[property].Index</code> (the explicit index). The index can be any value that uniquely identifies a data item. This approach is more suited to forms designed for editing existing values, where the primary key of each item is often used as the index value.</p>
+<p>In this example, <code>ContactId</code> - the key value for the <code>Contact</code>  entity - is used as the index value:</p>
+<pre><code class="language-html">&lt;form method=&quot;post&quot;&gt;
+    &lt;table class=&quot;table&quot;&gt;
+        @foreach (var contact in Model.Contacts)
+        {
+            &lt;tr&gt;
+                &lt;td&gt;
+                    &lt;input type=&quot;hidden&quot; name=&quot;Contacts.Index&quot; value=&quot;@contact.ContactId&quot; /&gt;
+                    &lt;input type=&quot;hidden&quot; name=&quot;Contacts[@contact.ContactId].ContactId&quot; value=&quot;@contact.ContactId&quot; /&gt;
+                    @contact.ContactId
+                &lt;/td&gt;
+                &lt;td&gt;&lt;input name=&quot;Contacts[@contact.ContactId].FirstName&quot; value=&quot;@contact.FirstName&quot; /&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;input name=&quot;Contacts[@contact.ContactId].LastName&quot; value=&quot;@contact.LastName&quot; /&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;input name=&quot;Contacts[@contact.ContactId].Email&quot; value=&quot;@contact.Email&quot; /&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+        }
+    &lt;/table&gt;
+    &lt;button&gt;Update&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<p>This is how one row of data might render, given some actual values:</p>
+<pre><code class="language-html">&lt;tr&gt;
+    &lt;td&gt;
+        &lt;input type=&quot;hidden&quot; name=&quot;Contacts.Index&quot; value=&quot;43907&quot; /&gt;
+        &lt;input type=&quot;hidden&quot; name=&quot;Contacts[43907].ContactId&quot; value=&quot;43907&quot; /&gt;
+        43907
+    &lt;/td&gt;
+    &lt;td&gt;&lt;input name=&quot;Contacts[43907].FirstName&quot; value=&quot;Penny&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;input name=&quot;Contacts[43907].LastName&quot; value=&quot;Farthing&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;input name=&quot;Contacts[43907].Email&quot; value=&quot;<a href="../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="cfbfaaa1a1b68fa8a2aea6a3e1aca0a2">[email&#160;protected]</a>&quot; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+</code></pre>
+<p>The model binders uses the <code>Contacts.Index</code> field value to group other values.</p>
+<h2 id="binding-related-collections-to-a-complex-object">Binding Related Collections to a Complex Object</h2>
+<p>Sometimes you may want to create a form that enables the creation of a parent object along with one or more items belonging to a collection property of the parent. One of the easier examples of this to understand is an order and its items. The following simple model illustrates this relationship:</p>
+<pre><code class="language-csharp">public class Order
+{
+    public int OrderId { get; set; }
+    public string Customer { get; set; }
+    public List&lt;OrderItem&gt; OrderItems { get; set; }
+}
+
+public class OrderItem
+{
+    public int OrderItemId { get; set; }
+    public string Item { get; set; }
+    public decimal Price { get; set; }
+}
+</code></pre>
+<p>Here's the PageModel for a Create page:</p>
+<pre><code class="language-html">@page
+@model CreateModel
+@{
+}
+
+&lt;form method=&quot;post&quot;&gt;
+    &lt;input asp-for=&quot;Order.Customer&quot; /&gt;&lt;br /&gt;
+    &lt;input asp-for=&quot;Order.OrderItems[0].Item&quot; /&gt;&lt;br&gt;
+    &lt;input asp-for=&quot;Order.OrderItems[0].Price&quot; /&gt;&lt;br&gt;
+    &lt;input type=&quot;submit&quot;/&gt;
+&lt;/form&gt;
+</code></pre>
+<p>Finally, the PageModel with an Order property decorated with the <code>[BindProperty]</code> attribute:</p>
+<pre><code class="language-csahrp">public class CreateModel : PageModel
+{
+    [BindProperty]
+    public Order Order { get; set; }
+
+
+    public void OnPost()
+    {
+
+    }
+}
+</code></pre>
+<p>The indexer is applied to the <code>OrderItems</code> property of the <code>Order</code>. When the form is posted back, the model binder will create an <code>Order</code> object, and an <code>OrderItem</code> object, which will be assigned to the <code>OrderItems</code> collection of the Order:</p>
+<p><img src="../images/2018-09-06_22-09-37.png" class="img-fluid" alt="Binding a collection property" /></p>
+<h2 id="preventing-overposting-or-mass-assignment-attacks">Preventing Overposting or Mass Assignment attacks</h2>
+<p>When you add the <code>BindProperty</code> attribute to a class, all properties in that class are automatically included in model binding. That may not be what is needed, particuarly when working with Entity Framework model classes.</p>
+<p>For example, you might choose to have an <code>IsDeleted</code> property on your entities to allow &quot;soft deletes&quot; (i.e. a flag that specifies the status of a record rather than the permanent - and irrevocable - removal of the record from the database). Only admins are allowed to set this property so you don't include an <em>IsDeleted</em> field in the edit form for normal users:</p>
+<pre><code class="language-html">&lt;form class=&quot;form-horizontal&quot; method=&quot;post&quot;&gt;
+    &lt;input type=&quot;hidden&quot; asp-for=&quot;ContactId&quot;&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label asp-for=&quot;Name&quot; class=&quot;col-sm-2 control-label&quot;&gt;&lt;/label&gt;
+        &lt;div class=&quot;col-sm-10&quot;&gt;
+            &lt;input type=&quot;text&quot; class=&quot;form-control&quot; asp-for=&quot;Name&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label asp-for=&quot;Email&quot; class=&quot;col-sm-2 control-label&quot;&gt;&lt;/label&gt;
+        &lt;div class=&quot;col-sm-10&quot;&gt;
+            &lt;input type=&quot;text&quot; class=&quot;form-control&quot; asp-for=&quot;Email&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;div class=&quot;col-sm-offset-2 col-sm-10&quot;&gt;
+            &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;Edit&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+<p>However, it is trivial for a reasonably competent HTML-savvy user to  manipulate the form (using the standard browser developer tools, for example) to include an <code>IsDeleted</code> property and to submit that to the server. The value will be processed as part of a legitimate edit operation. This is known as a mass assignment or an over posting attack.</p>
+<p>For this reason, you are advised to be careful when using model binding with complex types. If they include properties that should not be set by an unauthorised user, you should only include the properties that can be set, either as individual properties on the PageModel, or wrapped in a ViewModel class.</p>
+
+</div>
+</div>
+<section id="file-meta">
+    <span class="file-meta-label">Last updated:</span> <span itemprop="dateModified">08/05/2019 14:29:04</span><br />
+</section>
+
+                </div>
+                <div class="col-md-3 right-col">
+                    
+                            <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+                        (function() {
+                            var cx = 'partner-pub-8046723421340367:6108194070';
+                            var gcse = document.createElement('script');
+                            gcse.type = 'text/javascript';
+                            gcse.async = true;
+                            gcse.src = '../../cse.google.com/cse07b6.html?cx=' + cx;
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(gcse, s);
+                        })();
+                            </script>
+                        <gcse:searchbox-only></gcse:searchbox-only>
+                    
+                    <div id="doc-outline" class="doc-outline well">
+                            <h3 class="doc-outline">On this page</h3>
+                            <nav class="doc-outline">
+                                <ul>
+                                        <li><a itemprop="url" href="#model-binding" class="page-scroll">Model Binding</a></li>
+                                        <li><a itemprop="url" href="#the-problem" class="page-scroll">The Problem</a></li>
+                                        <li><a itemprop="url" href="#binding-posted-form-values-to-handler-method-parameters" class="page-scroll">Binding Posted Form Values To Handler Method Parameters</a></li>
+                                        <li><a itemprop="url" href="#binding-posted-form-values-to-pagemodel-properties" class="page-scroll">Binding Posted Form Values to PageModel Properties</a></li>
+                                        <li><a itemprop="url" href="#binding-data-from-get-requests" class="page-scroll">Binding Data From GET Requests</a></li>
+                                        <li><a itemprop="url" href="#binding-route-data" class="page-scroll">Binding Route Data</a></li>
+                                        <li><a itemprop="url" href="#binding-complex-objects" class="page-scroll">Binding Complex Objects</a></li>
+                                        <li><a itemprop="url" href="#binding-simple-collections" class="page-scroll">Binding Simple Collections</a></li>
+                                        <li><a itemprop="url" href="#binding-complex-collections" class="page-scroll">Binding Complex Collections</a></li>
+                                        <li><a itemprop="url" href="#binding-related-collections-to-a-complex-object" class="page-scroll">Binding Related Collections to a Complex Object</a></li>
+                                        <li><a itemprop="url" href="#preventing-overposting-or-mass-assignment-attacks" class="page-scroll">Preventing Overposting or Mass Assignment attacks</a></li>
+                                </ul>
+                            </nav>
+
+                    </div>
+                    <div class="rectangle">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Rectangle -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:250px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="7622896857"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <div class="doc-outline well">
+                        <h3 class="doc-outline">Latest Updates</h3>
+                        <nav class="doc-outline">
+                            <ul>
+                                    <li><a itemprop="url" href="tutorial/bakery/migration.html">Creating A Migration</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/create-model.html">Working With A Model</a></li>
+                                    <li><a itemprop="url" href="routing.html">Routing in Razor Pages</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/working-with-data.html">Working With Data</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/new-page.html">Adding a New Page</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery.html">Creating an Application</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="skyscraper">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Skyscraper -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:600px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="4239197376"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <footer>
+                        <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <a href="#page-top" id="back-to-top" class="page-scroll" title="Back to top"><i class="fas fa-arrow-alt-circle-up"></i></a>
+    </div>
+    <div class="cookie-box" id="cookie-warning">
+        <div class="cookie-box-contents" id="learnrazorpages">This site uses cookies to analyse traffic, remember your preferences, and optimise your experience.</div>
+        <div class="cookie-box-buttons"><a href="../privacy.html" class="cookie-button">Learn more</a><a href="#" class="cookie-button" id="cookie-close">Close</a></div>
+    </div>
+    <script src="../../ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+    <script src="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="../../code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="../js/site59f2.js?v=gJZRD7PDF8oEm1Xb0uhLZcpf7Vs12fGO-q0DErBSF_Y"></script>
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1264020-21"></script>
+        <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-1264020-21');
+        </script>
+    
+    
+</body>
+
+<!-- Mirrored from www.learnrazorpages.com/razor-pages/model-binding by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:16:26 GMT -->
+</html>

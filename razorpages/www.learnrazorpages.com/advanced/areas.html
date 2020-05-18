@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from www.learnrazorpages.com/advanced/areas by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:19:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Areas in Razor Pages can be used to divide the application up into functional segments to improve organisation of code in large applications that consist of complex domain models" />
+    <meta name="google-site-verification" content="MpV6gEoCh9OASgnoi656klwnlkni3_qOenITGlxBrjc" />
+    <title>Areas in Razor Pages | Learn Razor Pages</title>
+    <link rel="canonical" href="areas.html" />
+    <link rel="stylesheet" href="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i|Roboto:300i,500,700" />
+    <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <link rel="stylesheet" href="../css/site8249.css?v=PCA7f9VuZUscxMwrePJfyFKXCF9mh2dMpXEDQU8oP3o" />
+    <link rel="stylesheet" href="../css/rp14c5.css?v=ZxkVB0StHjR5-UMElJII7nwWe6Wmc6_qgJ97GsY4yNw" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-8046723421340367",
+                enable_page_level_ads: true
+            });
+        </script>
+</head>
+<body id="page-top">
+    <div class="navbar navbar-default navbar-static-top">
+        <div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <i class="fas fa-graduation-cap"></i> <a href="../index.html">Learn Razor Pages</a>
+                    <br />
+                    <span class="byline">Your guide to using ASP.NET Core Razor Pages</span>
+                </div>
+                <div class="banner">
+                    
+                        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                        <!-- EF Core Leaderboard -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:728px;height:90px"
+                             data-ad-client="ca-pub-8046723421340367"
+                             data-ad-slot="1832525889"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <nav class="main-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+    <ul class="nav nav-level-one" id="side-menu">
+        <li>
+            <a itemprop="url" href="../index.html">Home</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../first-look.html">A First Look</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../asp-net-core.html">ASP.NET Core</a>
+        </li>
+        <li><a itemprop="url" href="../razor-pages/tutorial/bakery.html">Tutorials</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/tutorial/bakery.html">The Bakery</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages.html">Razor Page Files</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/files/index.html">Razor Files</a></li>
+                <li><a itemprop="url" href="../razor-pages/partial-pages.html">Partial Pages</a></li>
+                <li><a itemprop="url" href="../razor-pages/files/layout.html">Layout Files</a></li>
+                <li><a itemprop="url" href="../razor-pages/files/viewimports.html">ViewImports File</a></li>
+                <li><a itemprop="url" href="../razor-pages/files/viewstart.html">ViewStart File</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-syntax.html">Razor Syntax</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/pagemodel.html">Page Models</a>
+            <ul class="nav-level-two">
+                <li>
+                    <a itemprop="url" href="../razor-pages/handler-methods.html">Handler Methods</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="../razor-pages/viewdata.html">ViewData</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="../razor-pages/action-results.html">Action Results</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/tag-helpers/index.html">Tag Helpers</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/anchor-tag-helper.html">Anchor Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/cache-tag-helper.html">Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/distributed-cache-tag-helper.html">Distributed Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/environment-tag-helper.html">Environment Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/form-action-tag-helper.html">Form Action Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/form-tag-helper.html">Form Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/image-tag-helper.html">Image Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/input-tag-helper.html">Input Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/label-tag-helper.html">Label Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/link-tag-helper.html">Link Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/option-tag-helper.html">Option Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/partial-tag-helper.html">Partial Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/script-tag-helper.html">Script Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/select-tag-helper.html">Select Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/textarea-tag-helper.html">TextArea Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/validation-message-tag-helper.html">Validation Message Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/validation-summary-tag-helper.html">Validation Summary Tag Helper</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/view-components.html">View Components</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/routing.html">Routing and URLs</a>
+            <ul class="nav-level-two">
+                <li><a href="custom-route-conventions.html">Customising Route Conventions</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../startup.html">Startup</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../configuration.html">Configuration</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../configuration/global-error-handling.html">Global Error Handling And Logging</a></li>
+                <li><a itemprop="url" href="../configuration/custom-errors.html">Custom Error Pages</a></li>
+                <li><a itemprop="url" href="../configuration/https.html">Configuring HTTPS</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../middleware.html">Middleware</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/forms.html">Working With Forms</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/forms/file-upload.html">Uploading Files in Razor Pages</a></li>
+                <li><a itemprop="url" href="../razor-pages/forms/checkboxes.html">Working With Checkboxes</a></li>
+                <li><a itemprop="url" href="../razor-pages/forms/select-lists.html">Select Lists in a Razor Pages Form</a></li>
+                <li><a itemprop="url" href="../razor-pages/forms/radios.html">Working With Radio Buttons</a></li>
+                <li><a itemprop="url" href="../security/request-verification.html">Request Verification</a></li>
+            </ul>
+        </li>
+        <li><a itemprop="url" href="../razor-pages/validation.html">Validation</a></li>
+        <li>
+            <a itemprop="url" href="../razor-pages/model-binding.html">Model Binding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/state-management.html">State Management</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/caching.html">Caching</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../identity.html">Managing Security With ASP.NET Identity</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../identity/customising-identity.html">Customising Identity</a></li>
+            </ul>
+        </li>
+        <li>
+		<a itemprop="url" href="../razor-pages/ajax.html">Using AJAX</a>
+		<ul class="nav-level-two">
+			<li><a itemprop="url" href="../razor-pages/ajax/form-post.html">Posting Forms</a>    </li>
+			<li><a itemprop="url" href="../razor-pages/ajax/partial-update.html">Partial Page Updates</a></li>
+			<li><a itemprop="url" href="../razor-pages/ajax/upload-files.html">Uploading Files</a></li>
+			<li><a itemprop="url" href="../razor-pages/ajax/unobtrusive-ajax.html">Unobtrusive AJAX</a></li>
+		</ul>
+	</li>
+        <li>
+            <a itemprop="url" href="../web-api.html">Working with JSON</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../miscellaneous/scaffolding.html">Scaffolding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../publishing/publish-to-iis.html">Publishing To IIS</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../advanced.html">Advanced</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="areas.html">Areas</a></li>
+                <li><a itemprop="url" href="custom-tag-helpers.html">Custom Tag Helpers</a></li>
+                <li><a itemprop="url" href="custom-route-conventions.html">Customising Route Conventions</a></li>
+                <li><a itemprop="url" href="custom-constraints.html">Custom Route Constraints</a></li>
+                <li><a itemprop="url" href="route-parameter-transformers.html">Parameter Transformers For Routes</a></li>
+                <li><a itemprop="url" href="dependency-injection.html">Dependency Injection</a></li>
+                <li><a itemprop="url" href="../razor-pages/filters.html">Filters</a></li>
+                <li><a itemprop="url" href="razor-class-library.html">Razor Class Libraries</a></li>
+                <li><a itemprop="url" href="render-partial-to-string.html">Rendering A Partial View To A String</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../table-of-contents.html">Table Of Contents</a>
+        </li>
+    </ul>
+</nav>
+
+            <footer>
+                <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+            </footer>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+
+    <div id="page-wrapper">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-md-9">
+                    
+<div id="article">
+    <h1 itemprop="headline" id="working-with-areas-in-razor-pages">Working with Areas in Razor Pages</h1>
+<div itemprop="articleBody"><p>The Areas feature in Razor Pages originates from the MVC development model, where each area represents a functional segment of the application, such as administration, orders, production, and so on. In MVC applications, each area is a self-contained unit consisting of its own controller, views and model. This can be useful in larger projects, where having a single set of folders for all of the controllers, views, and models can become difficult to manage.</p>
+<p>The primary use case for areas in Razor Pages is to facilitate the introduction of Razor class libraries, specifically the change that resulted in the introduction of Identity as a class library in ASP.NET Core 2.1. Areas in Razor Pages can also be used to divide the application up into functional segments similar to MVC.</p>
+<h2 id="configuration">Configuration</h2>
+<p>Areas do not offer much by way of configuration. They are enabled  in one of two ways in Razor Pages. The first is to set the compatibilty version to 2.1 in the <code>Startup</code> <code>ConfigureServices</code> method:</p>
+<pre><code class="language-csharp">services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+</code></pre>
+<p>The second method is to set the <code>RazorPagesOptions.AllowAreas</code> property to <code>true</code> (also in <code>ConfigureServices</code>)</p>
+<pre><code class="language-csharp">services.AddMvc().AddRazorPagesOptions(options =&gt;
+{
+    options.AllowAreas = true;
+});
+</code></pre>
+<h2 id="creating-areas">Creating Areas</h2>
+<p>Razor Pages expects to find areas located in a folder named <em>Areas</em>, which needs to be created manually in the root of the application. Unlike when you are working in an MVC application, there is no specific tooling support in Visual Studio for the creation of areas in Razor Pages.</p>
+<p>Each folder within the <em>Areas</em> folder represents a specific area. The following image illustrates areas for <strong>Administration</strong>, <strong>Orders</strong> and <strong>Production</strong> in an application:</p>
+<p><img src="../images/2018-09-01_11-01-50.png" class="img-fluid" alt="Areas in Razor Pages" /></p>
+<p>Razor pages within an area must be placed in a folder named <em>Pages</em>. The next image shows an <em>Index.cshtml</em> file added to each area:</p>
+<p><img src="../images/2018-09-01_11-07-05.png" class="img-fluid" alt="Areas in Razor Pages" /></p>
+<h2 id="managing-namespaces">Managing Namespaces</h2>
+<p>The namespace for the PageModel is generated from the location of the file. In this particular example, the namespace for the <code>IndexModel</code> in the <strong>Production</strong> area is <code>RazorPagesAreas.Areas.Production.Pages</code>. This is not picked up by the <code>@model</code> directive in the content page. You can either alter  the <code>@model</code> directive to use a fully qualified namespace (which you would have to do for every other page that you add to the area) or you can add a <a href="../razor-pages/files/viewimports.html">ViewImports file</a> to the <em>Pages</em> folder in the area to set the namespace for all pages:</p>
+<pre><code class="language-csharp">@namespace RazorPagesAreas.Areas.Production.Pages
+</code></pre>
+<h2 id="routing-and-url-generation">Routing and URL generation</h2>
+<p>The name of the area forms the first segment of the URL path. Thereafter, pages are reached in the same way as the <a href="../razor-pages/routing.html">default routing in Razor Pages</a> - file names and folders form segments of the URL.  If you run the example application now, you can reach the Index file in the Administration area by going to <code>https://locahost:xxxxx/administration</code> or <code>https://locahost:xxxxx/administration/index</code> (where <code>xxxxx</code> is the port number that your application has been assigned).</p>
+<p>When you use the <a href="../razor-pages/tag-helpers/anchor-tag-helper.html">anchor taghelper</a> to generate your links to items in areas, you must use the <code>asp-area</code> attribute:</p>
+<pre><code class="language-html">&lt;ul class=&quot;nav navbar-nav&quot;&gt; 
+    &lt;li&gt;&lt;a asp-page=&quot;/index&quot; asp-area=&quot;Administration&quot;&gt;Administration&lt;/a&gt;&lt;/li&gt; 
+    &lt;li&gt;&lt;a asp-page=&quot;/index&quot; asp-area=&quot;Orders&quot;&gt;Orders&lt;/a&gt;&lt;/li&gt; 
+    &lt;li&gt;&lt;a asp-page=&quot;/index&quot; asp-area=&quot;Production&quot;&gt;Production&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+</code></pre>
+<p>...unless you are generating links between pages within the same area. Here is the <strong>Administration</strong> area <em>Index</em> page with a link to <em>Create.cshtml</em>, also located in the <strong>Administration</strong> area:</p>
+<pre><code class="language-html">@page 
+@model IndexModel 
+@{ 
+} 
+&lt;h1&gt;Administration Area&lt;/h1&gt; 
+&lt;a asp-page=&quot;/Create&quot;&gt;Create&lt;/a&gt; 
+</code></pre>
+<p>If using the <code>RedirectToPage</code> method to transfer someone to a location within an area, you should use the overload that takes an object representing route values to specify the area:</p>
+<pre><code class="language-csharp">public IActionResult OnGet() 
+{ 
+    return RedirectToPage(&quot;/Create&quot;, new { area = &quot;Administration&quot; }); 
+} 
+</code></pre>
+<p>The leading slash is not necessary when using <code>RedirectToPage</code> from within a Razor page, but you must use it when redirecting from outside of a Razor page, such as from an MVC controller.</p>
+<h2 id="layouts-in-areas">Layouts in Areas</h2>
+<p>Areas are not affected by the Layout instructions included in the standard <a href="../razor-pages/files/viewstart.html">ViewStart file</a> in the <em>/Pages/Shared</em> folder in the root of the application. If you copy the default ViewStart file to the <em>Areas</em> folder, all areas will adopt the default layout files. ViewStart files setting different layout pages can be placed in the individual area folder or their <em>Pages</em> folder to override this behaviour.</p>
+
+</div>
+</div>
+<section id="file-meta">
+    <span class="file-meta-label">Last updated:</span> <span itemprop="dateModified">19/09/2018 09:50:55</span><br />
+</section>
+
+                </div>
+                <div class="col-md-3 right-col">
+                    
+                            <script>
+                        (function() {
+                            var cx = 'partner-pub-8046723421340367:6108194070';
+                            var gcse = document.createElement('script');
+                            gcse.type = 'text/javascript';
+                            gcse.async = true;
+                            gcse.src = '../../cse.google.com/cse07b6.html?cx=' + cx;
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(gcse, s);
+                        })();
+                            </script>
+                        <gcse:searchbox-only></gcse:searchbox-only>
+                    
+                    <div id="doc-outline" class="doc-outline well">
+                            <h3 class="doc-outline">On this page</h3>
+                            <nav class="doc-outline">
+                                <ul>
+                                        <li><a itemprop="url" href="#working-with-areas-in-razor-pages" class="page-scroll">Working with Areas in Razor Pages</a></li>
+                                        <li><a itemprop="url" href="#configuration" class="page-scroll">Configuration</a></li>
+                                        <li><a itemprop="url" href="#creating-areas" class="page-scroll">Creating Areas</a></li>
+                                        <li><a itemprop="url" href="#managing-namespaces" class="page-scroll">Managing Namespaces</a></li>
+                                        <li><a itemprop="url" href="#routing-and-url-generation" class="page-scroll">Routing and URL generation</a></li>
+                                        <li><a itemprop="url" href="#layouts-in-areas" class="page-scroll">Layouts in Areas</a></li>
+                                </ul>
+                            </nav>
+
+                    </div>
+                    <div class="rectangle">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Rectangle -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:250px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="7622896857"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <div class="doc-outline well">
+                        <h3 class="doc-outline">Latest Updates</h3>
+                        <nav class="doc-outline">
+                            <ul>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/migration.html">Creating A Migration</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/create-model.html">Working With A Model</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/routing.html">Routing in Razor Pages</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/working-with-data.html">Working With Data</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/new-page.html">Adding a New Page</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery.html">Creating an Application</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="skyscraper">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Skyscraper -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:600px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="4239197376"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <footer>
+                        <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <a href="#page-top" id="back-to-top" class="page-scroll" title="Back to top"><i class="fas fa-arrow-alt-circle-up"></i></a>
+    </div>
+    <div class="cookie-box" id="cookie-warning">
+        <div class="cookie-box-contents" id="learnrazorpages">This site uses cookies to analyse traffic, remember your preferences, and optimise your experience.</div>
+        <div class="cookie-box-buttons"><a href="../privacy.html" class="cookie-button">Learn more</a><a href="#" class="cookie-button" id="cookie-close">Close</a></div>
+    </div>
+    <script src="../../ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+    <script src="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="../../code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="../js/site59f2.js?v=gJZRD7PDF8oEm1Xb0uhLZcpf7Vs12fGO-q0DErBSF_Y"></script>
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1264020-21"></script>
+        <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-1264020-21');
+        </script>
+    
+    
+</body>
+
+<!-- Mirrored from www.learnrazorpages.com/advanced/areas by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:19:36 GMT -->
+</html>

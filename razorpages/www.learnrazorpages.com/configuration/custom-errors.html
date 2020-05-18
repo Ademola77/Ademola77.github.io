@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from www.learnrazorpages.com/configuration/custom-errors by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:14:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Learn how to configure a custom error page in a Razor Pages web application to handle 404 and 500 errors" />
+    <meta name="google-site-verification" content="MpV6gEoCh9OASgnoi656klwnlkni3_qOenITGlxBrjc" />
+    <title>Configuring a custom error page in a Razor Pages web site | Learn Razor Pages</title>
+    <link rel="canonical" href="custom-errors.html" />
+    <link rel="stylesheet" href="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i|Roboto:300i,500,700" />
+    <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <link rel="stylesheet" href="../css/site8249.css?v=PCA7f9VuZUscxMwrePJfyFKXCF9mh2dMpXEDQU8oP3o" />
+    <link rel="stylesheet" href="../css/rp14c5.css?v=ZxkVB0StHjR5-UMElJII7nwWe6Wmc6_qgJ97GsY4yNw" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-8046723421340367",
+                enable_page_level_ads: true
+            });
+        </script>
+</head>
+<body id="page-top">
+    <div class="navbar navbar-default navbar-static-top">
+        <div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <i class="fas fa-graduation-cap"></i> <a href="../index.html">Learn Razor Pages</a>
+                    <br />
+                    <span class="byline">Your guide to using ASP.NET Core Razor Pages</span>
+                </div>
+                <div class="banner">
+                    
+                        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                        <!-- EF Core Leaderboard -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:728px;height:90px"
+                             data-ad-client="ca-pub-8046723421340367"
+                             data-ad-slot="1832525889"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <nav class="main-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+    <ul class="nav nav-level-one" id="side-menu">
+        <li>
+            <a itemprop="url" href="../index.html">Home</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../first-look.html">A First Look</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../asp-net-core.html">ASP.NET Core</a>
+        </li>
+        <li><a itemprop="url" href="../razor-pages/tutorial/bakery.html">Tutorials</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/tutorial/bakery.html">The Bakery</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages.html">Razor Page Files</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/files/index.html">Razor Files</a></li>
+                <li><a itemprop="url" href="../razor-pages/partial-pages.html">Partial Pages</a></li>
+                <li><a itemprop="url" href="../razor-pages/files/layout.html">Layout Files</a></li>
+                <li><a itemprop="url" href="../razor-pages/files/viewimports.html">ViewImports File</a></li>
+                <li><a itemprop="url" href="../razor-pages/files/viewstart.html">ViewStart File</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-syntax.html">Razor Syntax</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/pagemodel.html">Page Models</a>
+            <ul class="nav-level-two">
+                <li>
+                    <a itemprop="url" href="../razor-pages/handler-methods.html">Handler Methods</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="../razor-pages/viewdata.html">ViewData</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="../razor-pages/action-results.html">Action Results</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/tag-helpers/index.html">Tag Helpers</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/anchor-tag-helper.html">Anchor Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/cache-tag-helper.html">Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/distributed-cache-tag-helper.html">Distributed Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/environment-tag-helper.html">Environment Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/form-action-tag-helper.html">Form Action Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/form-tag-helper.html">Form Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/image-tag-helper.html">Image Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/input-tag-helper.html">Input Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/label-tag-helper.html">Label Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/link-tag-helper.html">Link Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/option-tag-helper.html">Option Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/partial-tag-helper.html">Partial Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/script-tag-helper.html">Script Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/select-tag-helper.html">Select Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/textarea-tag-helper.html">TextArea Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/validation-message-tag-helper.html">Validation Message Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/validation-summary-tag-helper.html">Validation Summary Tag Helper</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/view-components.html">View Components</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/routing.html">Routing and URLs</a>
+            <ul class="nav-level-two">
+                <li><a href="../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../startup.html">Startup</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../configuration.html">Configuration</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="global-error-handling.html">Global Error Handling And Logging</a></li>
+                <li><a itemprop="url" href="custom-errors.html">Custom Error Pages</a></li>
+                <li><a itemprop="url" href="https.html">Configuring HTTPS</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../middleware.html">Middleware</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/forms.html">Working With Forms</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/forms/file-upload.html">Uploading Files in Razor Pages</a></li>
+                <li><a itemprop="url" href="../razor-pages/forms/checkboxes.html">Working With Checkboxes</a></li>
+                <li><a itemprop="url" href="../razor-pages/forms/select-lists.html">Select Lists in a Razor Pages Form</a></li>
+                <li><a itemprop="url" href="../razor-pages/forms/radios.html">Working With Radio Buttons</a></li>
+                <li><a itemprop="url" href="../security/request-verification.html">Request Verification</a></li>
+            </ul>
+        </li>
+        <li><a itemprop="url" href="../razor-pages/validation.html">Validation</a></li>
+        <li>
+            <a itemprop="url" href="../razor-pages/model-binding.html">Model Binding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/state-management.html">State Management</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/caching.html">Caching</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../identity.html">Managing Security With ASP.NET Identity</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../identity/customising-identity.html">Customising Identity</a></li>
+            </ul>
+        </li>
+        <li>
+		<a itemprop="url" href="../razor-pages/ajax.html">Using AJAX</a>
+		<ul class="nav-level-two">
+			<li><a itemprop="url" href="../razor-pages/ajax/form-post.html">Posting Forms</a>    </li>
+			<li><a itemprop="url" href="../razor-pages/ajax/partial-update.html">Partial Page Updates</a></li>
+			<li><a itemprop="url" href="../razor-pages/ajax/upload-files.html">Uploading Files</a></li>
+			<li><a itemprop="url" href="../razor-pages/ajax/unobtrusive-ajax.html">Unobtrusive AJAX</a></li>
+		</ul>
+	</li>
+        <li>
+            <a itemprop="url" href="../web-api.html">Working with JSON</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../miscellaneous/scaffolding.html">Scaffolding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../publishing/publish-to-iis.html">Publishing To IIS</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../advanced.html">Advanced</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../advanced/areas.html">Areas</a></li>
+                <li><a itemprop="url" href="../advanced/custom-tag-helpers.html">Custom Tag Helpers</a></li>
+                <li><a itemprop="url" href="../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+                <li><a itemprop="url" href="../advanced/custom-constraints.html">Custom Route Constraints</a></li>
+                <li><a itemprop="url" href="../advanced/route-parameter-transformers.html">Parameter Transformers For Routes</a></li>
+                <li><a itemprop="url" href="../advanced/dependency-injection.html">Dependency Injection</a></li>
+                <li><a itemprop="url" href="../razor-pages/filters.html">Filters</a></li>
+                <li><a itemprop="url" href="../advanced/razor-class-library.html">Razor Class Libraries</a></li>
+                <li><a itemprop="url" href="../advanced/render-partial-to-string.html">Rendering A Partial View To A String</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../table-of-contents.html">Table Of Contents</a>
+        </li>
+    </ul>
+</nav>
+
+            <footer>
+                <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+            </footer>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+
+    <div id="page-wrapper">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-md-9">
+                    
+<div id="article">
+    <h1 itemprop="headline" id="configuring-a-custom-error-page">Configuring a custom error page</h1>
+<div itemprop="articleBody"><p>When a visitor tries to request a page on your site that doesn't exist, or an unhandled exception occurs while executing server-side code the web server returns an HTTP status code to the browser indicating that an error occurred. As a site developer, you have two choices when this happens: you can either let the browser show its default notification page;</p>
+<p><img src="../images/404.png" class="img-fluid" alt="Browser 404 page" /></p>
+<p>or you can take control and choose to display your own message.</p>
+<h2 id="status-code-pages-middleware">Status Code Pages Middleware</h2>
+<p>The ASP.NET team have included <a href="../middleware.html">middleware</a> for managing HTTP errors in the 400 and 500 ranges. It is called <code>StatusCodePagesMiddleware</code>, and is found in the <a href="https://github.com/aspnet/Diagnostics/blob/dev/src/Microsoft.AspNetCore.Diagnostics/StatusCodePage/StatusCodePagesMiddleware.cs">Microsoft.AspNetCore.Diagnostics package</a>.</p>
+<p>There are a number of extension methods for registering <code>StatusCodePagesMiddleware</code> as part of the pipeline in the <code>Configure</code> method of the <code>Startup</code> class. The most basic usage is as follows:</p>
+<pre><code class="language-csharp">app.UseStatusCodePages();
+</code></pre>
+<p>When an error occurs within the specified range, this usage results in a plain text response with a default message:</p>
+<p><img src="../images/24-01-2018-08-13-17.png" class="img-fluid" alt="404 not found error page" /></p>
+<p><img src="../images/24-01-2018-08-10-24.png" class="img-fluid" alt="404 not found response" /></p>
+<p>Overloads of the <code>UseStatusCodePages</code> method are available to provide some more control over how your application responds to errors, including one that enables you to set the content type  and body of the response:</p>
+<pre><code class="language-csharp">app.UseStatusCodePages(&quot;text/html&quot;, &quot;&lt;h1&gt;Error! Status Code {0}&lt;/h1&gt;&quot;);
+</code></pre>
+<p><img src="../images/24-01-2018-08-54-01.png" class="img-fluid" alt="Use Status Code Pages" /></p>
+<p>However, there are a couple of other extension methods that simplify things a lot more. These are <code>UseStatusCodePagesWithRedirects</code> and <code>UseStatusCodePagesWithReExecute</code>. Both of these make use of a page that you create to generate the response, so you have full control over its content. The following example is a simple Razor page designed to let the visitor know that the page they requested does not exist:</p>
+<pre><code class="language-csharp">@page
+@{
+    ViewData[&quot;Title&quot;] = &quot;No such page&quot;;
+}
+&lt;h1&gt;404 Not found&lt;/h1&gt;
+&lt;p&gt;No such page exists at this location.&lt;/p&gt;
+</code></pre>
+<p>This code is in a file named <em>404.cshtml</em> and is placed in a folder within the <em>Pages</em> folder named <em>Errors</em>.</p>
+<p>The <code>UseStatusCodePagesWithRedirects</code> method takes a string representing the location of the custom error page, which can also include a placeholder <code>{0}</code> which will be filled by the status code:</p>
+<pre><code class="language-csharp">app.UseStatusCodePagesWithRedirects(&quot;/errors/{0}&quot;);
+</code></pre>
+<p>When an error occurs, the user is redirected to the specified location, in this case - once the placeholder is populated by the middleware - <code>/errors/404</code>.</p>
+<p>The <code>UseStatusCodePagesWithReExecute</code> method re-executes the request pipeline using an alternate path (page), and also takes a string with a placeholder:</p>
+<pre><code class="language-csharp">app.UseStatusCodePagesWithReExecute(&quot;/errors/{0}&quot;);
+</code></pre>
+<h2 id="to-redirect-or-re-execute">To Redirect or Re-execute?</h2>
+<p>From a user's point of view, it makes little difference which method you use. Both will result in the page that you specify being displayed. The only visible difference will be the URL displayed in the browser. The <code>WithRedirects</code> method results in a different URL appearing in the browser address bar than the one that was requested.</p>
+<p>This is the Network output in Chrome for a request to a nonexistent page:</p>
+<p><img src="../images/24-01-2018-09-54-55.png" class="img-fluid" alt="With Redirects" /></p>
+<p>The initial request to <code>/nonexistent-page</code> resulted in a <code>302</code> status code and a <code>location</code> header with the value <code>/errors/404</code>, causing the browser to issue a new request. This request was successful, signified by the <code>200</code> status code. Now the browser features the address of the error page instead of the one that was initially requested:</p>
+<p><img src="../images/24-01-2018-11-06-30.png" class="img-fluid" alt="WithRedirects changes URL" /></p>
+<p>With the <code>WithReExecute</code> option, the original HTTP status code is preserved as is the URL in the browser address bar</p>
+<p><img src="../images/24-01-2018-11-03-47.png" class="img-fluid" alt="With ReExecute retains URL" /></p>
+<p>but the response comes from the alternative location that you specify:</p>
+<p><img src="../images/24-01-2018-11-02-22.png" class="img-fluid" alt="With ReExecute" /></p>
+<p>The <code>WithReExecute</code> option wins based on the fact that the visitor can check the browser address bar to see if there are any obvious mistakes in the URL that they provided or followed.</p>
+<h2 id="seo-considerations">SEO Considerations</h2>
+<p>The <code>WithReExecute</code> option <em>really</em> wins if Search Engine Optimisation is important to you.  The best way to let a search engine know that the incorrect URL it is trying to index does not exist is to respond with a <code>404 Not Found</code> status code. If you provide a <code>302 Found</code> followed by a <code>200 OK</code> response, the search engine will retain the incorrect URL in its index, potentially serving it up within a search result.</p>
+<h3 id="other-reading">Other reading</h3>
+<ul>
+<li><a href="../middleware.html">Middleware</a></li>
+<li><a href="../configuration.html">Configuration</a></li>
+</ul>
+
+</div>
+</div>
+<section id="file-meta">
+    <span class="file-meta-label">Last updated:</span> <span itemprop="dateModified">27/02/2018 08:22:00</span><br />
+</section>
+
+                </div>
+                <div class="col-md-3 right-col">
+                    
+                            <script>
+                        (function() {
+                            var cx = 'partner-pub-8046723421340367:6108194070';
+                            var gcse = document.createElement('script');
+                            gcse.type = 'text/javascript';
+                            gcse.async = true;
+                            gcse.src = '../../cse.google.com/cse07b6.html?cx=' + cx;
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(gcse, s);
+                        })();
+                            </script>
+                        <gcse:searchbox-only></gcse:searchbox-only>
+                    
+                    <div id="doc-outline" class="doc-outline well">
+                            <h3 class="doc-outline">On this page</h3>
+                            <nav class="doc-outline">
+                                <ul>
+                                        <li><a itemprop="url" href="#configuring-a-custom-error-page" class="page-scroll">Configuring a custom error page</a></li>
+                                        <li><a itemprop="url" href="#status-code-pages-middleware" class="page-scroll">Status Code Pages Middleware</a></li>
+                                        <li><a itemprop="url" href="#to-redirect-or-re-execute" class="page-scroll">To Redirect or Re-execute?</a></li>
+                                        <li><a itemprop="url" href="#seo-considerations" class="page-scroll">SEO Considerations</a></li>
+                                        <li><a itemprop="url" href="#other-reading" class="page-scroll">Other reading</a></li>
+                                </ul>
+                            </nav>
+
+                    </div>
+                    <div class="rectangle">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Rectangle -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:250px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="7622896857"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <div class="doc-outline well">
+                        <h3 class="doc-outline">Latest Updates</h3>
+                        <nav class="doc-outline">
+                            <ul>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/migration.html">Creating A Migration</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/create-model.html">Working With A Model</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/routing.html">Routing in Razor Pages</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/working-with-data.html">Working With Data</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/new-page.html">Adding a New Page</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery.html">Creating an Application</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="skyscraper">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Skyscraper -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:600px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="4239197376"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <footer>
+                        <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <a href="#page-top" id="back-to-top" class="page-scroll" title="Back to top"><i class="fas fa-arrow-alt-circle-up"></i></a>
+    </div>
+    <div class="cookie-box" id="cookie-warning">
+        <div class="cookie-box-contents" id="learnrazorpages">This site uses cookies to analyse traffic, remember your preferences, and optimise your experience.</div>
+        <div class="cookie-box-buttons"><a href="../privacy.html" class="cookie-button">Learn more</a><a href="#" class="cookie-button" id="cookie-close">Close</a></div>
+    </div>
+    <script src="../../ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+    <script src="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="../../code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="../js/site59f2.js?v=gJZRD7PDF8oEm1Xb0uhLZcpf7Vs12fGO-q0DErBSF_Y"></script>
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1264020-21"></script>
+        <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-1264020-21');
+        </script>
+    
+    
+</body>
+
+<!-- Mirrored from www.learnrazorpages.com/configuration/custom-errors by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:14:06 GMT -->
+</html>

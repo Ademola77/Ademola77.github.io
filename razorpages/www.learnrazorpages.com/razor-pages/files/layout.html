@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from www.learnrazorpages.com/razor-pages/files/layout by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:07:01 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A detailed look at the role that the _Layout.cshtml file plays in a Razor Pages web application in helping to create a maintainable consistent appearance" />
+    <meta name="google-site-verification" content="MpV6gEoCh9OASgnoi656klwnlkni3_qOenITGlxBrjc" />
+    <title>The Razor _Layout.cshtml file | Learn Razor Pages</title>
+    <link rel="canonical" href="layout.html" />
+    <link rel="stylesheet" href="../../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i|Roboto:300i,500,700" />
+    <link rel="stylesheet" href="../../../use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="../../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <link rel="stylesheet" href="../../css/site8249.css?v=PCA7f9VuZUscxMwrePJfyFKXCF9mh2dMpXEDQU8oP3o" />
+    <link rel="stylesheet" href="../../css/rp14c5.css?v=ZxkVB0StHjR5-UMElJII7nwWe6Wmc6_qgJ97GsY4yNw" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-8046723421340367",
+                enable_page_level_ads: true
+            });
+        </script>
+</head>
+<body id="page-top">
+    <div class="navbar navbar-default navbar-static-top">
+        <div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <i class="fas fa-graduation-cap"></i> <a href="../../index.html">Learn Razor Pages</a>
+                    <br />
+                    <span class="byline">Your guide to using ASP.NET Core Razor Pages</span>
+                </div>
+                <div class="banner">
+                    
+                        <script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                        <!-- EF Core Leaderboard -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:728px;height:90px"
+                             data-ad-client="ca-pub-8046723421340367"
+                             data-ad-slot="1832525889"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <nav class="main-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+    <ul class="nav nav-level-one" id="side-menu">
+        <li>
+            <a itemprop="url" href="../../index.html">Home</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../../first-look.html">A First Look</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../../asp-net-core.html">ASP.NET Core</a>
+        </li>
+        <li><a itemprop="url" href="../tutorial/bakery.html">Tutorials</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../tutorial/bakery.html">The Bakery</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../../razor-pages.html">Razor Page Files</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="index.html">Razor Files</a></li>
+                <li><a itemprop="url" href="../partial-pages.html">Partial Pages</a></li>
+                <li><a itemprop="url" href="layout.html">Layout Files</a></li>
+                <li><a itemprop="url" href="viewimports.html">ViewImports File</a></li>
+                <li><a itemprop="url" href="viewstart.html">ViewStart File</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../../razor-syntax.html">Razor Syntax</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../pagemodel.html">Page Models</a>
+            <ul class="nav-level-two">
+                <li>
+                    <a itemprop="url" href="../handler-methods.html">Handler Methods</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="../viewdata.html">ViewData</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="../action-results.html">Action Results</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../tag-helpers/index.html">Tag Helpers</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../tag-helpers/anchor-tag-helper.html">Anchor Tag Helper</a></li>
+                <li><a itemprop="url" href="../tag-helpers/cache-tag-helper.html">Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="../tag-helpers/distributed-cache-tag-helper.html">Distributed Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="../tag-helpers/environment-tag-helper.html">Environment Tag Helper</a></li>
+                <li><a itemprop="url" href="../tag-helpers/form-action-tag-helper.html">Form Action Tag Helper</a></li>
+                <li><a itemprop="url" href="../tag-helpers/form-tag-helper.html">Form Tag Helper</a></li>
+                <li><a itemprop="url" href="../tag-helpers/image-tag-helper.html">Image Tag Helper</a></li>
+                <li><a itemprop="url" href="../tag-helpers/input-tag-helper.html">Input Tag Helper</a></li>
+                <li><a itemprop="url" href="../tag-helpers/label-tag-helper.html">Label Tag Helper</a></li>
+                <li><a itemprop="url" href="../tag-helpers/link-tag-helper.html">Link Tag Helper</a></li>
+                <li><a itemprop="url" href="../tag-helpers/option-tag-helper.html">Option Tag Helper</a></li>
+                <li><a itemprop="url" href="../tag-helpers/partial-tag-helper.html">Partial Tag Helper</a></li>
+                <li><a itemprop="url" href="../tag-helpers/script-tag-helper.html">Script Tag Helper</a></li>
+                <li><a itemprop="url" href="../tag-helpers/select-tag-helper.html">Select Tag Helper</a></li>
+                <li><a itemprop="url" href="../tag-helpers/textarea-tag-helper.html">TextArea Tag Helper</a></li>
+                <li><a itemprop="url" href="../tag-helpers/validation-message-tag-helper.html">Validation Message Tag Helper</a></li>
+                <li><a itemprop="url" href="../tag-helpers/validation-summary-tag-helper.html">Validation Summary Tag Helper</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../view-components.html">View Components</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../routing.html">Routing and URLs</a>
+            <ul class="nav-level-two">
+                <li><a href="../../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../../startup.html">Startup</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../../configuration.html">Configuration</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../../configuration/global-error-handling.html">Global Error Handling And Logging</a></li>
+                <li><a itemprop="url" href="../../configuration/custom-errors.html">Custom Error Pages</a></li>
+                <li><a itemprop="url" href="../../configuration/https.html">Configuring HTTPS</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../../middleware.html">Middleware</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../forms.html">Working With Forms</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../forms/file-upload.html">Uploading Files in Razor Pages</a></li>
+                <li><a itemprop="url" href="../forms/checkboxes.html">Working With Checkboxes</a></li>
+                <li><a itemprop="url" href="../forms/select-lists.html">Select Lists in a Razor Pages Form</a></li>
+                <li><a itemprop="url" href="../forms/radios.html">Working With Radio Buttons</a></li>
+                <li><a itemprop="url" href="../../security/request-verification.html">Request Verification</a></li>
+            </ul>
+        </li>
+        <li><a itemprop="url" href="../validation.html">Validation</a></li>
+        <li>
+            <a itemprop="url" href="../model-binding.html">Model Binding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../state-management.html">State Management</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../caching.html">Caching</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../../identity.html">Managing Security With ASP.NET Identity</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../../identity/customising-identity.html">Customising Identity</a></li>
+            </ul>
+        </li>
+        <li>
+		<a itemprop="url" href="../ajax.html">Using AJAX</a>
+		<ul class="nav-level-two">
+			<li><a itemprop="url" href="../ajax/form-post.html">Posting Forms</a>    </li>
+			<li><a itemprop="url" href="../ajax/partial-update.html">Partial Page Updates</a></li>
+			<li><a itemprop="url" href="../ajax/upload-files.html">Uploading Files</a></li>
+			<li><a itemprop="url" href="../ajax/unobtrusive-ajax.html">Unobtrusive AJAX</a></li>
+		</ul>
+	</li>
+        <li>
+            <a itemprop="url" href="../../web-api.html">Working with JSON</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../../miscellaneous/scaffolding.html">Scaffolding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../../publishing/publish-to-iis.html">Publishing To IIS</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../../advanced.html">Advanced</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../../advanced/areas.html">Areas</a></li>
+                <li><a itemprop="url" href="../../advanced/custom-tag-helpers.html">Custom Tag Helpers</a></li>
+                <li><a itemprop="url" href="../../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+                <li><a itemprop="url" href="../../advanced/custom-constraints.html">Custom Route Constraints</a></li>
+                <li><a itemprop="url" href="../../advanced/route-parameter-transformers.html">Parameter Transformers For Routes</a></li>
+                <li><a itemprop="url" href="../../advanced/dependency-injection.html">Dependency Injection</a></li>
+                <li><a itemprop="url" href="../filters.html">Filters</a></li>
+                <li><a itemprop="url" href="../../advanced/razor-class-library.html">Razor Class Libraries</a></li>
+                <li><a itemprop="url" href="../../advanced/render-partial-to-string.html">Rendering A Partial View To A String</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../../table-of-contents.html">Table Of Contents</a>
+        </li>
+    </ul>
+</nav>
+
+            <footer>
+                <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+            </footer>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+
+    <div id="page-wrapper">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-md-9">
+                    
+<div id="article">
+    <h1 itemprop="headline" id="layout-pages">Layout Pages</h1>
+<div itemprop="articleBody"><p>Most sites feature the same content on every page, or within a large number of pages. Headers, footers, and navigation systems are just some examples. Site-wide scripts and style sheets also fall into this category. Adding the same header to every page in your site breaks the DRY principle (Don't Repeat Yourself). If you need to change the appearance of the header, you need to edit every page. The same applies to other common content, if you want to upgrade your client-side framework, for example. Some IDEs include tools for making replacements in multiple files, but that's not really a robust solution. The proper solution to this problem is the <strong>Layout</strong> page.</p>
+<p>The layout page acts as a template for all pages that reference it. The pages that reference the layout page are called content pages. Content pages are not full web pages. They contain only the content that varies from one page to the next. The code example below illustrates a very simple layout page:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot; /&gt;
+        &lt;title&gt;&lt;/title&gt;
+        &lt;link href=&quot;/css/site.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        @RenderBody()
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>What makes this a layout page is the call to the <code>RenderBody</code> method. That is where the result from processing the content page will be placed. Content pages reference their layout page via the <code>Layout</code> property of the page, which can be assigned in a code block at the top of a content page to point to a relative location:</p>
+<pre><code class="language-csharp">@{
+    Layout = &quot;/_Layout&quot;;
+}
+</code></pre>
+<p>Layout pages are typically named _<em>Layout.cshtml</em>, the leading underscore preventing them from being browsed directly. Inclusion of the file extension is optional when supplying their location to the <code>Layout</code> property. Standard practice is to specify the location of the layout page in a _<em>ViewStart.cshtml</em> file, which affects all content pages in the folder in which it is placed, and all subfolders.</p>
+<p>By default, the layout file is placed in the <em>Pages/Shared</em> folder, but it can be placed anywhere in the application folder structure. Use of the <em>ViewStart</em> file makes updating to the new location easy:</p>
+<pre><code class="language-csharp">@{
+    Layout = &quot;Themes/MyTheme/_Layout&quot;;
+}
+</code></pre>
+<h2 id="locating-a-layout">Locating a Layout</h2>
+<p>You do not need to provide a full file path for the layout file. The Razor Pages framework searches a set of predefined locations if you only provide the file name to the <code>Layout</code> property:</p>
+<pre><code>@{
+    Layout = &quot;_Layout&quot;;
+}
+</code></pre>
+<p>The framework searches by walking up the directory tree from the location of the calling page looking for the file name that you pass in as long as you do not include the file extension, until it reaches the root <em>Pages</em> folder. Once this has been exhausted, the formally registered locations are searched. The default registered search paths are Pages/Shared (from ASP.NET Core 2.1 onwards) and Views/Shared (the default location for layout pages in an MVC application).</p>
+<p>If the calling page is located in <em>Pages/Orders</em> the search for a layout named _<em>Layout.cshtml</em> will include the following locations:</p>
+<pre><code>Pages/Orders/_Layout.cshtml
+Pages/_Layout.cshtml
+Pages/Shared/_Layout.cshtml
+Views/Shared/_Layout.cshtml
+</code></pre>
+<p>If the page calling the layout is located in an area, the search will also start in the currently executing page's folder, and then walk up the directory tree within the area. Once the area folder structure has been exhausted, registered layout locations are searched relative to the area's folder location (i.e. <em>Pages/Shared</em> and <em>Views/Shared</em> within the area). Finally, the registered locations themselves are searched.</p>
+<p>The following search locations assume that the calling page in located at <em>Areas/Orders/Pages/Archive/Index.cshtml</em>:</p>
+<pre><code>Areas/Orders/Pages/Archive/_Layout.cshtml
+Areas/Orders/Pages/_Layout.cshtml
+Areas/Orders/Pages/Shared/_Layout.cshtml
+Areas/Orders/Views/Shared/_Layout.cshtml
+Pages/Shared/_Layout.cshtml
+Views/Shared/_Layout.cshtml
+</code></pre>
+<p>This is the same discovery process as is used for <a href="../partial-pages.html">partial pages</a>.</p>
+<h2 id="sections">Sections</h2>
+<p>The <code>RenderBody</code> method placement within the layout page determines where the content page will be rendered, but it is also possible to render other content supplied by the content page within a layout page. This is controlled by the placement of calls to the <code>RenderSection</code> method. The following example of a call to this method is taken from the layout page that forms part of the default template Razor Pages site:</p>
+<pre><code class="language-html">@RenderSection(&quot;Scripts&quot;, required: false)
+</code></pre>
+<p>This call defines a section named &quot;Scripts&quot; - intended for page-specific script file references or blocks of JavaScript code so that they can be located just before the closing <code>&lt;/body&gt;</code> tag. The second argument, <code>required</code> determines whether the content page must provide content for the named section. In this example, <code>required</code> is set to <code>false</code>, resulting in the section being optional. If the section is not optional, every content page that references the layout page must use the <code>@section</code> syntax to provide content for the section:</p>
+<pre><code class="language-html">@section Scripts{
+    // content here
+}
+</code></pre>
+<p>In some cases, you might want to make a section optional, but you want to provide some default content in the event that the content page didn't provide anything for the section. You can use the <code>IsSectionDefined</code> method for this:</p>
+<pre><code class="language-html">@if(IsSectionDefined(&quot;OptionalSection&quot;))
+{
+    @RenderSection(&quot;OptionalSection&quot;)
+}
+else
+{
+    // default content
+}
+</code></pre>
+<h2 id="nested-layouts">Nested Layouts</h2>
+<p>Layout pages can be nested, that is, it is perfectly legal to specify the layout for a layout page. The following example shows a master layout which contains the head and style references, and two sub-layout pages. One has a single column for content and the other has two columns, the second of which contains a section. Content pages can refrence either of the two sub-layout pages and still benefit from the common markup provided by the master layout file.</p>
+<p>_<em>MasterLayout.cshtml</em></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot; /&gt;
+        &lt;title&gt;&lt;/title&gt;
+        &lt;link href=&quot;/css/site.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        @RenderBody()
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><em>SubLayout1.cshtml</em></p>
+<pre><code class="language-html">@{
+    Layout = &quot;/_MasterLayout&quot;;
+}
+&lt;div class=&quot;main-content-one-col&quot;&gt;
+@RenderBody()
+&lt;/div&gt;
+</code></pre>
+<p><em>SubLayout2.cshtml</em></p>
+<pre><code class="language-html">@{
+    Layout = &quot;/_MasterLayout&quot;;
+}
+&lt;div class=&quot;main-content-two-col&quot;&gt;
+@RenderBody()
+&lt;/div&gt;
+&lt;div&gt;
+@RenderSection(&quot;RightCol&quot;)
+&lt;/div&gt;
+</code></pre>
+
+</div>
+</div>
+<section id="file-meta">
+    <span class="file-meta-label">Last updated:</span> <span itemprop="dateModified">22/10/2018 08:46:30</span><br />
+</section>
+
+                </div>
+                <div class="col-md-3 right-col">
+                    
+                            <script>
+                        (function() {
+                            var cx = 'partner-pub-8046723421340367:6108194070';
+                            var gcse = document.createElement('script');
+                            gcse.type = 'text/javascript';
+                            gcse.async = true;
+                            gcse.src = '../../../cse.google.com/cse07b6.html?cx=' + cx;
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(gcse, s);
+                        })();
+                            </script>
+                        <gcse:searchbox-only></gcse:searchbox-only>
+                    
+                    <div id="doc-outline" class="doc-outline well">
+                            <h3 class="doc-outline">On this page</h3>
+                            <nav class="doc-outline">
+                                <ul>
+                                        <li><a itemprop="url" href="#layout-pages" class="page-scroll">Layout Pages</a></li>
+                                        <li><a itemprop="url" href="#locating-a-layout" class="page-scroll">Locating a Layout</a></li>
+                                        <li><a itemprop="url" href="#sections" class="page-scroll">Sections</a></li>
+                                        <li><a itemprop="url" href="#nested-layouts" class="page-scroll">Nested Layouts</a></li>
+                                </ul>
+                            </nav>
+
+                    </div>
+                    <div class="rectangle">
+                        
+                                <script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Rectangle -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:250px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="7622896857"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <div class="doc-outline well">
+                        <h3 class="doc-outline">Latest Updates</h3>
+                        <nav class="doc-outline">
+                            <ul>
+                                    <li><a itemprop="url" href="../tutorial/bakery/migration.html">Creating A Migration</a></li>
+                                    <li><a itemprop="url" href="../tutorial/bakery/create-model.html">Working With A Model</a></li>
+                                    <li><a itemprop="url" href="../routing.html">Routing in Razor Pages</a></li>
+                                    <li><a itemprop="url" href="../tutorial/bakery/working-with-data.html">Working With Data</a></li>
+                                    <li><a itemprop="url" href="../tutorial/bakery/new-page.html">Adding a New Page</a></li>
+                                    <li><a itemprop="url" href="../tutorial/bakery.html">Creating an Application</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="skyscraper">
+                        
+                                <script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Skyscraper -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:600px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="4239197376"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <footer>
+                        <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <a href="#page-top" id="back-to-top" class="page-scroll" title="Back to top"><i class="fas fa-arrow-alt-circle-up"></i></a>
+    </div>
+    <div class="cookie-box" id="cookie-warning">
+        <div class="cookie-box-contents" id="learnrazorpages">This site uses cookies to analyse traffic, remember your preferences, and optimise your experience.</div>
+        <div class="cookie-box-buttons"><a href="../../privacy.html" class="cookie-button">Learn more</a><a href="#" class="cookie-button" id="cookie-close">Close</a></div>
+    </div>
+    <script src="../../../ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+    <script src="../../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="../../../code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    
+    <script src="../../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="../../js/site59f2.js?v=gJZRD7PDF8oEm1Xb0uhLZcpf7Vs12fGO-q0DErBSF_Y"></script>
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1264020-21"></script>
+        <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-1264020-21');
+        </script>
+    
+    
+</body>
+
+<!-- Mirrored from www.learnrazorpages.com/razor-pages/files/layout by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:07:01 GMT -->
+</html>

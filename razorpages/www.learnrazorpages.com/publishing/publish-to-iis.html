@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from www.learnrazorpages.com/publishing/publish-to-iis by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:18:49 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="How to publish a Razor Pages application, and then deploy it to IIS on Windows" />
+    <meta name="google-site-verification" content="MpV6gEoCh9OASgnoi656klwnlkni3_qOenITGlxBrjc" />
+    <title>Publishing and deploying a Razor Pages application to IIS on Windows | Learn Razor Pages</title>
+    <link rel="canonical" href="publish-to-iis.html" />
+    <link rel="stylesheet" href="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i|Roboto:300i,500,700" />
+    <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <link rel="stylesheet" href="../css/site8249.css?v=PCA7f9VuZUscxMwrePJfyFKXCF9mh2dMpXEDQU8oP3o" />
+    <link rel="stylesheet" href="../css/rp14c5.css?v=ZxkVB0StHjR5-UMElJII7nwWe6Wmc6_qgJ97GsY4yNw" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-8046723421340367",
+                enable_page_level_ads: true
+            });
+        </script>
+</head>
+<body id="page-top">
+    <div class="navbar navbar-default navbar-static-top">
+        <div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <i class="fas fa-graduation-cap"></i> <a href="../index.html">Learn Razor Pages</a>
+                    <br />
+                    <span class="byline">Your guide to using ASP.NET Core Razor Pages</span>
+                </div>
+                <div class="banner">
+                    
+                        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                        <!-- EF Core Leaderboard -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:728px;height:90px"
+                             data-ad-client="ca-pub-8046723421340367"
+                             data-ad-slot="1832525889"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <nav class="main-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+    <ul class="nav nav-level-one" id="side-menu">
+        <li>
+            <a itemprop="url" href="../index.html">Home</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../first-look.html">A First Look</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../asp-net-core.html">ASP.NET Core</a>
+        </li>
+        <li><a itemprop="url" href="../razor-pages/tutorial/bakery.html">Tutorials</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/tutorial/bakery.html">The Bakery</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages.html">Razor Page Files</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/files/index.html">Razor Files</a></li>
+                <li><a itemprop="url" href="../razor-pages/partial-pages.html">Partial Pages</a></li>
+                <li><a itemprop="url" href="../razor-pages/files/layout.html">Layout Files</a></li>
+                <li><a itemprop="url" href="../razor-pages/files/viewimports.html">ViewImports File</a></li>
+                <li><a itemprop="url" href="../razor-pages/files/viewstart.html">ViewStart File</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-syntax.html">Razor Syntax</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/pagemodel.html">Page Models</a>
+            <ul class="nav-level-two">
+                <li>
+                    <a itemprop="url" href="../razor-pages/handler-methods.html">Handler Methods</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="../razor-pages/viewdata.html">ViewData</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="../razor-pages/action-results.html">Action Results</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/tag-helpers/index.html">Tag Helpers</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/anchor-tag-helper.html">Anchor Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/cache-tag-helper.html">Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/distributed-cache-tag-helper.html">Distributed Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/environment-tag-helper.html">Environment Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/form-action-tag-helper.html">Form Action Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/form-tag-helper.html">Form Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/image-tag-helper.html">Image Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/input-tag-helper.html">Input Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/label-tag-helper.html">Label Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/link-tag-helper.html">Link Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/option-tag-helper.html">Option Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/partial-tag-helper.html">Partial Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/script-tag-helper.html">Script Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/select-tag-helper.html">Select Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/textarea-tag-helper.html">TextArea Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/validation-message-tag-helper.html">Validation Message Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/validation-summary-tag-helper.html">Validation Summary Tag Helper</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/view-components.html">View Components</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/routing.html">Routing and URLs</a>
+            <ul class="nav-level-two">
+                <li><a href="../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../startup.html">Startup</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../configuration.html">Configuration</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../configuration/global-error-handling.html">Global Error Handling And Logging</a></li>
+                <li><a itemprop="url" href="../configuration/custom-errors.html">Custom Error Pages</a></li>
+                <li><a itemprop="url" href="../configuration/https.html">Configuring HTTPS</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../middleware.html">Middleware</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/forms.html">Working With Forms</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/forms/file-upload.html">Uploading Files in Razor Pages</a></li>
+                <li><a itemprop="url" href="../razor-pages/forms/checkboxes.html">Working With Checkboxes</a></li>
+                <li><a itemprop="url" href="../razor-pages/forms/select-lists.html">Select Lists in a Razor Pages Form</a></li>
+                <li><a itemprop="url" href="../razor-pages/forms/radios.html">Working With Radio Buttons</a></li>
+                <li><a itemprop="url" href="../security/request-verification.html">Request Verification</a></li>
+            </ul>
+        </li>
+        <li><a itemprop="url" href="../razor-pages/validation.html">Validation</a></li>
+        <li>
+            <a itemprop="url" href="../razor-pages/model-binding.html">Model Binding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/state-management.html">State Management</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/caching.html">Caching</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../identity.html">Managing Security With ASP.NET Identity</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../identity/customising-identity.html">Customising Identity</a></li>
+            </ul>
+        </li>
+        <li>
+		<a itemprop="url" href="../razor-pages/ajax.html">Using AJAX</a>
+		<ul class="nav-level-two">
+			<li><a itemprop="url" href="../razor-pages/ajax/form-post.html">Posting Forms</a>    </li>
+			<li><a itemprop="url" href="../razor-pages/ajax/partial-update.html">Partial Page Updates</a></li>
+			<li><a itemprop="url" href="../razor-pages/ajax/upload-files.html">Uploading Files</a></li>
+			<li><a itemprop="url" href="../razor-pages/ajax/unobtrusive-ajax.html">Unobtrusive AJAX</a></li>
+		</ul>
+	</li>
+        <li>
+            <a itemprop="url" href="../web-api.html">Working with JSON</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../miscellaneous/scaffolding.html">Scaffolding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="publish-to-iis.html">Publishing To IIS</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../advanced.html">Advanced</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../advanced/areas.html">Areas</a></li>
+                <li><a itemprop="url" href="../advanced/custom-tag-helpers.html">Custom Tag Helpers</a></li>
+                <li><a itemprop="url" href="../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+                <li><a itemprop="url" href="../advanced/custom-constraints.html">Custom Route Constraints</a></li>
+                <li><a itemprop="url" href="../advanced/route-parameter-transformers.html">Parameter Transformers For Routes</a></li>
+                <li><a itemprop="url" href="../advanced/dependency-injection.html">Dependency Injection</a></li>
+                <li><a itemprop="url" href="../razor-pages/filters.html">Filters</a></li>
+                <li><a itemprop="url" href="../advanced/razor-class-library.html">Razor Class Libraries</a></li>
+                <li><a itemprop="url" href="../advanced/render-partial-to-string.html">Rendering A Partial View To A String</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../table-of-contents.html">Table Of Contents</a>
+        </li>
+    </ul>
+</nav>
+
+            <footer>
+                <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+            </footer>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+
+    <div id="page-wrapper">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-md-9">
+                    
+<div id="article">
+    <h1 itemprop="headline" id="publishing-and-deploying-a-razor-pages-application-to-iis-on-windows">Publishing and deploying a Razor Pages application to IIS on Windows</h1>
+<div itemprop="articleBody"><p>One you have built your Razor Pages application, it needs to be published and deployed to a hosting platform. This tutorial will examine the steps required to deploy a Razor Pages application to a Windows Server running Microsoft's Internet Information Services (IIS) web server software.</p>
+<h2 id="publishing">Publishing</h2>
+<p>Publishing is the process that prepares your application for deployment. The publishing process compiles the source code files into assemblies with a <em>.dll</em> extension. Typically, the process will generate two assemblies - one for the project (<em>MyProject.dll</em>) and one for the views (<em>MyProject.Views.dll</em> - was <em>MyProject.<strong>Precompiled</strong>Views.dll</em> prior to ASP.NET Core 2.1). If you have source code in other projects,  <em>.dll</em> files will be generated for each one of them.</p>
+<p>Publishing also results in various configuration files being generated. You will examine those shortly.</p>
+<p>Publishing can be done via the Command Line Interface (CLI) using <code>dotnet</code> commands, or you can use the built in publishing tools provided by Visual Studio, if you have access to it. The CLI approach provides one publishing option - to a folder. Visual Studio offers a variety of additional options including one-step publish and deploy to various Azure services, publish and deploy via FTP and Web Deploy, and creating a Web Deploy package. Here, we will only look at publishing to a folder. The resulting artefacts can be deployed to the hosting server using FTP or some other file copying method.</p>
+<p>Prior to publishing, you need to ensure that the target server has the NET Core Windows Server Hosting bundle installed. It can be downloaded from <a href="https://aka.ms/dotnetcore-2-windowshosting">here</a>. It installs the .NET Core runtime, .NET Core library and the ASP.NET Core Module - an IIS module that enables IIS to be used as a reverse proxy for your Razor application.</p>
+<div class="alert alert-info"><h4 id="what-is-a-reverse-proxy">What is a reverse proxy?</h4>
+<p>A reverse proxy in the context of a web application is a server that handles requests and retrieves resources from other servers on behalf of a client.  IIS performs this role mainly because it is capable of handling requests for muultiple domains on the same port number (typically port 80 for HTTP requests and 443 for HTTPS requests), whereas Kestrel, the .Net Core HTTP server that is bundled with your ASP.NET Core application is not capable of doing this. Therefore HTTP requests coming into the Windows server are primarily handled by IIS, then passed on to the specific ASP.NET Core application, where its instance of Kestrel will take care of processing the request and generating the response. This is then passed back to IIS before being passed on to the requesting client.</p>
+<p><img src="../images/reverse-proxy.png" class="img-fluid" alt="Reverse Proxy" /></p>
+</div>
+<h3 id="publish-using-the-cli">Publish using the CLI</h3>
+<p>The CLI command for publishing is <code>dotnet publish</code>. All of the options are detailed in the table below:</p>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Option</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>-h, --help</code></td>
+<td style="text-align: left;">Show help information.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-o, --output &lt;OUTPUT_DIR&gt;</code></td>
+<td style="text-align: left;">Output directory in which to place the published artifacts.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-f, --framework &lt;FRAMEWORK&gt;</code></td>
+<td style="text-align: left;">Target framework to publish for. The target framework has to be specified in the project file.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-r, --runtime &lt;RUNTIME_IDENTIFIER&gt;</code></td>
+<td style="text-align: left;">Publish the project for a given runtime. This is used when creating self-contained deployment. Default is to publish a famework-dependent app.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-c, --configuration &lt;CONFIGURATION&gt;</code></td>
+<td style="text-align: left;">Configuration to use for building the project.  Default for most projects is  &quot;Debug&quot;.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--version-suffix &lt;VERSION_SUFFIX&gt;</code></td>
+<td style="text-align: left;">Defines the value for the <code>$(VersionSuffix)</code> property in the project.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--manifest &lt;manifest.xml&gt;</code></td>
+<td style="text-align: left;">The path to a target manifest file that contains the list of packages to be excluded from the publish step.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--self-contained</code></td>
+<td style="text-align: left;">Publish the .NET Core runtime with your application so the runtime doesn't need to be installed on the target machine. Defaults to 'true' if a runtime identifier is specified.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--no-restore</code></td>
+<td style="text-align: left;">Does not do an implicit restore when executing the command.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-v, --verbosity</code></td>
+<td style="text-align: left;">Set the verbosity level of the command. Allowed values are <code>q</code>[uiet], <code>m</code>[inimal], <code>n</code>[ormal], <code>d</code>[etailed], and <code>diag</code>[nostic].</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--no-dependencies</code></td>
+<td style="text-align: left;">Set this flag to ignore project to project references and only restore the root project.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--force</code></td>
+<td style="text-align: left;">Set this flag to force all dependencies to be resolved even if the last restore was successful. This is equivalent to deleting <em>project.assets.json</em>.</td>
+</tr>
+</tbody>
+</table>
+<p>The main options are <code>--output</code> (or <code>-o</code>) and <code>--configuration</code> (or <code>-c</code>). You need to specify a location for the files generated by the publish operation and you should specify that the published application is compiled or built in Release mode. The following example results in the application being published to a local folder in release mode:</p>
+<pre><code class="language-cmd">dotnet publish -o c:\publish\myApp -c release
+</code></pre>
+<p>Publishing to a local folder is the only option provided by the CLI commands. Most often, you will use FTP or a similar tool to transfer the published output to the hosting location.</p>
+<h3 id="publish-using-visual-studio">Publish using Visual Studio</h3>
+<p>Visual Studio provides more options for publishing than the CLI commands. As well as publishing to a local folder, you can choose to publish to an FTP location, create a Web Deploy package, publish directly using Web Deploy, and publish to Microsfoft's hosting platform, Azure. This section will only look at publishing to a local folder.</p>
+<p>To publish to a folder, you will start by creating a <em>profile</em> - a collection of stored, re-usable settings. Click the <strong>Build</strong> menu and locate the <strong>Publish</strong> option:</p>
+<p><img src="../images/19-03-2018-08-24-28.png" class="img-fluid" alt="Publish Razor Pages" /></p>
+<p>When you select this option for the first time, you will be invited to specify the publishing settings. You can change the settings for an existing profile at any time. Choose the folder option and specify a location for the folder:</p>
+<p><img src="../images/19-03-2018-08-26-07.png" class="img-fluid" alt="Publish to a folder" /></p>
+<p>Visual Studio will generate a name for your profile. If you prefer to change that, click the <strong>Rename Profile</strong> link and provide your own name:</p>
+<p><img src="../images/19-03-2018-09-15-06.png" class="img-fluid" alt="Rename Profile" /></p>
+<p>If you prefer to have all files in the publish directory deleted prior to each publishing operation, click the <strong>Settings</strong> link</p>
+<p><img src="../images/19-03-2018-08-27-24.png" class="img-fluid" alt="Publish to a folder" /></p>
+<p>Then check the <em>Delete all existing files prior to publish</em> option in the modal that appears:</p>
+<p><img src="../images/19-03-2018-08-28-15.png" class="img-fluid" alt="Delete all file prior to publish" /></p>
+<p>Once you have chosen all of your setting, click the <strong>Publish</strong> button to execute the publish operation based on the specified profile.</p>
+<p>Whether you use the CLI or Visual Studio, it is always a good idea to test the published output by opening a command prompt and navigating to the publish folder, then executing <code>dotnet yourapp.dll</code> to ensure that the published application launches without error.</p>
+<h2 id="published-output">Published Output</h2>
+<p>The next image shows the files that are generated from publishing a site based purely on the basic (no authentication) template:</p>
+<p><img src="../images/19-03-2018-09-20-21.png" class="img-fluid" alt="Published output" /></p>
+<p>The contents of the <em>wwwroot</em> folder are copied directly from the original application:</p>
+<p><img src="../images/19-03-2018-09-20-45.png" class="img-fluid" alt="Published wwwroot folder" /></p>
+<p>A reasonably large <em>json</em> file is generated, named after the project with the suffix: <em>.deps.json</em>. This file specifies various configuration options such as the version of the runtime that the application targets and the dependencies that it relies on.</p>
+<p>The published output includes a <em>.dll</em> file (assembly) with the same name as your project. This is the compiled version of the application, built during the publishing operation. If your application consist of multiple projects, each one will result in its own <em>.dll</em> file.</p>
+<p>Another <em>.dll</em> file is generated with <em>PrecompiledViews</em> as part of its name (just <em>Views</em> from version 2.1). This assembly results from the <em>.cshtml</em> files in the <em>Pages</em> folder being compiled prior to deployment. Having views or pages compiled at this stage saves the first time compilation process happening on the web server, where the first visitor to each page will experience a delay before the page is executed and the response sent.</p>
+<div class="alert alert-info"><p>Precompilation of pages is the default behaviour. It is possible to skip this step and to publish the raw <em>.cshtml</em> files, resulting in pages that are updateable in a similar way to PHP, classic ASP or the ASP.NET Web Pages frameworks. In other words, you can make changes to the <em>.cshtml</em> files and then copy them to the web server while the application is running, and the new content will take effect immediately.</p>
+<p>If you would like to adopt this approach, add an <code>MvcCompileOnPublish</code> node to your <em>.csproj</em> file, with the value set to <code>false</code>:</p>
+<pre><code class="language-xml">&lt;PropertyGroup&gt;
+    &lt;TargetFramework&gt;netcoreapp2.0&lt;/TargetFramework&gt;
+    &lt;MvcRazorCompileOnPublish&gt;false&lt;/MvcRazorCompileOnPublish&gt;
+&lt;/PropertyGroup&gt;
+</code></pre>
+<p>This will result in a <em>Pages</em> folder containing the content pages and a <em>refs</em> folder containing the libraries required for the application:</p>
+<p><img src="../images/19-03-2018-09-47-52.png" class="img-fluid" alt="Make pages updateable" /></p>
+</div>
+<h2 id="locked-assemblies-and-app_offline-files">Locked Assemblies and App_Offline Files</h2>
+<p>When the site is running on the web server, the application's <em>.dll</em> file is loaded by the IIS process and is locked, as is its precompiled views assembly. If you use FTP to upload the published content, you will need to stop the process in order release the <em>.dll</em> files so that they can be overwritten.</p>
+<p>There are a number of ways to accomplish this. If you have access to the web server, you can stop the site's application pool and then restart it once the new files have been uploaded. However, this won't provide the visitor with a particularly good experience. A cleaner alternative is to use an <em>App_Offline.htm</em> file. When placed in the root folder of the site (i.e. the location returned by the <code>IHostingEnvironment.ContentRootPath</code> property), the presence of a file name <em>App_Offline.htm</em> results in any further request to the application being served with the content of the file. Therefore this file is most commonly used to display a message explaining the the site is currently undergoing maintenance.</p>
+<p>The name of the file is important, although case-insensitive. The easiest way to switch this feature on and off is to use an FTP client to rename the file to something else when the site should be live, and then alter it back when the site should be offline.</p>
+<p>Since requests for other files will be ignored, you should not link to local resources such as style sheets, javascript, images etc in your <em>App_Offline.htm</em> file. You should embed these in the file itself. Images can be embedded as Base64 encoded strings. There are a number of online services for converting image files to a Base64 encoded string. Or you can do this yourself:</p>
+<pre><code class="language-csharp">var imagePath = &lt;full path to image file&gt;
+var bytes = File.ReadAllBytes(imagePath);
+var base64Image = Convert.ToBase64String(bytes, 0, bytes.Length);
+</code></pre>
+<p>Once you have the value of <code>base64Image</code>, set it as the <code>src</code> of an <code>&lt;img&gt;</code> element using a <a href="https://en.wikipedia.org/wiki/Data_URI_scheme">data URI</a>:</p>
+<pre><code class="language-html">&lt;img src=&quot;data:image/png;base64, &lt;base64Image output&gt;&quot; /&gt;
+</code></pre>
+<p>Note that the media type is set to <code>image/png</code> in the example above. That should be altered to reflect the media (or mime) type of the original image you want to embed.</p>
+<h2 id="including-static-content-in-the-root-folder">Including Static Content in the Root Folder</h2>
+<p>Static content  added to the root of a Razor Pages application is not automatically included in the published output. You might create folders to contain  MarkDown or data files, for example, that you don't want your visitors to be able to browse directly, or you might add an <em>app_offline.htm</em> file to the root of your application. If you want to ensure that such contents are included in the published output, you must add specific entries to the application's <em>.csproj</em> file.</p>
+<p>The following entry ensures that a folder named <em>MyFolder</em> is included in the published output:</p>
+<pre><code class="language-xml">&lt;ItemGroup&gt;
+    &lt;Content Include=&quot;MyFolder\**\*&quot; CopyToPublishDirectory=&quot;PreserveNewest&quot; /&gt;
+&lt;/ItemGroup&gt;
+</code></pre>
+<p>If you want to include only certain items, you can use file matching patterns.
+This example uses the <a href="https://docs.microsoft.com/en-us/vsts/build-release/tasks/file-matching-patterns">recursive wildcard file matching pattern</a> to  specify that all contents of the given directory and its subdirectories should be included. The next example specifies that only MarkDown files in the specified directory hierarchy should be included:</p>
+<pre><code class="language-xml">&lt;ItemGroup&gt;
+    &lt;Content Include=&quot;MyFolder\**\*.md&quot; CopyToPublishDirectory=&quot;PreserveNewest&quot; /&gt;
+&lt;/ItemGroup&gt;
+</code></pre>
+<p>You can also choose to exclude items. This example results in all items in the <em>MyFolder</em> structure except <em>.txt</em> files being published:</p>
+<pre><code class="language-xml">&lt;ItemGroup&gt;
+    &lt;Content Include=&quot;MyFolder\**\*&quot; CopyToPublishDirectory=&quot;PreserveNewest&quot; /&gt;
+    &lt;Content Remove=&quot;MyFolder\**\*.txt&quot; /&gt;
+&lt;/ItemGroup&gt;
+</code></pre>
+<p>You can include multiple items by either creating a separate entry for each, or by providing a comma-separated list:</p>
+<pre><code class="language-xml">&lt;ItemGroup&gt;
+    &lt;Content Include=&quot;MyFolder\**\*;MySecondFolder\**\*;MyThirdFolder\**\*.db&quot; CopyToPublishDirectory=&quot;PreserveNewest&quot; /&gt;
+&lt;/ItemGroup&gt;
+</code></pre>
+<p>Finally, this example includes a file named <em>app_offline.html</em> in the published output:_</p>
+<pre><code class="language-xml">&lt;ItemGroup&gt;
+    &lt;Content Include=&quot;app_offline.html&quot; CopyToPublishDirectory=&quot;PreserveNewest&quot; /&gt;
+&lt;/ItemGroup&gt;
+</code></pre>
+<p>Note that the file extension has an additional <em>l</em> appended. This has the effect of ensuring that the <em>app_offline</em> file doesn't actually take the application offline when it is uploaded as part of the application files (or indeed when you try to run the site locally against IIS [Express]).</p>
+<h2 id="non-supported-framework-versions">Non-supported framework versions</h2>
+<p>One of the USPs offered by .NET Core is the fact that you do not have to rely on your hosting company installing the latest version of the framework on the hosting server in order to take advantage of it. This means that you can target any version of the framework you like. So when a newer version is released that contains features or bug fixes that you need, you can simply target it. However, if you deploy an application that targets a runtime version that isn't supported by the hosting server, you will get errors along the lines of:</p>
+<blockquote class="blockquote">
+<p>Error:
+An assembly specified in the application dependencies manifest (xxx.deps.json) was not found:
+package: 'Microsoft.ApplicationInsights.AspNetCore', version: 'xxx'
+...
+This assembly was expected to be in the local runtime store as the application was published using the following target manifest files: ...</p>
+</blockquote>
+<p>By default, the publish operation employs a process known as <em>Runtime Store Trimming</em>, whereby dependencies that form part of the .NET Core runtime are not included in the published output. The error therefore arises because items specified in the <em>MyApp.deps.json</em> file are not present on the hosting server.</p>
+<p>There are four possible solutions to this problem:</p>
+<ol>
+<li>Install the relevant version of the SDK on the server (which also installs the runtime store package)</li>
+<li>Install just the Runtime Store Package on the target server (you can get that by locating the correct version of .NET Core <a href="https://github.com/dotnet/core/tree/master/release-notes/download-archives">here</a>)</li>
+<li>Amend the <em>.csproj</em> file to include the following entry which disables runtime store trimming:
+<pre><code class="language-xml">&lt;PropertyGroup&gt;
+    &lt;PublishWithAspNetCoreTargetManifest&gt;false&lt;/PublishWithAspNetCoreTargetManifest&gt;
+&lt;/PropertyGroup&gt;
+</code></pre>
+</li>
+<li>Use the following (undocumented) <code>property</code> option when publishing via the CLI:
+<pre><code class="language-cmd">dotnet publish -o c:\publish\myApp -c release /property:PublishWithAspNetCoreTargetManifest=false
+</code></pre>
+</li>
+</ol>
+<p>The third and fourth options will result in the entire contents of the runtime store being included with the published output - about 200 files and folders at around 40MB. All of this will need to be included in the files uploaded to the hosting server.</p>
+<h2 id="http-error-502.5-process-failure">HTTP Error 502.5 Process Failure</h2>
+<p>Having deployed the application to IIS and tried to run it, you may receive an HTTP 502.5 error code, which tells you that the application failed to start. However, the browser message fails to provide any further clues as to the reason. The server's event log might provide further information:</p>
+<blockquote class="blockquote">
+<p>Application 'MACHINE/WEBROOT/APPHOST/[AppName]' with physical root '[path_to_application]' failed to start process with commandline 'dotnet .[AppName].dll', ErrorCode = '0x80004005 : 80008083</p>
+</blockquote>
+<p>This still doesn't tell you much, except that 0x80004005 is a general error code indicating missing files or those that can't be accessed currently. Subcode 80008083 indicates a version conflict. So it looks like there is a problem with the version of the .NET Core runtime that the application targets, and those available on the hosting server. You can confirm that this is the cause by opening a command prompt on the server in the folder where the application's dll resides, and attempting to start the application:</p>
+<pre><code class="language-cmd">dotnet AppName.dll
+</code></pre>
+<p>If the problem is caused by version conflict, the new error message will look like this</p>
+<blockquote class="blockquote">
+<p>It was not possible to find any compatible framework version
+The specified framework 'Microsoft.AspNetCore.App', version 'X.X.X' was not found.</p>
+<ul>
+<li>Check application dependencies and target a framework version installed at: \</li>
+<li>Alternatively, install the framework version 'X.X.X'.</li>
+</ul>
+</blockquote>
+<p>The solution is to either re-target the application to a version of the framework that exists on the hosting server (which can be checked by the <code>dotnet --version</code> command) or to ensure that the correct version of the framework is installed.</p>
+<h2 id="fixing-the-sdk-version-used-for-publishing">Fixing the SDK Version Used For Publishing</h2>
+<p>The <code>&lt;TargetFramework&gt;</code> node in your application's <em>.csproj</em> file specifies the version of the .NET framework that your application targets. However, this does not prevent your application being built or published against a newer version of the framework. Generally, <code>dotnet</code> commands such as <code>build</code>, <code>publish</code> etc will be executed by the latest version of the .NET Core SDK that is installed on the machine. This can result in a published application referencing dependencies that don't exist on a hosting server.</p>
+<p>To prevent accidentally building and publishing your application against a newer version of the .NET Core SDK than is supported by your host, you can fix the version that your application targets. You do this by adding a <em>global.json</em> file to the directory structure of the project. This can either be placed in the folder containing the <em>.csproj</em> file, or any of its parent folders.</p>
+<p>The <em>global.json</em> file has an <code>sdk</code> node which is used to specify the version of the .NET Core SDK to use when executing commands against the project (including publishing). The following example fixes the version at 2.1.402:</p>
+<pre><code class="language-json">{
+  &quot;sdk&quot;: {
+    &quot;version&quot;: &quot;2.1.402&quot;
+  }
+}
+</code></pre>
+<p>You can use the dotnet CLI to generate a <em>global.json</em> file. Navigate to the folder in which you want to create the file, and type the following command:</p>
+<pre><code class="language-cmd">dotnet new globaljson --sdk-version 2.1.402
+</code></pre>
+<p>Alternatively, you can specify the location for the file using the <code>--output</code> (or <code>-o</code>) switch:</p>
+<pre><code class="language-cmd">dotnet new globaljson --sdk-version 2.1.402 -o C:\MyApp
+</code></pre>
+<p>You can obtain the versions of the SDK that are available on a specific machine by executing the following <code>dotnet</code> command:</p>
+<pre><code class="language-cmd">dotnet --list-sdks
+</code></pre>
+<p>The following command produces a list of the available runtimes on a specific machine:</p>
+<pre><code class="language-cmd">dotnet --list-runtimes
+</code></pre>
+
+</div>
+</div>
+<section id="file-meta">
+    <span class="file-meta-label">Last updated:</span> <span itemprop="dateModified">21/09/2018 10:29:51</span><br />
+</section>
+
+                </div>
+                <div class="col-md-3 right-col">
+                    
+                            <script>
+                        (function() {
+                            var cx = 'partner-pub-8046723421340367:6108194070';
+                            var gcse = document.createElement('script');
+                            gcse.type = 'text/javascript';
+                            gcse.async = true;
+                            gcse.src = '../../cse.google.com/cse07b6.html?cx=' + cx;
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(gcse, s);
+                        })();
+                            </script>
+                        <gcse:searchbox-only></gcse:searchbox-only>
+                    
+                    <div id="doc-outline" class="doc-outline well">
+                            <h3 class="doc-outline">On this page</h3>
+                            <nav class="doc-outline">
+                                <ul>
+                                        <li><a itemprop="url" href="#publishing-and-deploying-a-razor-pages-application-to-iis-on-windows" class="page-scroll">Publishing and deploying a Razor Pages application to IIS on Windows</a></li>
+                                        <li><a itemprop="url" href="#publishing" class="page-scroll">Publishing</a></li>
+                                        <li><a itemprop="url" href="#publish-using-the-cli" class="page-scroll">Publish using the CLI</a></li>
+                                        <li><a itemprop="url" href="#publish-using-visual-studio" class="page-scroll">Publish using Visual Studio</a></li>
+                                        <li><a itemprop="url" href="#published-output" class="page-scroll">Published Output</a></li>
+                                        <li><a itemprop="url" href="#locked-assemblies-and-app_offline-files" class="page-scroll">Locked Assemblies and App_Offline Files</a></li>
+                                        <li><a itemprop="url" href="#including-static-content-in-the-root-folder" class="page-scroll">Including Static Content in the Root Folder</a></li>
+                                        <li><a itemprop="url" href="#non-supported-framework-versions" class="page-scroll">Non-supported framework versions</a></li>
+                                        <li><a itemprop="url" href="#http-error-502.5-process-failure" class="page-scroll">HTTP Error 502.5 Process Failure</a></li>
+                                        <li><a itemprop="url" href="#fixing-the-sdk-version-used-for-publishing" class="page-scroll">Fixing the SDK Version Used For Publishing</a></li>
+                                </ul>
+                            </nav>
+
+                    </div>
+                    <div class="rectangle">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Rectangle -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:250px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="7622896857"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <div class="doc-outline well">
+                        <h3 class="doc-outline">Latest Updates</h3>
+                        <nav class="doc-outline">
+                            <ul>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/migration.html">Creating A Migration</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/create-model.html">Working With A Model</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/routing.html">Routing in Razor Pages</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/working-with-data.html">Working With Data</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/new-page.html">Adding a New Page</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery.html">Creating an Application</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="skyscraper">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Skyscraper -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:600px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="4239197376"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <footer>
+                        <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <a href="#page-top" id="back-to-top" class="page-scroll" title="Back to top"><i class="fas fa-arrow-alt-circle-up"></i></a>
+    </div>
+    <div class="cookie-box" id="cookie-warning">
+        <div class="cookie-box-contents" id="learnrazorpages">This site uses cookies to analyse traffic, remember your preferences, and optimise your experience.</div>
+        <div class="cookie-box-buttons"><a href="../privacy.html" class="cookie-button">Learn more</a><a href="#" class="cookie-button" id="cookie-close">Close</a></div>
+    </div>
+    <script src="../../ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+    <script src="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="../../code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="../js/site59f2.js?v=gJZRD7PDF8oEm1Xb0uhLZcpf7Vs12fGO-q0DErBSF_Y"></script>
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1264020-21"></script>
+        <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-1264020-21');
+        </script>
+    
+    
+</body>
+
+<!-- Mirrored from www.learnrazorpages.com/publishing/publish-to-iis by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:18:49 GMT -->
+</html>

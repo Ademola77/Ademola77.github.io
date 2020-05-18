@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from www.learnrazorpages.com/razor-pages/filters by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:21:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Filters are centralised units of code that can be registered to execute at various points during Razor pages processing." />
+    <meta name="google-site-verification" content="MpV6gEoCh9OASgnoi656klwnlkni3_qOenITGlxBrjc" />
+    <title>Filters in Razor Pages | Learn Razor Pages</title>
+    <link rel="canonical" href="filters.html" />
+    <link rel="stylesheet" href="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i|Roboto:300i,500,700" />
+    <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <link rel="stylesheet" href="../css/site8249.css?v=PCA7f9VuZUscxMwrePJfyFKXCF9mh2dMpXEDQU8oP3o" />
+    <link rel="stylesheet" href="../css/rp14c5.css?v=ZxkVB0StHjR5-UMElJII7nwWe6Wmc6_qgJ97GsY4yNw" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-8046723421340367",
+                enable_page_level_ads: true
+            });
+        </script>
+</head>
+<body id="page-top">
+    <div class="navbar navbar-default navbar-static-top">
+        <div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <i class="fas fa-graduation-cap"></i> <a href="../index.html">Learn Razor Pages</a>
+                    <br />
+                    <span class="byline">Your guide to using ASP.NET Core Razor Pages</span>
+                </div>
+                <div class="banner">
+                    
+                        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                        <!-- EF Core Leaderboard -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:728px;height:90px"
+                             data-ad-client="ca-pub-8046723421340367"
+                             data-ad-slot="1832525889"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <nav class="main-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+    <ul class="nav nav-level-one" id="side-menu">
+        <li>
+            <a itemprop="url" href="../index.html">Home</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../first-look.html">A First Look</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../asp-net-core.html">ASP.NET Core</a>
+        </li>
+        <li><a itemprop="url" href="tutorial/bakery.html">Tutorials</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="tutorial/bakery.html">The Bakery</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages.html">Razor Page Files</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="files/index.html">Razor Files</a></li>
+                <li><a itemprop="url" href="partial-pages.html">Partial Pages</a></li>
+                <li><a itemprop="url" href="files/layout.html">Layout Files</a></li>
+                <li><a itemprop="url" href="files/viewimports.html">ViewImports File</a></li>
+                <li><a itemprop="url" href="files/viewstart.html">ViewStart File</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-syntax.html">Razor Syntax</a>
+        </li>
+        <li>
+            <a itemprop="url" href="pagemodel.html">Page Models</a>
+            <ul class="nav-level-two">
+                <li>
+                    <a itemprop="url" href="handler-methods.html">Handler Methods</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="viewdata.html">ViewData</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="action-results.html">Action Results</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="tag-helpers/index.html">Tag Helpers</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="tag-helpers/anchor-tag-helper.html">Anchor Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/cache-tag-helper.html">Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/distributed-cache-tag-helper.html">Distributed Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/environment-tag-helper.html">Environment Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/form-action-tag-helper.html">Form Action Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/form-tag-helper.html">Form Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/image-tag-helper.html">Image Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/input-tag-helper.html">Input Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/label-tag-helper.html">Label Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/link-tag-helper.html">Link Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/option-tag-helper.html">Option Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/partial-tag-helper.html">Partial Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/script-tag-helper.html">Script Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/select-tag-helper.html">Select Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/textarea-tag-helper.html">TextArea Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/validation-message-tag-helper.html">Validation Message Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/validation-summary-tag-helper.html">Validation Summary Tag Helper</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="view-components.html">View Components</a>
+        </li>
+        <li>
+            <a itemprop="url" href="routing.html">Routing and URLs</a>
+            <ul class="nav-level-two">
+                <li><a href="../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../startup.html">Startup</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../configuration.html">Configuration</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../configuration/global-error-handling.html">Global Error Handling And Logging</a></li>
+                <li><a itemprop="url" href="../configuration/custom-errors.html">Custom Error Pages</a></li>
+                <li><a itemprop="url" href="../configuration/https.html">Configuring HTTPS</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../middleware.html">Middleware</a>
+        </li>
+        <li>
+            <a itemprop="url" href="forms.html">Working With Forms</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="forms/file-upload.html">Uploading Files in Razor Pages</a></li>
+                <li><a itemprop="url" href="forms/checkboxes.html">Working With Checkboxes</a></li>
+                <li><a itemprop="url" href="forms/select-lists.html">Select Lists in a Razor Pages Form</a></li>
+                <li><a itemprop="url" href="forms/radios.html">Working With Radio Buttons</a></li>
+                <li><a itemprop="url" href="../security/request-verification.html">Request Verification</a></li>
+            </ul>
+        </li>
+        <li><a itemprop="url" href="validation.html">Validation</a></li>
+        <li>
+            <a itemprop="url" href="model-binding.html">Model Binding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="state-management.html">State Management</a>
+        </li>
+        <li>
+            <a itemprop="url" href="caching.html">Caching</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../identity.html">Managing Security With ASP.NET Identity</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../identity/customising-identity.html">Customising Identity</a></li>
+            </ul>
+        </li>
+        <li>
+		<a itemprop="url" href="ajax.html">Using AJAX</a>
+		<ul class="nav-level-two">
+			<li><a itemprop="url" href="ajax/form-post.html">Posting Forms</a>    </li>
+			<li><a itemprop="url" href="ajax/partial-update.html">Partial Page Updates</a></li>
+			<li><a itemprop="url" href="ajax/upload-files.html">Uploading Files</a></li>
+			<li><a itemprop="url" href="ajax/unobtrusive-ajax.html">Unobtrusive AJAX</a></li>
+		</ul>
+	</li>
+        <li>
+            <a itemprop="url" href="../web-api.html">Working with JSON</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../miscellaneous/scaffolding.html">Scaffolding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../publishing/publish-to-iis.html">Publishing To IIS</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../advanced.html">Advanced</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../advanced/areas.html">Areas</a></li>
+                <li><a itemprop="url" href="../advanced/custom-tag-helpers.html">Custom Tag Helpers</a></li>
+                <li><a itemprop="url" href="../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+                <li><a itemprop="url" href="../advanced/custom-constraints.html">Custom Route Constraints</a></li>
+                <li><a itemprop="url" href="../advanced/route-parameter-transformers.html">Parameter Transformers For Routes</a></li>
+                <li><a itemprop="url" href="../advanced/dependency-injection.html">Dependency Injection</a></li>
+                <li><a itemprop="url" href="filters.html">Filters</a></li>
+                <li><a itemprop="url" href="../advanced/razor-class-library.html">Razor Class Libraries</a></li>
+                <li><a itemprop="url" href="../advanced/render-partial-to-string.html">Rendering A Partial View To A String</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../table-of-contents.html">Table Of Contents</a>
+        </li>
+    </ul>
+</nav>
+
+            <footer>
+                <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+            </footer>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+
+    <div id="page-wrapper">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-md-9">
+                    
+<div id="article">
+    <h1 itemprop="headline" id="filters-in-razor-pages">Filters in Razor Pages</h1>
+<div itemprop="articleBody"><p>Filters are centralised units of code that can be registered to execute at various points during Razor pages processing. The Razor Pages framework includes a range of built in filters to ensure that requests are served over HTTPS, that requests are authenticated and to managed client-side caching of responses. You can also write your own filters to execute custom logic.</p>
+<h2 id="razor-page-lifecycle">Razor Page Lifecycle</h2>
+<p>Once a URL has been matched to a page, the correct <a href="handler-methods.html">handler method</a> is selected. Bindable PageModel properties and parameters to the handler method are bound by the model binder. Then the handler method is executed returning a response. Razor Pages filters implement <code>IPageFilter</code> or its async equivalent, <code>IAsyncPageFilter</code>. These interfaces expose methods that enable you to execute code before the handler is selected, after it has been selected but before it has been executed, and after it has been executed:</p>
+<h4 id="ipagefilter">IPageFilter</h4>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Method</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>OnPageHandlerSelected(PageHandlerSelectedContext)</code></td>
+<td style="text-align: left;">Handler method has been selected. Model binding has not taken place</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>OnPageHandlerExecuting(PageHandlerExecutingContext)</code></td>
+<td style="text-align: left;">Model binding completed. Handler has not been executed</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>OnPageHandlerExecuted(PageHandlerExecutedContext)</code></td>
+<td style="text-align: left;">Handler method has been executed.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="iasyncpagefilter">IAsyncPageFilter</h4>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Method</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>OnPageHandlerSelectionAsync(PageHandlerSelectedContext)</code></td>
+<td style="text-align: left;">Handler method has been selected. Model binding has not taken place</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>OnPageHandlerExecutionAsync(PageHandlerExecutingContext, PageHandlerExecutionDelegate</code>)</td>
+<td style="text-align: left;">Model binding completed. Handler has not been executed</td>
+</tr>
+</tbody>
+</table>
+<p>The various <code>*Context</code> parameters passed in to these methods provide access to the current <code>HttpContext</code>. This makes filters particularly suitable for cross-cutting logic that requires access to the HTTP <code>Request</code> or <code>Response</code>, such as code that needs to work with cookies, headers etc.</p>
+<h2 id="using-filter-methods-in-a-pagemodel">Using Filter Methods in a PageModel</h2>
+<p>The Razor Pages <code>PageModel</code> class implements both <code>IPageFilter</code> and <code>IAsyncPageFilter</code>, meaning that you can override all the methods detailed above in the PageModel class:</p>
+<p><img src="../images/17-08-2018-09-01-56.png" class="img-fluid" alt="Filter methods" /></p>
+<p>If you also implement the async methods, they will execute instead of their non-async equivalents.</p>
+<p>The <code>context</code> parameter provides information about the current handler method enabling you execute code conditionally based on the method being selected or executed:</p>
+<pre><code class="language-csharp">public override void OnPageHandlerSelected(PageHandlerSelectedContext context)
+{
+    if(context.HandlerMethod.MethodInfo.Name == nameof(OnGet))
+    {
+        // code placed here will only execute if the OnGet() method has been selected
+    }
+}
+</code></pre>
+<h2 id="creating-a-custom-filter">Creating A Custom Filter</h2>
+<p>Overriding <code>IPageFilter</code> methods in a PageModel is not particularly re-usable especially if you want to have your filter methods executed globally i.e. on every request. What you can do instead is to create a class that derives from <code>PageModel</code> and then have your actual PageModel classes inherit from that instead of from <code>PageModel</code>:</p>
+<pre><code class="language-csharp">public class BasePageModel : PageModel
+{
+    
+    public override void OnPageHandlerSelected(PageHandlerSelectedContext context)
+    {
+        //...
+    }
+
+    public override void OnPageHandlerExecuting(PageHandlerExecutingContext context)
+    {
+        //...
+    }
+}
+
+
+public class IndexModel : BasePageModel
+{
+    public void OnGet()
+    {
+        //...
+    }
+}
+</code></pre>
+<p>This approach is valid enough, but an alternative approach is to create a class that implements <code>IPageFilter</code> (or <code>IAsyncPageFilter</code> if asynchronous processing is required) and then register this globally.</p>
+<p>The following example features an asynchronous filter that obtains the IP Address of the visitor and uses it to perform a geographical lookup. The first element is a service class that utilises the free <a href="https://ipstack.com/">ipstack API</a> to obtain geographical information about an IP address:</p>
+<pre><code class="language-csharp">public interface IGeoService
+{
+    Task&lt;string&gt; GetCountry(string ipAddress);
+}
+public class GeoService : IGeoService
+{
+    public async Task&lt;string&gt; GetCountry(string ipAddress)
+    {
+        using (var client = new HttpClient())
+        {
+            var json = await client.GetStringAsync($&quot;http://api.ipstack.com/${ipAddress}?access_key=&lt;your api key&gt;&quot;);
+            dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
+            return data.country_code;
+        }
+    }
+}
+</code></pre>
+<p>The filter class will make use of this service. The only operation exposed by the service class is <code>async</code> so the filter class will need to implement <code>IAsyncPageFilter</code>:</p>
+<pre><code class="language-csharp">public class CustomPageFilter : IAsyncPageFilter
+{
+    private readonly IGeoService _geoService;
+
+    public CustomPageFilter(IGeoService geoService)
+    {
+        _geoService = geoService;
+    }
+
+
+    public async Task OnPageHandlerSelectionAsync(PageHandlerSelectedContext context)
+    {
+        await Task.CompletedTask;
+    }
+
+    public async Task OnPageHandlerExecutionAsync(PageHandlerExecutingContext context, PageHandlerExecutionDelegate next)
+    {
+        var ipAddress = context.HttpContext.Request.Host.ToString();
+        var countryCode = await _geoService.GetCountry(ipAddress);
+        
+        // do something with countryCode
+        
+        await next.Invoke();
+    }
+}
+</code></pre>
+<p>The filter is registered globally in the <code>ConfigureServices</code> method in <em>Startup.cs</em> along with the service by adding to <code>MvcOptions.Filters</code>:</p>
+<pre><code class="language-csharp">public void ConfigureServices(IServiceCollection services)
+{
+    ...
+
+    services.AddMvc(options =&gt;
+    {
+        options.Filters.Add(new CustomPageFilter(new GeoService()));
+    }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+    services.AddTransient&lt;IGeoService, GeoService&gt;();
+    ...
+            
+}
+</code></pre>
+<p>This filter will execute on every page request. If you want to apply the filter to a subset of pages, you have a couple of options. if all the affected pages are located in the same folder, you can apply the filter to the contents of the folder by using the <code>AddFolderApplicationModelConvention</code>:</p>
+<pre><code class="language-csharp">services.AddMvc()
+        .AddRazorPagesOptions(options =&gt;
+        {
+            options.Conventions.AddFolderApplicationModelConvention(&quot;/folder_name&quot;, model =&gt; model.Filters.Add(new CustomPageFilter(new GeoService())));
+        }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+</code></pre>
+<p>The other option is to create a filter attribute and apply it to PageModel classes selectively.</p>
+<h2 id="creating-a-filter-attribute">Creating A Filter Attribute</h2>
+<p>Attributes enable you to declaratively apply behaviour to PageModels. In this example, the code that forms the body of the <code>OnPageHandlerExecutionAsync</code> method in the global filter will be moved to an attribute that derives from <code>ResultFilterAttribute</code>:</p>
+<pre><code class="language-csharp">public class CustomFilterAttribute : ResultFilterAttribute
+{
+
+    public override async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
+    {
+        IGeoService geoService = context.HttpContext.RequestServices.GetService&lt;IGeoService&gt;();
+        var ipAddress = context.HttpContext.Request.Host.ToString();
+        var countryCode = await geoService.GetCountry(ipAddress);
+        var result = (PageResult)context.Result;
+        result.ViewData[&quot;CountryCode&quot;] = countryCode;
+        await next.Invoke();
+    }
+}
+</code></pre>
+<p>This example has been enhanced to illustrate how to access the <code>ViewData</code> property and set a value from within an attribute. The <code>ResultFilterAttribute</code> is an MVC artefact which when used in an MVC application can be applied to action methods or controller classes. In Razor Pages, it can only be applied to PageModel classes. It cannot be applied to handler methods:</p>
+<pre><code class="language-csharp">[CustomFilter]
+public class ContactModel : PageModel
+{
+    ...
+}
+</code></pre>
+<div class="alert alert-warning"><p>This example also illustrates the use of the Service Locator pattern to access an instance of <code>IGeoService</code> from within the filter (the <code>RequestServices.GetServices</code> method). This is mainly used in this example to keep things simple, but the <a href="https://odetocode.com/blogs/scott/archive/2016/02/18/avoiding-the-service-locator-pattern-in-asp-net-core.aspx">Service Locator approach is considered an anti-pattern</a> and there are alternative, more robust approaches to references dependencies from within filters.</p>
+</div>
+<p>The <code>ResultFilterAttribute</code> enables access to the Model via the <code>context.Result.Model</code> property. The <code>Result</code> property must be cast to a <code>PageResult</code> in order for that to work in the same way as the <code>ViewData</code> property is accessed above.</p>
+
+</div>
+</div>
+<section id="file-meta">
+    <span class="file-meta-label">Last updated:</span> <span itemprop="dateModified">05/09/2018 10:54:58</span><br />
+</section>
+
+                </div>
+                <div class="col-md-3 right-col">
+                    
+                            <script>
+                        (function() {
+                            var cx = 'partner-pub-8046723421340367:6108194070';
+                            var gcse = document.createElement('script');
+                            gcse.type = 'text/javascript';
+                            gcse.async = true;
+                            gcse.src = '../../cse.google.com/cse07b6.html?cx=' + cx;
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(gcse, s);
+                        })();
+                            </script>
+                        <gcse:searchbox-only></gcse:searchbox-only>
+                    
+                    <div id="doc-outline" class="doc-outline well">
+                            <h3 class="doc-outline">On this page</h3>
+                            <nav class="doc-outline">
+                                <ul>
+                                        <li><a itemprop="url" href="#filters-in-razor-pages" class="page-scroll">Filters in Razor Pages</a></li>
+                                        <li><a itemprop="url" href="#razor-page-lifecycle" class="page-scroll">Razor Page Lifecycle</a></li>
+                                        <li><a itemprop="url" href="#using-filter-methods-in-a-pagemodel" class="page-scroll">Using Filter Methods in a PageModel</a></li>
+                                        <li><a itemprop="url" href="#creating-a-custom-filter" class="page-scroll">Creating A Custom Filter</a></li>
+                                        <li><a itemprop="url" href="#creating-a-filter-attribute" class="page-scroll">Creating A Filter Attribute</a></li>
+                                </ul>
+                            </nav>
+
+                    </div>
+                    <div class="rectangle">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Rectangle -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:250px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="7622896857"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <div class="doc-outline well">
+                        <h3 class="doc-outline">Latest Updates</h3>
+                        <nav class="doc-outline">
+                            <ul>
+                                    <li><a itemprop="url" href="tutorial/bakery/migration.html">Creating A Migration</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/create-model.html">Working With A Model</a></li>
+                                    <li><a itemprop="url" href="routing.html">Routing in Razor Pages</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/working-with-data.html">Working With Data</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/new-page.html">Adding a New Page</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery.html">Creating an Application</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="skyscraper">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Skyscraper -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:600px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="4239197376"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <footer>
+                        <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <a href="#page-top" id="back-to-top" class="page-scroll" title="Back to top"><i class="fas fa-arrow-alt-circle-up"></i></a>
+    </div>
+    <div class="cookie-box" id="cookie-warning">
+        <div class="cookie-box-contents" id="learnrazorpages">This site uses cookies to analyse traffic, remember your preferences, and optimise your experience.</div>
+        <div class="cookie-box-buttons"><a href="../privacy.html" class="cookie-button">Learn more</a><a href="#" class="cookie-button" id="cookie-close">Close</a></div>
+    </div>
+    <script src="../../ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+    <script src="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="../../code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="../js/site59f2.js?v=gJZRD7PDF8oEm1Xb0uhLZcpf7Vs12fGO-q0DErBSF_Y"></script>
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1264020-21"></script>
+        <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-1264020-21');
+        </script>
+    
+    
+</body>
+
+<!-- Mirrored from www.learnrazorpages.com/razor-pages/filters by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:21:13 GMT -->
+</html>

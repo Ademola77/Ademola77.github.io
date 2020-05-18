@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from www.learnrazorpages.com/razor-pages/validation by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:16:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Input Validation is the process whereby you ensure that values provided by the user of your Razor Pages web site are of the expected data type, that they are within the permitted range and that required values are present." />
+    <meta name="google-site-verification" content="MpV6gEoCh9OASgnoi656klwnlkni3_qOenITGlxBrjc" />
+    <title>User Input Validation in Razor Pages | Learn Razor Pages</title>
+    <link rel="canonical" href="validation.html" />
+    <link rel="stylesheet" href="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i|Roboto:300i,500,700" />
+    <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <link rel="stylesheet" href="../css/site8249.css?v=PCA7f9VuZUscxMwrePJfyFKXCF9mh2dMpXEDQU8oP3o" />
+    <link rel="stylesheet" href="../css/rp14c5.css?v=ZxkVB0StHjR5-UMElJII7nwWe6Wmc6_qgJ97GsY4yNw" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-8046723421340367",
+                enable_page_level_ads: true
+            });
+        </script>
+</head>
+<body id="page-top">
+    <div class="navbar navbar-default navbar-static-top">
+        <div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <i class="fas fa-graduation-cap"></i> <a href="../index.html">Learn Razor Pages</a>
+                    <br />
+                    <span class="byline">Your guide to using ASP.NET Core Razor Pages</span>
+                </div>
+                <div class="banner">
+                    
+                        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                        <!-- EF Core Leaderboard -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:728px;height:90px"
+                             data-ad-client="ca-pub-8046723421340367"
+                             data-ad-slot="1832525889"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <nav class="main-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+    <ul class="nav nav-level-one" id="side-menu">
+        <li>
+            <a itemprop="url" href="../index.html">Home</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../first-look.html">A First Look</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../asp-net-core.html">ASP.NET Core</a>
+        </li>
+        <li><a itemprop="url" href="tutorial/bakery.html">Tutorials</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="tutorial/bakery.html">The Bakery</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages.html">Razor Page Files</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="files/index.html">Razor Files</a></li>
+                <li><a itemprop="url" href="partial-pages.html">Partial Pages</a></li>
+                <li><a itemprop="url" href="files/layout.html">Layout Files</a></li>
+                <li><a itemprop="url" href="files/viewimports.html">ViewImports File</a></li>
+                <li><a itemprop="url" href="files/viewstart.html">ViewStart File</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-syntax.html">Razor Syntax</a>
+        </li>
+        <li>
+            <a itemprop="url" href="pagemodel.html">Page Models</a>
+            <ul class="nav-level-two">
+                <li>
+                    <a itemprop="url" href="handler-methods.html">Handler Methods</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="viewdata.html">ViewData</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="action-results.html">Action Results</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="tag-helpers/index.html">Tag Helpers</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="tag-helpers/anchor-tag-helper.html">Anchor Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/cache-tag-helper.html">Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/distributed-cache-tag-helper.html">Distributed Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/environment-tag-helper.html">Environment Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/form-action-tag-helper.html">Form Action Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/form-tag-helper.html">Form Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/image-tag-helper.html">Image Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/input-tag-helper.html">Input Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/label-tag-helper.html">Label Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/link-tag-helper.html">Link Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/option-tag-helper.html">Option Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/partial-tag-helper.html">Partial Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/script-tag-helper.html">Script Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/select-tag-helper.html">Select Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/textarea-tag-helper.html">TextArea Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/validation-message-tag-helper.html">Validation Message Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/validation-summary-tag-helper.html">Validation Summary Tag Helper</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="view-components.html">View Components</a>
+        </li>
+        <li>
+            <a itemprop="url" href="routing.html">Routing and URLs</a>
+            <ul class="nav-level-two">
+                <li><a href="../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../startup.html">Startup</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../configuration.html">Configuration</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../configuration/global-error-handling.html">Global Error Handling And Logging</a></li>
+                <li><a itemprop="url" href="../configuration/custom-errors.html">Custom Error Pages</a></li>
+                <li><a itemprop="url" href="../configuration/https.html">Configuring HTTPS</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../middleware.html">Middleware</a>
+        </li>
+        <li>
+            <a itemprop="url" href="forms.html">Working With Forms</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="forms/file-upload.html">Uploading Files in Razor Pages</a></li>
+                <li><a itemprop="url" href="forms/checkboxes.html">Working With Checkboxes</a></li>
+                <li><a itemprop="url" href="forms/select-lists.html">Select Lists in a Razor Pages Form</a></li>
+                <li><a itemprop="url" href="forms/radios.html">Working With Radio Buttons</a></li>
+                <li><a itemprop="url" href="../security/request-verification.html">Request Verification</a></li>
+            </ul>
+        </li>
+        <li><a itemprop="url" href="validation.html">Validation</a></li>
+        <li>
+            <a itemprop="url" href="model-binding.html">Model Binding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="state-management.html">State Management</a>
+        </li>
+        <li>
+            <a itemprop="url" href="caching.html">Caching</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../identity.html">Managing Security With ASP.NET Identity</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../identity/customising-identity.html">Customising Identity</a></li>
+            </ul>
+        </li>
+        <li>
+		<a itemprop="url" href="ajax.html">Using AJAX</a>
+		<ul class="nav-level-two">
+			<li><a itemprop="url" href="ajax/form-post.html">Posting Forms</a>    </li>
+			<li><a itemprop="url" href="ajax/partial-update.html">Partial Page Updates</a></li>
+			<li><a itemprop="url" href="ajax/upload-files.html">Uploading Files</a></li>
+			<li><a itemprop="url" href="ajax/unobtrusive-ajax.html">Unobtrusive AJAX</a></li>
+		</ul>
+	</li>
+        <li>
+            <a itemprop="url" href="../web-api.html">Working with JSON</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../miscellaneous/scaffolding.html">Scaffolding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../publishing/publish-to-iis.html">Publishing To IIS</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../advanced.html">Advanced</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../advanced/areas.html">Areas</a></li>
+                <li><a itemprop="url" href="../advanced/custom-tag-helpers.html">Custom Tag Helpers</a></li>
+                <li><a itemprop="url" href="../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+                <li><a itemprop="url" href="../advanced/custom-constraints.html">Custom Route Constraints</a></li>
+                <li><a itemprop="url" href="../advanced/route-parameter-transformers.html">Parameter Transformers For Routes</a></li>
+                <li><a itemprop="url" href="../advanced/dependency-injection.html">Dependency Injection</a></li>
+                <li><a itemprop="url" href="filters.html">Filters</a></li>
+                <li><a itemprop="url" href="../advanced/razor-class-library.html">Razor Class Libraries</a></li>
+                <li><a itemprop="url" href="../advanced/render-partial-to-string.html">Rendering A Partial View To A String</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../table-of-contents.html">Table Of Contents</a>
+        </li>
+    </ul>
+</nav>
+
+            <footer>
+                <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+            </footer>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+
+    <div id="page-wrapper">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-md-9">
+                    
+<div id="article">
+    <h1 itemprop="headline" id="validating-user-input-in-razor-pages">Validating User Input in Razor Pages</h1>
+<div itemprop="articleBody"><p>When you allow users to provide values that you then process, you need to ensure that the incoming values are of the expected data type, that they are within the permitted range and that required values are present. This process is known as input validation.</p>
+<p>The term &quot;user input&quot; covers any value that the user has control over. Values provided via forms constitute the bulk of user input, but user input also comes in the form of values provided in URLs and cookies. The default position should be that all user input is to be considered untrusted.</p>
+<p>You can validate user input in two places in a web application: in the browser using client-side script or the browser's in-built data type validation; and on the server. However, you should only ever view client-side validation as a courtesy to the user because it is easily circumnavigated.</p>
+<p>The MVC framework, on which Razor Pages is built, includes a robust validation framework that works against inbound model properties on the client-side <strong>and</strong> on the server.</p>
+<p>The key players in the input validation framework are:</p>
+<ul>
+<li>DataAnnotation Attributes</li>
+<li>Tag Helpers</li>
+<li>jQuery Unobtrusive Validation</li>
+<li>ModelState</li>
+<li>Route Constraints</li>
+</ul>
+<h2 id="dataannotation-attributes">DataAnnotation Attributes</h2>
+<p>The primary building block of the validation framework is a set of  attributes that inherit from <code>ValidationAttribute</code>. Most of these attributes reside in the <code>System.ComponentModel.DataAnnotations</code> namespace.</p>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Attribute</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>Compare</code></td>
+<td style="text-align: left;">Used to specify another form field that the value should be compared to for equality</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>MaxLength</code></td>
+<td style="text-align: left;">Sets the maximum number of characters/bytes/items that can be accepted</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>MinLength</code></td>
+<td style="text-align: left;">Sets the minimum number of characters/bytes/items that can be accepted</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Range</code></td>
+<td style="text-align: left;">Sets the minimum and maximum values of a range</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>RegularExpression</code></td>
+<td style="text-align: left;">Checks the value against the specified regular expression</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Remote</code></td>
+<td style="text-align: left;">Enables client-side validation against a server-side resource, such as a database check to see if a username is already in use</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Required</code></td>
+<td style="text-align: left;">Specifies that a value must be provided for this property. Note that non-nullable value types such as <code>DateTime</code> and numeric values are treated as required by default and do not need this attribute applied to them</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>StringLength</code></td>
+<td style="text-align: left;">Sets the maximum number of string characters allowed</td>
+</tr>
+</tbody>
+</table>
+<p>Apart from the <code>Remote</code> attribute, all the other attributes cause validation to occur on both the client and the server. The <code>Remote</code> attribute also differs from the others in that it doesn't belong to the <code>DataAnnotations</code> namespace. It is found in the <code>Microsoft.AspNetCore.Mvc</code> namespace.</p>
+<div class="alert alert-info"><p>There are a number of other attributes in the <code>DataAnnotations</code> namespace that inherit from <code>DataTypeAttribute</code>. These include <code>Phone</code>, <code>EmailAddress</code>, <code>Url</code>, <code>CreditCard</code> and so on. These do not form part of the validation framework. However, these attributes affect the <code>type</code> of the rendered <code>input</code> associated with the model property to which they have been applied. The <a href="tag-helpers/input-tag-helper.html">input tag helper</a> will render an appropriate HTML5 type based on the data type of the property to take advantage of any supporting features provided by the browser <em>which can include browser-specific type validation</em>. This validation is not consistent across browsers and cannot be relied upon. If you want to validate for a data type, you should implement your own custom solution.</p>
+</div>
+<p>Attributes are applied to properties on the inbound model - typically a PageModel or ViewModel:</p>
+<pre><code class="language-csharp">public class UserModel : PageModel
+{
+    [BindProperty]
+    [Required]
+    [MinLength(6)]
+    public string UserName { get; set; }
+
+    [BindProperty]
+    [Required, MinLength(6)]
+    public string Password { get; set; }
+
+    [BindProperty, Required, Compare(nameof(Password))]
+    public string Password2 { get; set; }
+
+    ...
+</code></pre>
+<p>Each attribute can be declared separately, or as a comma separated list, or a mixture of both.</p>
+<h2 id="client-side-validation">Client side validation</h2>
+<div class="alert alert-danger"><p>Client-side validation should only ever be viewed as a courtesy to users, in that it provides immediate feedback to the user in the event that they have not provided satisfactory input. Your application must not rely solely on client-side validation because it is very easy to circumvent by anyone who has a small amount of HTML/JavaScript knowledge.</p>
+</div>
+<p>Client-side validation support is provided by the jQuery Unobtrusive Validation library, developed by Microsoft. It works with special HTML5 <code>data-*</code> attributes emitted by tag helpers. To see how that works, here is a simple tag helper-based form featuring the properties above:</p>
+<pre><code class="language-html">&lt;form method=&quot;post&quot;&gt;
+    &lt;div&gt;
+        &lt;input asp-for=&quot;UserName&quot; /&gt;
+        &lt;span asp-validation-for=&quot;UserName&quot;&gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;input asp-for=&quot;Password&quot; /&gt;
+        &lt;span asp-validation-for=&quot;Password&quot;&gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;input asp-for=&quot;Password2&quot; /&gt;
+        &lt;span asp-validation-for=&quot;Password2&quot;&gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;input type=&quot;submit&quot; /&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+<p>This form uses the <a href="tag-helpers/validation-message-tag-helper.html">validation message tag helper</a> to output validation error messages. This is how the form renders as HTML:</p>
+<pre><code class="language-html">&lt;div&gt;
+    &lt;input type=&quot;text&quot; data-val=&quot;true&quot; data-val-minlength=&quot;The field UserName must be a string or array type with a minimum length of &amp;#x27;6&amp;#x27;.&quot; data-val-minlength-min=&quot;6&quot; data-val-required=&quot;The UserName field is required.&quot; id=&quot;UserName&quot; name=&quot;UserName&quot; value=&quot;&quot; /&gt;
+    &lt;span class=&quot;field-validation-valid&quot; data-valmsg-for=&quot;UserName&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt;
+&lt;div&gt;
+    &lt;input type=&quot;text&quot; data-val=&quot;true&quot; data-val-minlength=&quot;The field Password must be a string or array type with a minimum length of &amp;#x27;6&amp;#x27;.&quot; data-val-minlength-min=&quot;6&quot; data-val-required=&quot;The Password field is required.&quot; id=&quot;Password&quot; name=&quot;Password&quot; value=&quot;&quot; /&gt;
+    &lt;span class=&quot;field-validation-valid&quot; data-valmsg-for=&quot;Password&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div&gt;
+    &lt;input type=&quot;text&quot; data-val=&quot;true&quot; data-val-equalto=&quot;&amp;#x27;Password2&amp;#x27; and &amp;#x27;Password&amp;#x27; do not match.&quot; data-val-equalto-other=&quot;*.Password&quot; data-val-required=&quot;The Password2 field is required.&quot; id=&quot;Password2&quot; name=&quot;Password2&quot; value=&quot;&quot; /&gt;
+    &lt;span class=&quot;field-validation-valid&quot; data-valmsg-for=&quot;Password2&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div&gt;
+    &lt;input type=&quot;submit&quot; /&gt;
+&lt;/div&gt;
+</code></pre>
+<p>Validation is activated by the inclusion of the <code>data-val</code> attribute with a value of <code>true</code> which has been applied to the <code>span</code> elements targeted by the validation message tag helper. Various other <code>data-val-*</code> attributes are added as part of the tag helper rendering to specify the type of validation required and the error message, which can be customised as part of the attribute declaration:</p>
+<pre><code class="language-csharp">[Compare(nameof(Password)), ErrorMessage =&quot;Make sure both passwords are the same&quot;)]
+public string Password2 { get; set; }
+</code></pre>
+<pre><code class="language-html">&lt;input type=&quot;text&quot; 
+    data-val=&quot;true&quot; 
+    data-val-equalto=&quot;Make sure both passwords are the same&quot; 
+    data-val-equalto-other=&quot;*.Password&quot; 
+    data-val-required=&quot;The Password2 field is required.&quot; 
+    id=&quot;Password2&quot; name=&quot;Password2&quot; value=&quot;&quot; /&gt;
+</code></pre>
+<p>You must also include the jQuery Unobtrusive Validation library within the page containing the form for client side validation to work. This is most easily accomplished by the inclusion of the _<em>ValidationScriptsPartial.cshtml</em> file within the page:</p>
+<pre><code class="language-html">@section scripts{
+    @await Html.PartialAsync(&quot;_ValidationScriptsPartial&quot;)
+}
+</code></pre>
+<p>Validation message or summary tag helpers are required to provide somewhere for the error message to be displayed. Without these, any attempt to submit a form that fails client-side validation will not succeed, but without any visual clues as to why, potentially leaving the user confused.</p>
+<h2 id="server-side-validation">Server side validation</h2>
+<p>Client side validation will not take place unless you include  _<em>ValidationScriptsPartial.cshtml</em> in your form, or if you don't use tag helpers to generate the HTML for your form controls.</p>
+<p>There are a number of other ways to circumvent client-side validation:</p>
+<ul>
+<li>Use the browser's developer tools to change <code>data-val=&quot;true&quot;</code> to <code>data-val=&quot;false&quot;</code></li>
+<li>Save a copy of the form to your desktop and remove the validation scripts</li>
+<li>Use Postman, Fiddler or Curl to post the form values directly</li>
+<li>etc...</li>
+</ul>
+<p>Because it is so easy to circumvent client-side validation, server-side validation is included as part of the ASP.NET Core validation framework. Once property values have been bound, the framework looks for all validation attributes on those properties and executes them. Any failures result in an entry being added to a <code>ModelStateDictionary</code> - a dictionary-like structure where validation errors are stored. This is made available in the PageModel class via <code>ModelState</code>, which has a property named <code>IsValid</code> that returns <code>false</code> if any of the validation tests fail:</p>
+<pre><code class="language-csharp">public IActionResult  OnPost()
+{
+    if (ModelState.IsValid)
+    {
+        // do something
+        return RedirectToPage(&quot;Contact&quot;));
+    }
+    else
+    {
+        return Page();
+    }
+}
+</code></pre>
+<p>The snippet above illustrates the most common pattern for dealing with validation in an <code>OnPost</code> handler - query <code>ModelState</code>'s <code>IsValid</code> property, and if it returns <code>true</code>, process the form otherwise redisplay the form, and let the framework take care of extracting error messages from <code>ModelState</code> and passing them to the validation message and/or summary tag helpers. If you use this approach, the values submitted by the user will be retained in the form for the user to modify accordingly.</p>
+<p>If the form post passes validation, the <strong>PRG</strong> (<a href="https://en.wikipedia.org/wiki/Post/Redirect/Get">Post-Redirect-Get</a>) pattern is used to minimise the possibility of duplicate submission of form values.</p>
+<h2 id="route-contraints">Route Contraints</h2>
+<p>Input validation has so far focused on form submissions, but input can also be provided by the user in URLs as route values. In fact, URLs are the most common attack vector for those whose intent is malicious. Therefore, validating route parameter values for presence, data type and range is not to be overlooked.</p>
+<p>Constraints provide a way to disambiguate routes but they also  act as a means of specifying a white list of acceptable values. There is a <a href="../miscellaneous/constraints.html">wide range of constraints</a> available, and they can be combined to form very restrictive rules that must be satisfied by the incoming value. If the constraints aren't satisfied, the framework returns a 404 Not Found instead of raising an exception.</p>
+<p>You can read more about <a href="routing.html#adding-constraints">applying constraints in the routing topic</a>.</p>
+
+</div>
+</div>
+<section id="file-meta">
+    <span class="file-meta-label">Last updated:</span> <span itemprop="dateModified">08/05/2019 14:29:09</span><br />
+</section>
+
+                </div>
+                <div class="col-md-3 right-col">
+                    
+                            <script>
+                        (function() {
+                            var cx = 'partner-pub-8046723421340367:6108194070';
+                            var gcse = document.createElement('script');
+                            gcse.type = 'text/javascript';
+                            gcse.async = true;
+                            gcse.src = '../../cse.google.com/cse07b6.html?cx=' + cx;
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(gcse, s);
+                        })();
+                            </script>
+                        <gcse:searchbox-only></gcse:searchbox-only>
+                    
+                    <div id="doc-outline" class="doc-outline well">
+                            <h3 class="doc-outline">On this page</h3>
+                            <nav class="doc-outline">
+                                <ul>
+                                        <li><a itemprop="url" href="#validating-user-input-in-razor-pages" class="page-scroll">Validating User Input in Razor Pages</a></li>
+                                        <li><a itemprop="url" href="#dataannotation-attributes" class="page-scroll">DataAnnotation Attributes</a></li>
+                                        <li><a itemprop="url" href="#client-side-validation" class="page-scroll">Client side validation</a></li>
+                                        <li><a itemprop="url" href="#server-side-validation" class="page-scroll">Server side validation</a></li>
+                                        <li><a itemprop="url" href="#route-contraints" class="page-scroll">Route Contraints</a></li>
+                                </ul>
+                            </nav>
+
+                    </div>
+                    <div class="rectangle">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Rectangle -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:250px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="7622896857"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <div class="doc-outline well">
+                        <h3 class="doc-outline">Latest Updates</h3>
+                        <nav class="doc-outline">
+                            <ul>
+                                    <li><a itemprop="url" href="tutorial/bakery/migration.html">Creating A Migration</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/create-model.html">Working With A Model</a></li>
+                                    <li><a itemprop="url" href="routing.html">Routing in Razor Pages</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/working-with-data.html">Working With Data</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/new-page.html">Adding a New Page</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery.html">Creating an Application</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="skyscraper">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Skyscraper -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:600px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="4239197376"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <footer>
+                        <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <a href="#page-top" id="back-to-top" class="page-scroll" title="Back to top"><i class="fas fa-arrow-alt-circle-up"></i></a>
+    </div>
+    <div class="cookie-box" id="cookie-warning">
+        <div class="cookie-box-contents" id="learnrazorpages">This site uses cookies to analyse traffic, remember your preferences, and optimise your experience.</div>
+        <div class="cookie-box-buttons"><a href="../privacy.html" class="cookie-button">Learn more</a><a href="#" class="cookie-button" id="cookie-close">Close</a></div>
+    </div>
+    <script src="../../ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+    <script src="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="../../code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="../js/site59f2.js?v=gJZRD7PDF8oEm1Xb0uhLZcpf7Vs12fGO-q0DErBSF_Y"></script>
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1264020-21"></script>
+        <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-1264020-21');
+        </script>
+    
+    
+</body>
+
+<!-- Mirrored from www.learnrazorpages.com/razor-pages/validation by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:16:26 GMT -->
+</html>

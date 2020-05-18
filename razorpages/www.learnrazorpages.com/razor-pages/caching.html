@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from www.learnrazorpages.com/razor-pages/caching by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:16:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Server-side caching  is primarily used to improve performance in Razor Pages applications, but can also be used as a state management strategy. Caching involves the storage of data or content, particularly data or content that incurs a processing overhead, so that it can be reused without incurring the cost of generation every time." />
+    <meta name="google-site-verification" content="MpV6gEoCh9OASgnoi656klwnlkni3_qOenITGlxBrjc" />
+    <title>Caching in Razor Pages | Learn Razor Pages</title>
+    <link rel="canonical" href="caching.html" />
+    <link rel="stylesheet" href="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i|Roboto:300i,500,700" />
+    <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <link rel="stylesheet" href="../css/site8249.css?v=PCA7f9VuZUscxMwrePJfyFKXCF9mh2dMpXEDQU8oP3o" />
+    <link rel="stylesheet" href="../css/rp14c5.css?v=ZxkVB0StHjR5-UMElJII7nwWe6Wmc6_qgJ97GsY4yNw" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-8046723421340367",
+                enable_page_level_ads: true
+            });
+        </script>
+</head>
+<body id="page-top">
+    <div class="navbar navbar-default navbar-static-top">
+        <div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <i class="fas fa-graduation-cap"></i> <a href="../index.html">Learn Razor Pages</a>
+                    <br />
+                    <span class="byline">Your guide to using ASP.NET Core Razor Pages</span>
+                </div>
+                <div class="banner">
+                    
+                        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                        <!-- EF Core Leaderboard -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:728px;height:90px"
+                             data-ad-client="ca-pub-8046723421340367"
+                             data-ad-slot="1832525889"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <nav class="main-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+    <ul class="nav nav-level-one" id="side-menu">
+        <li>
+            <a itemprop="url" href="../index.html">Home</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../first-look.html">A First Look</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../asp-net-core.html">ASP.NET Core</a>
+        </li>
+        <li><a itemprop="url" href="tutorial/bakery.html">Tutorials</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="tutorial/bakery.html">The Bakery</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages.html">Razor Page Files</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="files/index.html">Razor Files</a></li>
+                <li><a itemprop="url" href="partial-pages.html">Partial Pages</a></li>
+                <li><a itemprop="url" href="files/layout.html">Layout Files</a></li>
+                <li><a itemprop="url" href="files/viewimports.html">ViewImports File</a></li>
+                <li><a itemprop="url" href="files/viewstart.html">ViewStart File</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-syntax.html">Razor Syntax</a>
+        </li>
+        <li>
+            <a itemprop="url" href="pagemodel.html">Page Models</a>
+            <ul class="nav-level-two">
+                <li>
+                    <a itemprop="url" href="handler-methods.html">Handler Methods</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="viewdata.html">ViewData</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="action-results.html">Action Results</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="tag-helpers/index.html">Tag Helpers</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="tag-helpers/anchor-tag-helper.html">Anchor Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/cache-tag-helper.html">Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/distributed-cache-tag-helper.html">Distributed Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/environment-tag-helper.html">Environment Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/form-action-tag-helper.html">Form Action Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/form-tag-helper.html">Form Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/image-tag-helper.html">Image Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/input-tag-helper.html">Input Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/label-tag-helper.html">Label Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/link-tag-helper.html">Link Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/option-tag-helper.html">Option Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/partial-tag-helper.html">Partial Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/script-tag-helper.html">Script Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/select-tag-helper.html">Select Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/textarea-tag-helper.html">TextArea Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/validation-message-tag-helper.html">Validation Message Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/validation-summary-tag-helper.html">Validation Summary Tag Helper</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="view-components.html">View Components</a>
+        </li>
+        <li>
+            <a itemprop="url" href="routing.html">Routing and URLs</a>
+            <ul class="nav-level-two">
+                <li><a href="../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../startup.html">Startup</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../configuration.html">Configuration</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../configuration/global-error-handling.html">Global Error Handling And Logging</a></li>
+                <li><a itemprop="url" href="../configuration/custom-errors.html">Custom Error Pages</a></li>
+                <li><a itemprop="url" href="../configuration/https.html">Configuring HTTPS</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../middleware.html">Middleware</a>
+        </li>
+        <li>
+            <a itemprop="url" href="forms.html">Working With Forms</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="forms/file-upload.html">Uploading Files in Razor Pages</a></li>
+                <li><a itemprop="url" href="forms/checkboxes.html">Working With Checkboxes</a></li>
+                <li><a itemprop="url" href="forms/select-lists.html">Select Lists in a Razor Pages Form</a></li>
+                <li><a itemprop="url" href="forms/radios.html">Working With Radio Buttons</a></li>
+                <li><a itemprop="url" href="../security/request-verification.html">Request Verification</a></li>
+            </ul>
+        </li>
+        <li><a itemprop="url" href="validation.html">Validation</a></li>
+        <li>
+            <a itemprop="url" href="model-binding.html">Model Binding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="state-management.html">State Management</a>
+        </li>
+        <li>
+            <a itemprop="url" href="caching.html">Caching</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../identity.html">Managing Security With ASP.NET Identity</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../identity/customising-identity.html">Customising Identity</a></li>
+            </ul>
+        </li>
+        <li>
+		<a itemprop="url" href="ajax.html">Using AJAX</a>
+		<ul class="nav-level-two">
+			<li><a itemprop="url" href="ajax/form-post.html">Posting Forms</a>    </li>
+			<li><a itemprop="url" href="ajax/partial-update.html">Partial Page Updates</a></li>
+			<li><a itemprop="url" href="ajax/upload-files.html">Uploading Files</a></li>
+			<li><a itemprop="url" href="ajax/unobtrusive-ajax.html">Unobtrusive AJAX</a></li>
+		</ul>
+	</li>
+        <li>
+            <a itemprop="url" href="../web-api.html">Working with JSON</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../miscellaneous/scaffolding.html">Scaffolding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../publishing/publish-to-iis.html">Publishing To IIS</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../advanced.html">Advanced</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../advanced/areas.html">Areas</a></li>
+                <li><a itemprop="url" href="../advanced/custom-tag-helpers.html">Custom Tag Helpers</a></li>
+                <li><a itemprop="url" href="../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+                <li><a itemprop="url" href="../advanced/custom-constraints.html">Custom Route Constraints</a></li>
+                <li><a itemprop="url" href="../advanced/route-parameter-transformers.html">Parameter Transformers For Routes</a></li>
+                <li><a itemprop="url" href="../advanced/dependency-injection.html">Dependency Injection</a></li>
+                <li><a itemprop="url" href="filters.html">Filters</a></li>
+                <li><a itemprop="url" href="../advanced/razor-class-library.html">Razor Class Libraries</a></li>
+                <li><a itemprop="url" href="../advanced/render-partial-to-string.html">Rendering A Partial View To A String</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../table-of-contents.html">Table Of Contents</a>
+        </li>
+    </ul>
+</nav>
+
+            <footer>
+                <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+            </footer>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+
+    <div id="page-wrapper">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-md-9">
+                    
+<div id="article">
+    <h1 itemprop="headline" id="caching-in-razor-pages">Caching in Razor Pages</h1>
+<div itemprop="articleBody"><p>Server-side caching  is primarily used to improve performance in applications, but can also be used in web applications as a <a href="state-management.html">state management</a> strategy.
+This type of caching involves the storage of data or content on the server, particularly data or content that incurs a processing overhead, so that it can be reused without incurring the cost of generation every time. The best candidate for caching is data that doesn't change very often. Look-up data, tag clouds, menu-driven navigation are all classic examples that can benefit from caching.</p>
+<p>In-memory storage is most likely to be used in applications hosted on a single server. Applications deployed to the cloud or on web farms are recommended to use a distributed cache system - one which is separate to the application so that each instance of the application can access the same data.</p>
+<p>Razor Pages offers two main ways in which you can manage the caching of pieces of content. One is to use the <a href="tag-helpers/cache-tag-helper.html">Cache tag helper</a>. The other is to use the a cache provider's API such as that offered by the <code>IMemoryCache</code>.</p>
+<h2 id="in-memory-caching">In-Memory Caching</h2>
+<p>In-Memory caching is not made available to a Razor Pages application by default. It is enabled when it is added as a service in the <code>ConfigureServices</code> method in the <code>Startup</code> class using the <code>AddMemoryCache</code> extension method:</p>
+<pre><code class="language-csharp">// This method gets called by the runtime. Use this method to add services to the container.
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMemoryCache();
+    // configure other services
+}
+</code></pre>
+<p>Once it has been added to the <a href="../advanced/dependency-injection.html">Dependency Injection</a> system, caching can be injected into <a href="pagemodel.html">PageModel</a> classes via their constructor as an instance of <code>IMemoryCache</code>:</p>
+<pre><code class="language-csharp">public class IndexModel : PageModel
+{
+    private readonly IMemoryCache _cache;
+
+    public IndexModel(IMemoryCache cache)
+    {
+        _cache = cache;
+    }
+    ...
+}
+</code></pre>
+<h2 id="managing-cache-entries">Managing Cache Entries</h2>
+<p>The <code>MemoryCache</code> holds items as Key/Value pairs. You would normally use strings as key values because they are easy to compare when performing look-ups. Comparison is case-sensitive when using strings. The recommendation is to use constants for key values to prevent typographical errors.</p>
+<p>The <code>IMemoryCache</code> interface defines three methods for managing cache entries:</p>
+<ul>
+<li><code>CreateEntry</code></li>
+<li><code>Remove</code></li>
+<li><code>TryGetValue</code></li>
+</ul>
+<p>The implementation of the <code>CreateEntry</code> method offered by the MemoryCache class is not particularly intuitive to use. It takes the key name as a parameter and returns an <code>ICacheEntry</code> instance that can then have its properties set. <code>ICacheEntry</code> implements <code>IDisposable</code>. The entry is only added to the cache when its <code>Dispose</code> method is called. This can be done in a <code>using</code> block:</p>
+<pre><code class="language-csharp">using(var cacheEntry = _cache.CreateEntry(&quot;myKey&quot;))
+{
+    // set properties
+} // Dispose called at end of block, committing item to the cache
+</code></pre>
+<p>Or you can call the <code>Dispose</code> explicitly:</p>
+<pre><code class="language-csharp">var cacheEntry = _cache.CreateEntry(&quot;myKey&quot;);
+// set properties
+cacheEntry.Dispose(); //adds item to cache
+</code></pre>
+<p>A number of extension methods on the <code>MemoryCache</code> class are made available to simplify setting and getting memory cache values:</p>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Method</th>
+<th style="text-align: left;">Return Type</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>Get</code></td>
+<td style="text-align: left;"><code>object</code></td>
+<td style="text-align: left;">Gets the item with the specified key</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Get&lt;TItem&gt;</code></td>
+<td style="text-align: left;"><code>TItem</code></td>
+<td style="text-align: left;">Gets the item with the specified key and attempts to cast it to the specified type</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>GetOrCreate&lt;TItem&gt;</code></td>
+<td style="text-align: left;"><code>TItem</code></td>
+<td style="text-align: left;">If the item doesn't exist in the cache, this method will add it</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Task&lt;TItem&gt; GetOrCreateAsync</code></td>
+<td style="text-align: left;"><code>Task&lt;TItem&gt;</code></td>
+<td style="text-align: left;">Async version of above</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Set&lt;TItem&gt;</code></td>
+<td style="text-align: left;"><code>TItem</code></td>
+<td style="text-align: left;">Also has 4 overloads that allow various options to be set</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>TryGetValue&lt;TItem&gt;</code></td>
+<td style="text-align: left;"><code>bool</code></td>
+<td style="text-align: left;">Generic version of the interface method</td>
+</tr>
+</tbody>
+</table>
+<h3 id="setting-values">Setting values</h3>
+<p>The simplest way to add an entry to the cache is to use the <code>Set&lt;TItem&gt;</code> method:</p>
+<pre><code class="language-csharp">var cacheEntry = DateTime.Now;
+_cache.Set&lt;DateTime&gt;(&quot;Time&quot;, cacheEntry);
+</code></pre>
+<p>More commonly, you will omit the type parameter because it can be inferred from the type that's passed into the <code>Set</code> method:</p>
+<pre><code class="language-csharp">var cacheEntry = DateTime.Now;
+_cache.Set(&quot;Time&quot;, cacheEntry);
+</code></pre>
+<p>Overloads of the <code>Set&lt;TItem&gt;</code> method enable you to specify the expiration rules of an item, or a collection of properties wrapped as a <code>MemoryCacheEntryOptions</code> object. These will be examined further when looking at the <code>CacheEntry</code> object's properties.</p>
+<h3 id="getting-values">Getting values</h3>
+<p>Both the <code>Get</code> and <code>Get&lt;TItem&gt;</code> methods attempt to retrieve a cache entry by the specified key:</p>
+<pre><code class="language-csharp">var myEntry = _cache.Get(&quot;myKey&quot;);
+var myEntry = _cache.Get&lt;DateTime&gt;(&quot;myKey&quot;); 
+</code></pre>
+<p>The first option returns an item of type <code>object</code> or its default value ( <code>null</code> ) if no entry with the specified key exists. The second option returns an item of the type specified in the <code>TItem</code> parameter ( <code>DateTime</code> in this example ) or the default value of <code>TItem</code> if the key doesn't exist. If the cache entry cannot be converted to the type specified by the <code>TItem</code> parameter, an <code>InvalidCastException</code> will be generated.</p>
+<p>The <code>TryGetValue</code> method returns a <code>bool</code> to indicate whether retrieval from the cache is successful. The method takes an <code>out</code> parameter for capturing the retrieved value in the event of success:</p>
+<pre><code class="language-csharp">DateTime dt;
+if(_cache.TryGetValue(&quot;myKey&quot;, out dt))
+{
+    // the cache entry has been retrieved
+}
+</code></pre>
+<p>This method will also generate an <code>InvalidCastException</code> if the item cannot be cast to the specified type. The type parameter can be omitted because the type is inferred  from the <code>out</code> parameter.</p>
+<p>Finally, the <code>GetOrCreate</code> method will add an entry if one doesn't exist for the specified key:</p>
+<pre><code class="language-csharp">var o = _cache.GetOrCreate(&quot;myKey&quot;, entry =&gt;
+{
+    return DateTime.Now;
+});               
+</code></pre>
+<p>In this case <code>o</code> will either contain the value of the cached item with a key of <code>myKey</code>, or if one doesn't exist, the value of <code>o</code> will be <code>DateTime.Now</code> which will be added to the cache with the specified key.</p>
+<h3 id="removing-items">Removing items</h3>
+<p>Items are explicitly removed from the cache by the <code>Remove</code> method which takes the key as a parameter:</p>
+<pre><code class="language-csharp">_cache.Remove(&quot;myKey&quot;);
+</code></pre>
+<h2 id="cacheentry-properties">CacheEntry Properties</h2>
+<p>The following table details the properties of the <code>CacheEntry</code> class which represents an item stored in the cache:</p>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: left;">Data Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>AbsoluteExpiration</code></td>
+<td style="text-align: left;"><code>DateTimeOffset</code></td>
+<td>Gets or sets an absolute expiration date for the cache entry</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>AbsoluteExpirationRelativeToNow</code></td>
+<td style="text-align: left;"><code>TimeSpan</code></td>
+<td>Gets or sets an absolute expiration time, relative to now</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>SlidingExpiration</code></td>
+<td style="text-align: left;"><code>TimeSpan</code></td>
+<td>Gets or sets how long a cache entry can be inactive (e.g. not accessed) before it will be removed. This will not extend the entry lifetime beyond the absolute expiration (if set).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Key</code></td>
+<td style="text-align: left;"><code>object</code></td>
+<td>Readonly - gets the key of the item</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Value</code></td>
+<td style="text-align: left;"><code>object</code></td>
+<td>Gets or sets the value of the item</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>ExpirationTokens</code></td>
+<td style="text-align: left;"><code>IList&lt;IChangeToken&gt;</code></td>
+<td>Gets the <code>IChangeToken</code> instances which cause the cache entry to expire.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Priority</code></td>
+<td style="text-align: left;"><code>CacheItemPriority</code></td>
+<td>Gets or sets the priority for keeping the cache entry in the cache during a memory pressure triggered cleanup. Defaults to <code>CacheItemPriority.Normal</code>. Other options are <code>High</code>, <code>Low</code> and <code>NeverRemove</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Size</code></td>
+<td style="text-align: left;"><code>long</code></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PostEvictionCallBack</code></td>
+<td style="text-align: left;"><code>IList&lt;PostEvictionCallbackRegistration&gt;</code></td>
+<td>Gets or sets the callbacks that will be fired after the cache entry is evicted from the cache.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="managing-expiration-of-cache-entries">Managing Expiration Of Cache Entries</h2>
+<p>Several properties relate to the expiry time of a cache entry. If no value is set for these, the entry will only be removed from the cache if a cleanup takes place that is triggered by memory pressure, or if the process that the application is running within is stopped from some reason (App pool recycle, server shutdown). You should therefore code defensively when use the memory cache. You cannot safely assume that an entry exists, even though you wrote code to add it and tested that the code gets called.</p>
+<p>The <code>AbsoluteExpiration</code> property enables you to set the actual time that an item should expire The following example sets the entry to expire just before midnight on News Year's Eve, 2018 regardless when it was added:</p>
+<pre><code class="language-csharp">cacheItem.AbsoluteExpiration = new DateTimeOffset(new DateTime(2018, 12, 31, 23, 59, 59));
+</code></pre>
+<p>Rather than specifying that an entry expires at a particular point in time, you may want to specify a duration, such as 20 minutes from the time that the item is added to the cache. You do this by setting a value for the <code>AbsoluteExpirationRelativeToNow</code> property:</p>
+<pre><code class="language-csharp">cacheItem.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(20);
+</code></pre>
+<p>If both of these properties are set, the item's expiry will be determined by whichever occurs first.</p>
+<p>The <code>SlidingExpiration</code> property provides a means to expire infrequently accessed  items after a specified period of inactivity:</p>
+<pre><code class="language-csharp">cacheItem.SlidingExpiration = TimeSpan.FromMinutes(20);
+</code></pre>
+<p>This particular item will expire from the cache if it has not been accessed within 20 minutes of it being set or last accessed. Each time it is accessed, the 20 minute time limit will be reset. This will continue to happen until the item is explicitly removed by the <code>Remove</code> method, evicted as a result of memory pressure, or the item has an absolute expiry time set and that time is reached.</p>
+<h3 id="change-tokens-and-dependencies">Change Tokens and Dependencies</h3>
+<p>The expiration of items does not need to be set to a specific time. Items can also be expired from the cache as a result of a dependency, such as a database entry, file contents or other source changing - even another cache entry. Dependencies are registered using objects that implement the <code>IChangeToken</code> interface. For more information on using Change Tokens, see <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/primitives/change-tokens">Detect changes with change tokens in ASP.NET Core</a>. Tokens are added to the item's <code>ExpirationTokens</code> property. In the next code block, the FileProvider's <code>Watch</code> method returns an <code>IChangeToken</code>, which is used to manage the eviction the cache item in the event of changes to the watched file:</p>
+<pre><code class="language-csharp">var fileInfo = new FileInfo(@&quot;d:\content\example.txt&quot;);
+var fileProvider = new PhysicalFileProvider(fileInfo.DirectoryName);
+var changeToken = fileProvider.Watch(fileInfo.Name);
+cacheItem.ExpirationTokens.Add(changeToken);
+</code></pre>
+
+</div>
+</div>
+<section id="file-meta">
+    <span class="file-meta-label">Last updated:</span> <span itemprop="dateModified">16/08/2018 13:35:02</span><br />
+</section>
+
+                </div>
+                <div class="col-md-3 right-col">
+                    
+                            <script>
+                        (function() {
+                            var cx = 'partner-pub-8046723421340367:6108194070';
+                            var gcse = document.createElement('script');
+                            gcse.type = 'text/javascript';
+                            gcse.async = true;
+                            gcse.src = '../../cse.google.com/cse07b6.html?cx=' + cx;
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(gcse, s);
+                        })();
+                            </script>
+                        <gcse:searchbox-only></gcse:searchbox-only>
+                    
+                    <div id="doc-outline" class="doc-outline well">
+                            <h3 class="doc-outline">On this page</h3>
+                            <nav class="doc-outline">
+                                <ul>
+                                        <li><a itemprop="url" href="#caching-in-razor-pages" class="page-scroll">Caching in Razor Pages</a></li>
+                                        <li><a itemprop="url" href="#in-memory-caching" class="page-scroll">In-Memory Caching</a></li>
+                                        <li><a itemprop="url" href="#managing-cache-entries" class="page-scroll">Managing Cache Entries</a></li>
+                                        <li><a itemprop="url" href="#setting-values" class="page-scroll">Setting values</a></li>
+                                        <li><a itemprop="url" href="#getting-values" class="page-scroll">Getting values</a></li>
+                                        <li><a itemprop="url" href="#removing-items" class="page-scroll">Removing items</a></li>
+                                        <li><a itemprop="url" href="#cacheentry-properties" class="page-scroll">CacheEntry Properties</a></li>
+                                        <li><a itemprop="url" href="#managing-expiration-of-cache-entries" class="page-scroll">Managing Expiration Of Cache Entries</a></li>
+                                        <li><a itemprop="url" href="#change-tokens-and-dependencies" class="page-scroll">Change Tokens and Dependencies</a></li>
+                                </ul>
+                            </nav>
+
+                    </div>
+                    <div class="rectangle">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Rectangle -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:250px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="7622896857"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <div class="doc-outline well">
+                        <h3 class="doc-outline">Latest Updates</h3>
+                        <nav class="doc-outline">
+                            <ul>
+                                    <li><a itemprop="url" href="tutorial/bakery/migration.html">Creating A Migration</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/create-model.html">Working With A Model</a></li>
+                                    <li><a itemprop="url" href="routing.html">Routing in Razor Pages</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/working-with-data.html">Working With Data</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/new-page.html">Adding a New Page</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery.html">Creating an Application</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="skyscraper">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Skyscraper -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:600px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="4239197376"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <footer>
+                        <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <a href="#page-top" id="back-to-top" class="page-scroll" title="Back to top"><i class="fas fa-arrow-alt-circle-up"></i></a>
+    </div>
+    <div class="cookie-box" id="cookie-warning">
+        <div class="cookie-box-contents" id="learnrazorpages">This site uses cookies to analyse traffic, remember your preferences, and optimise your experience.</div>
+        <div class="cookie-box-buttons"><a href="../privacy.html" class="cookie-button">Learn more</a><a href="#" class="cookie-button" id="cookie-close">Close</a></div>
+    </div>
+    <script src="../../ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+    <script src="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="../../code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="../js/site59f2.js?v=gJZRD7PDF8oEm1Xb0uhLZcpf7Vs12fGO-q0DErBSF_Y"></script>
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1264020-21"></script>
+        <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-1264020-21');
+        </script>
+    
+    
+</body>
+
+<!-- Mirrored from www.learnrazorpages.com/razor-pages/caching by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:16:33 GMT -->
+</html>

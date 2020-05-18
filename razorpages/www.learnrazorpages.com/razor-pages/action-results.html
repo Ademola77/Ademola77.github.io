@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from www.learnrazorpages.com/razor-pages/action-results by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:07:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Razor Pages makes use of a wide range of action result methods that are available in ASP.NET Core as well as some authored specifcally for the Razor Pages framework." />
+    <meta name="google-site-verification" content="MpV6gEoCh9OASgnoi656klwnlkni3_qOenITGlxBrjc" />
+    <title>Razor Pages Handler Method Action Results | Learn Razor Pages</title>
+    <link rel="canonical" href="action-results.html" />
+    <link rel="stylesheet" href="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i|Roboto:300i,500,700" />
+    <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <link rel="stylesheet" href="../css/site8249.css?v=PCA7f9VuZUscxMwrePJfyFKXCF9mh2dMpXEDQU8oP3o" />
+    <link rel="stylesheet" href="../css/rp14c5.css?v=ZxkVB0StHjR5-UMElJII7nwWe6Wmc6_qgJ97GsY4yNw" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-8046723421340367",
+                enable_page_level_ads: true
+            });
+        </script>
+</head>
+<body id="page-top">
+    <div class="navbar navbar-default navbar-static-top">
+        <div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <i class="fas fa-graduation-cap"></i> <a href="../index.html">Learn Razor Pages</a>
+                    <br />
+                    <span class="byline">Your guide to using ASP.NET Core Razor Pages</span>
+                </div>
+                <div class="banner">
+                    
+                        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                        <!-- EF Core Leaderboard -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:728px;height:90px"
+                             data-ad-client="ca-pub-8046723421340367"
+                             data-ad-slot="1832525889"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <nav class="main-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+    <ul class="nav nav-level-one" id="side-menu">
+        <li>
+            <a itemprop="url" href="../index.html">Home</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../first-look.html">A First Look</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../asp-net-core.html">ASP.NET Core</a>
+        </li>
+        <li><a itemprop="url" href="tutorial/bakery.html">Tutorials</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="tutorial/bakery.html">The Bakery</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages.html">Razor Page Files</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="files/index.html">Razor Files</a></li>
+                <li><a itemprop="url" href="partial-pages.html">Partial Pages</a></li>
+                <li><a itemprop="url" href="files/layout.html">Layout Files</a></li>
+                <li><a itemprop="url" href="files/viewimports.html">ViewImports File</a></li>
+                <li><a itemprop="url" href="files/viewstart.html">ViewStart File</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-syntax.html">Razor Syntax</a>
+        </li>
+        <li>
+            <a itemprop="url" href="pagemodel.html">Page Models</a>
+            <ul class="nav-level-two">
+                <li>
+                    <a itemprop="url" href="handler-methods.html">Handler Methods</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="viewdata.html">ViewData</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="action-results.html">Action Results</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="tag-helpers/index.html">Tag Helpers</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="tag-helpers/anchor-tag-helper.html">Anchor Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/cache-tag-helper.html">Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/distributed-cache-tag-helper.html">Distributed Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/environment-tag-helper.html">Environment Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/form-action-tag-helper.html">Form Action Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/form-tag-helper.html">Form Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/image-tag-helper.html">Image Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/input-tag-helper.html">Input Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/label-tag-helper.html">Label Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/link-tag-helper.html">Link Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/option-tag-helper.html">Option Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/partial-tag-helper.html">Partial Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/script-tag-helper.html">Script Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/select-tag-helper.html">Select Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/textarea-tag-helper.html">TextArea Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/validation-message-tag-helper.html">Validation Message Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/validation-summary-tag-helper.html">Validation Summary Tag Helper</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="view-components.html">View Components</a>
+        </li>
+        <li>
+            <a itemprop="url" href="routing.html">Routing and URLs</a>
+            <ul class="nav-level-two">
+                <li><a href="../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../startup.html">Startup</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../configuration.html">Configuration</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../configuration/global-error-handling.html">Global Error Handling And Logging</a></li>
+                <li><a itemprop="url" href="../configuration/custom-errors.html">Custom Error Pages</a></li>
+                <li><a itemprop="url" href="../configuration/https.html">Configuring HTTPS</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../middleware.html">Middleware</a>
+        </li>
+        <li>
+            <a itemprop="url" href="forms.html">Working With Forms</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="forms/file-upload.html">Uploading Files in Razor Pages</a></li>
+                <li><a itemprop="url" href="forms/checkboxes.html">Working With Checkboxes</a></li>
+                <li><a itemprop="url" href="forms/select-lists.html">Select Lists in a Razor Pages Form</a></li>
+                <li><a itemprop="url" href="forms/radios.html">Working With Radio Buttons</a></li>
+                <li><a itemprop="url" href="../security/request-verification.html">Request Verification</a></li>
+            </ul>
+        </li>
+        <li><a itemprop="url" href="validation.html">Validation</a></li>
+        <li>
+            <a itemprop="url" href="model-binding.html">Model Binding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="state-management.html">State Management</a>
+        </li>
+        <li>
+            <a itemprop="url" href="caching.html">Caching</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../identity.html">Managing Security With ASP.NET Identity</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../identity/customising-identity.html">Customising Identity</a></li>
+            </ul>
+        </li>
+        <li>
+		<a itemprop="url" href="ajax.html">Using AJAX</a>
+		<ul class="nav-level-two">
+			<li><a itemprop="url" href="ajax/form-post.html">Posting Forms</a>    </li>
+			<li><a itemprop="url" href="ajax/partial-update.html">Partial Page Updates</a></li>
+			<li><a itemprop="url" href="ajax/upload-files.html">Uploading Files</a></li>
+			<li><a itemprop="url" href="ajax/unobtrusive-ajax.html">Unobtrusive AJAX</a></li>
+		</ul>
+	</li>
+        <li>
+            <a itemprop="url" href="../web-api.html">Working with JSON</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../miscellaneous/scaffolding.html">Scaffolding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../publishing/publish-to-iis.html">Publishing To IIS</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../advanced.html">Advanced</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../advanced/areas.html">Areas</a></li>
+                <li><a itemprop="url" href="../advanced/custom-tag-helpers.html">Custom Tag Helpers</a></li>
+                <li><a itemprop="url" href="../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+                <li><a itemprop="url" href="../advanced/custom-constraints.html">Custom Route Constraints</a></li>
+                <li><a itemprop="url" href="../advanced/route-parameter-transformers.html">Parameter Transformers For Routes</a></li>
+                <li><a itemprop="url" href="../advanced/dependency-injection.html">Dependency Injection</a></li>
+                <li><a itemprop="url" href="filters.html">Filters</a></li>
+                <li><a itemprop="url" href="../advanced/razor-class-library.html">Razor Class Libraries</a></li>
+                <li><a itemprop="url" href="../advanced/render-partial-to-string.html">Rendering A Partial View To A String</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../table-of-contents.html">Table Of Contents</a>
+        </li>
+    </ul>
+</nav>
+
+            <footer>
+                <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+            </footer>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+
+    <div id="page-wrapper">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-md-9">
+                    
+<div id="article">
+    <h1 itemprop="headline" id="action-results-in-razor-pages">Action Results in Razor Pages</h1>
+<div itemprop="articleBody"><p>Action results in Razor Pages are commonly used as the return type of <a href="handler-methods.html">handler methods</a> and are responsible for generating responses and appropriate status codes. Action results implement either the abstract <code>Microsoft.AspNetCore.Mvc.ActionResult</code> class, or the <code>Microsoft.AspNetCore.Mvc.IActionResult</code> interface. ASP.NET Core includes more than three dozen <code>ActionResult</code> classes covering a wide range of needs, including but not limited to executing and returning the content of a Razor page, returning the content of a file, redirecting to another resource or simply returning a specific HTTP status code. It is also possible to author your own <code>ActionResult</code> classes if you need something bespoke.</p>
+<p>The following code illustrates the use of the <code>RedirectToPageResult</code> class in a simple <code>OnGet</code> handler method, which results in the user being redirected to the specified page:</p>
+<pre><code class="language-csharp">public IActionResult OnGet()
+{
+    return new RedirectToPageResult(&quot;Index&quot;);
+}
+</code></pre>
+<p>The <code>OnGet</code> handler method has a return type of <code>IActionResult</code>, which means that the return type can be any class that implements the <code>IActionResult</code> interface somewhere in its inheritance hierarchy. Ultimately, this means any action result in the entire framework. Generally, it is a good idea to be as specific as possible with handler method return types, so this example should be refactored as follows:</p>
+<pre><code class="language-csharp">public RedirectToPageResult OnGet()
+{
+    return new RedirectToPageResult(&quot;Index&quot;);
+}
+</code></pre>
+<p>If your handler method returns more than one type of action result depending on conditions, you will need to broaden the return type of the  method to <code>ActionResult</code> or <code>IActionResult</code> as this example demonstrates, which returns a <code>PageResult</code> if the <code>ModelState</code> is not valid, or a <code>RedirectToPageResult</code> (a different type) if <code>ModelState</code> is valid:</p>
+<pre><code class="language-csharp">public IActionResult OnPost()
+{
+    if(!ModelState.IsValid)
+    {
+        return new PageResult();
+    }
+    // otherwise do some processing
+    return new RedirectToPageResult(&quot;Index&quot;);
+}
+</code></pre>
+<p>Many action results have associated helper methods defined on the Razor Pages <code>PageModel</code> class that negate the need to &quot;new up&quot; instances of <code>ActionResult</code> classes and thereby help simplify code. The <code>Page()</code> method returns a <code>PageResult</code>, and the <code>RedirectToPage</code> method returns a <code>RedirectToPageResult</code>, so the previous example can be simplified using those methods:</p>
+<pre><code class="language-csharp">public IActionResult OnPost()
+{
+    if(!ModelState.IsValid)
+    {
+        return Page();
+    }
+    // otherwise do some processing
+    return RedirectToPage(&quot;Index&quot;);
+}
+</code></pre>
+<p>The following table lists <code>ActionResult</code> classes that are intended to be used in Razor Pages development, along with any HTTP status codes they return, and associated helper methods, if they exist.</p>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">ActionResult</th>
+<th style="text-align: left;">Helper</th>
+<th style="text-align: left;">HTTP Status Code</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">ChallengeResult</td>
+<td style="text-align: left;">Challenge</td>
+<td style="text-align: left;">401</td>
+<td style="text-align: left;">Used in authentication. You will return a <code>ChallengeResult</code> if the user has not authenticated successfully. It returns a 401 (Unauthorized) HTTP status code.</td>
+</tr>
+<tr>
+<td style="text-align: left;">ContentResult</td>
+<td style="text-align: left;">Content</td>
+<td style="text-align: left;">200</td>
+<td style="text-align: left;">Takes a string and returns it with a <code>text/plain</code> content-type header by default. Overloads enable you to specify the content-type to return other formats such as <code>text/html</code> or <code>application/json</code>, for example.</td>
+</tr>
+<tr>
+<td style="text-align: left;">EmptyResult</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">200</td>
+<td style="text-align: left;">This action result type can be used to denote that a server-side operation completed successfully where there is no return value.</td>
+</tr>
+<tr>
+<td style="text-align: left;">FileContentResult</td>
+<td style="text-align: left;">File</td>
+<td style="text-align: left;">200</td>
+<td style="text-align: left;">Returns a file from a byte array, stream or virtual path.</td>
+</tr>
+<tr>
+<td style="text-align: left;">FileStreamResult</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">200</td>
+<td style="text-align: left;">Returns a file from a stream</td>
+</tr>
+<tr>
+<td style="text-align: left;">ForbidResult</td>
+<td style="text-align: left;">Forbid</td>
+<td style="text-align: left;">403</td>
+<td style="text-align: left;">Used in authentication. The Forbid method returns a 403 (Forbidden) HTTP status code.</td>
+</tr>
+<tr>
+<td style="text-align: left;">LocalRedirectResult</td>
+<td style="text-align: left;">LocalRedirect<br> LocalRedirectPermanent<br>  LocalRedirectPreserveMethod<br> LocalRedirectPreserveMethodPermanent</td>
+<td style="text-align: left;">302<br>301<br>307<br>308</td>
+<td style="text-align: left;"><sup>1</sup></td>
+</tr>
+<tr>
+<td style="text-align: left;">NotFoundResult</td>
+<td style="text-align: left;">NotFound</td>
+<td style="text-align: left;">404</td>
+<td style="text-align: left;">Returns an HTTP 404 (Not Found) status code indicating that the requested resource could not be found.</td>
+</tr>
+<tr>
+<td style="text-align: left;">PageResult</td>
+<td style="text-align: left;">Page</td>
+<td style="text-align: left;">200</td>
+<td style="text-align: left;">Will process and return the result of the current page.</td>
+</tr>
+<tr>
+<td style="text-align: left;">PartialResult</td>
+<td style="text-align: left;">Partial<sup>2</sup></td>
+<td style="text-align: left;">200</td>
+<td style="text-align: left;">Returns a <a href="partial-pages.html">Partial Page</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">PhysicalFileResult</td>
+<td style="text-align: left;">PhysicalFile</td>
+<td style="text-align: left;">200</td>
+<td style="text-align: left;">Returns a file from the specified physical path.</td>
+</tr>
+<tr>
+<td style="text-align: left;">RedirectResult</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">302<br>301<br>307<br>308</td>
+<td style="text-align: left;">Redirects the user to the URL specified, with an HTTP status code dependent on the options specified. The default is a temporary redirect (301) <sup>1</sup>.</td>
+</tr>
+<tr>
+<td style="text-align: left;">RedirectToPageResult</td>
+<td style="text-align: left;">RedirectToPage<br> RedirectToPagePermanent<br>  RedirectToPagePreserveMethod<br> RedirectToPagePreserveMethodPermanent</td>
+<td style="text-align: left;">301<br>302<br>307<br>308</td>
+<td style="text-align: left;">Redirects the user to the specified page.  <sup>1</sup></td>
+</tr>
+<tr>
+<td style="text-align: left;">SignInResult</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Part of Identity. Represents the result of a sign-in operation.</td>
+</tr>
+<tr>
+<td style="text-align: left;">SignOutResult</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Part of Identity. Represents the result of a sign-out operation.</td>
+</tr>
+<tr>
+<td style="text-align: left;">StatusCodeResult</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Enables you to generate a response with your chosen HTTP Status code</td>
+</tr>
+<tr>
+<td style="text-align: left;">UnauthorizedResult</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">401</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">ViewComponentResult</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">200</td>
+<td style="text-align: left;">Returns the result of executing a <a href="view-components.html">ViewComponent</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="notes">Notes</h3>
+<ol>
+<li><p>The value passed in to the <code>RedirectToPageResult</code> methods is relative to the current page, unless it is prefixed with a forward slash (<code>/</code>) in which case it is relative to the <em>Pages</em> folder.</p>
+<p>The Redirect action results include options to specify that the redirect should be permanent and/or the HTTP verb should be preserved across redirects.  Temporary redirects are denoted by HTTP status codes 302 and 307. Permanent redirects are denoted by status codes 301 and 308. Permanent redirect instructions are usually honoured by search engines and other indexing technologies, which will replace the existing entry in their index with the new location specified in the <code>location</code> header that action result generates.</p>
+<p>If you do not opt to preserve the HTTP method that the original request used, the redirected request may (and often will) use GET regardless of the method used for the original request. If you want to ensure that the original HTTP method is preserved for the subsequent request (and potentially any form values), you should use one of the options that includes <code>PreserveMethod</code> in their name, or specify <code>true</code> for the appropriate parameter in the more generic <code>RedirectResult</code> method.</p>
+</li>
+<li><p>The <code>Partial</code> helper method is available from ASP.NET Core 2.2 onwards.</p>
+</li>
+</ol>
+
+</div>
+</div>
+<section id="file-meta">
+    <span class="file-meta-label">Last updated:</span> <span itemprop="dateModified">04/04/2019 15:00:00</span><br />
+</section>
+
+                </div>
+                <div class="col-md-3 right-col">
+                    
+                            <script>
+                        (function() {
+                            var cx = 'partner-pub-8046723421340367:6108194070';
+                            var gcse = document.createElement('script');
+                            gcse.type = 'text/javascript';
+                            gcse.async = true;
+                            gcse.src = '../../cse.google.com/cse07b6.html?cx=' + cx;
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(gcse, s);
+                        })();
+                            </script>
+                        <gcse:searchbox-only></gcse:searchbox-only>
+                    
+                    <div id="doc-outline" class="doc-outline well">
+                            <h3 class="doc-outline">On this page</h3>
+                            <nav class="doc-outline">
+                                <ul>
+                                        <li><a itemprop="url" href="#action-results-in-razor-pages" class="page-scroll">Action Results in Razor Pages</a></li>
+                                        <li><a itemprop="url" href="#notes" class="page-scroll">Notes</a></li>
+                                </ul>
+                            </nav>
+
+                    </div>
+                    <div class="rectangle">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Rectangle -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:250px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="7622896857"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <div class="doc-outline well">
+                        <h3 class="doc-outline">Latest Updates</h3>
+                        <nav class="doc-outline">
+                            <ul>
+                                    <li><a itemprop="url" href="tutorial/bakery/migration.html">Creating A Migration</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/create-model.html">Working With A Model</a></li>
+                                    <li><a itemprop="url" href="routing.html">Routing in Razor Pages</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/working-with-data.html">Working With Data</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/new-page.html">Adding a New Page</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery.html">Creating an Application</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="skyscraper">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Skyscraper -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:600px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="4239197376"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <footer>
+                        <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <a href="#page-top" id="back-to-top" class="page-scroll" title="Back to top"><i class="fas fa-arrow-alt-circle-up"></i></a>
+    </div>
+    <div class="cookie-box" id="cookie-warning">
+        <div class="cookie-box-contents" id="learnrazorpages">This site uses cookies to analyse traffic, remember your preferences, and optimise your experience.</div>
+        <div class="cookie-box-buttons"><a href="../privacy.html" class="cookie-button">Learn more</a><a href="#" class="cookie-button" id="cookie-close">Close</a></div>
+    </div>
+    <script src="../../ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+    <script src="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="../../code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="../js/site59f2.js?v=gJZRD7PDF8oEm1Xb0uhLZcpf7Vs12fGO-q0DErBSF_Y"></script>
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1264020-21"></script>
+        <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-1264020-21');
+        </script>
+    
+    
+</body>
+
+<!-- Mirrored from www.learnrazorpages.com/razor-pages/action-results by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:07:06 GMT -->
+</html>

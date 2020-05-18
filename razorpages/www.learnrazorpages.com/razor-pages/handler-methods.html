@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from www.learnrazorpages.com/razor-pages/handler-methods by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:07:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Handler methods in Razor Pages are methods that are automatically executed as a result of a request." />
+    <meta name="google-site-verification" content="MpV6gEoCh9OASgnoi656klwnlkni3_qOenITGlxBrjc" />
+    <title>Handler Methods in Razor Pages | Learn Razor Pages</title>
+    <link rel="canonical" href="handler-methods.html" />
+    <link rel="stylesheet" href="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i|Roboto:300i,500,700" />
+    <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <link rel="stylesheet" href="../css/site8249.css?v=PCA7f9VuZUscxMwrePJfyFKXCF9mh2dMpXEDQU8oP3o" />
+    <link rel="stylesheet" href="../css/rp14c5.css?v=ZxkVB0StHjR5-UMElJII7nwWe6Wmc6_qgJ97GsY4yNw" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-8046723421340367",
+                enable_page_level_ads: true
+            });
+        </script>
+</head>
+<body id="page-top">
+    <div class="navbar navbar-default navbar-static-top">
+        <div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <i class="fas fa-graduation-cap"></i> <a href="../index.html">Learn Razor Pages</a>
+                    <br />
+                    <span class="byline">Your guide to using ASP.NET Core Razor Pages</span>
+                </div>
+                <div class="banner">
+                    
+                        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                        <!-- EF Core Leaderboard -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:728px;height:90px"
+                             data-ad-client="ca-pub-8046723421340367"
+                             data-ad-slot="1832525889"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <nav class="main-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+    <ul class="nav nav-level-one" id="side-menu">
+        <li>
+            <a itemprop="url" href="../index.html">Home</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../first-look.html">A First Look</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../asp-net-core.html">ASP.NET Core</a>
+        </li>
+        <li><a itemprop="url" href="tutorial/bakery.html">Tutorials</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="tutorial/bakery.html">The Bakery</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages.html">Razor Page Files</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="files/index.html">Razor Files</a></li>
+                <li><a itemprop="url" href="partial-pages.html">Partial Pages</a></li>
+                <li><a itemprop="url" href="files/layout.html">Layout Files</a></li>
+                <li><a itemprop="url" href="files/viewimports.html">ViewImports File</a></li>
+                <li><a itemprop="url" href="files/viewstart.html">ViewStart File</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-syntax.html">Razor Syntax</a>
+        </li>
+        <li>
+            <a itemprop="url" href="pagemodel.html">Page Models</a>
+            <ul class="nav-level-two">
+                <li>
+                    <a itemprop="url" href="handler-methods.html">Handler Methods</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="viewdata.html">ViewData</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="action-results.html">Action Results</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="tag-helpers/index.html">Tag Helpers</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="tag-helpers/anchor-tag-helper.html">Anchor Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/cache-tag-helper.html">Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/distributed-cache-tag-helper.html">Distributed Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/environment-tag-helper.html">Environment Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/form-action-tag-helper.html">Form Action Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/form-tag-helper.html">Form Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/image-tag-helper.html">Image Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/input-tag-helper.html">Input Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/label-tag-helper.html">Label Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/link-tag-helper.html">Link Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/option-tag-helper.html">Option Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/partial-tag-helper.html">Partial Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/script-tag-helper.html">Script Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/select-tag-helper.html">Select Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/textarea-tag-helper.html">TextArea Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/validation-message-tag-helper.html">Validation Message Tag Helper</a></li>
+                <li><a itemprop="url" href="tag-helpers/validation-summary-tag-helper.html">Validation Summary Tag Helper</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="view-components.html">View Components</a>
+        </li>
+        <li>
+            <a itemprop="url" href="routing.html">Routing and URLs</a>
+            <ul class="nav-level-two">
+                <li><a href="../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../startup.html">Startup</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../configuration.html">Configuration</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../configuration/global-error-handling.html">Global Error Handling And Logging</a></li>
+                <li><a itemprop="url" href="../configuration/custom-errors.html">Custom Error Pages</a></li>
+                <li><a itemprop="url" href="../configuration/https.html">Configuring HTTPS</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../middleware.html">Middleware</a>
+        </li>
+        <li>
+            <a itemprop="url" href="forms.html">Working With Forms</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="forms/file-upload.html">Uploading Files in Razor Pages</a></li>
+                <li><a itemprop="url" href="forms/checkboxes.html">Working With Checkboxes</a></li>
+                <li><a itemprop="url" href="forms/select-lists.html">Select Lists in a Razor Pages Form</a></li>
+                <li><a itemprop="url" href="forms/radios.html">Working With Radio Buttons</a></li>
+                <li><a itemprop="url" href="../security/request-verification.html">Request Verification</a></li>
+            </ul>
+        </li>
+        <li><a itemprop="url" href="validation.html">Validation</a></li>
+        <li>
+            <a itemprop="url" href="model-binding.html">Model Binding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="state-management.html">State Management</a>
+        </li>
+        <li>
+            <a itemprop="url" href="caching.html">Caching</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../identity.html">Managing Security With ASP.NET Identity</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../identity/customising-identity.html">Customising Identity</a></li>
+            </ul>
+        </li>
+        <li>
+		<a itemprop="url" href="ajax.html">Using AJAX</a>
+		<ul class="nav-level-two">
+			<li><a itemprop="url" href="ajax/form-post.html">Posting Forms</a>    </li>
+			<li><a itemprop="url" href="ajax/partial-update.html">Partial Page Updates</a></li>
+			<li><a itemprop="url" href="ajax/upload-files.html">Uploading Files</a></li>
+			<li><a itemprop="url" href="ajax/unobtrusive-ajax.html">Unobtrusive AJAX</a></li>
+		</ul>
+	</li>
+        <li>
+            <a itemprop="url" href="../web-api.html">Working with JSON</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../miscellaneous/scaffolding.html">Scaffolding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../publishing/publish-to-iis.html">Publishing To IIS</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../advanced.html">Advanced</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../advanced/areas.html">Areas</a></li>
+                <li><a itemprop="url" href="../advanced/custom-tag-helpers.html">Custom Tag Helpers</a></li>
+                <li><a itemprop="url" href="../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+                <li><a itemprop="url" href="../advanced/custom-constraints.html">Custom Route Constraints</a></li>
+                <li><a itemprop="url" href="../advanced/route-parameter-transformers.html">Parameter Transformers For Routes</a></li>
+                <li><a itemprop="url" href="../advanced/dependency-injection.html">Dependency Injection</a></li>
+                <li><a itemprop="url" href="filters.html">Filters</a></li>
+                <li><a itemprop="url" href="../advanced/razor-class-library.html">Razor Class Libraries</a></li>
+                <li><a itemprop="url" href="../advanced/render-partial-to-string.html">Rendering A Partial View To A String</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../table-of-contents.html">Table Of Contents</a>
+        </li>
+    </ul>
+</nav>
+
+            <footer>
+                <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+            </footer>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+
+    <div id="page-wrapper">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-md-9">
+                    
+<div id="article">
+    <h1 itemprop="headline" id="handler-methods-in-razor-pages">Handler Methods in Razor Pages</h1>
+<div itemprop="articleBody"><p>Handler methods in Razor Pages are methods that are automatically executed as a result of a request. The Razor Pages framework uses a naming convention to select the appropriate handler method to execute. The default convention works by matching the HTTP verb used for the request to the name of the method, which is prefixed with &quot;On&quot;: <code>OnGet()</code>, <code>OnPost()</code>, <code>OnPut()</code> etc.</p>
+<p>Handler methods also have optional asynchronous equivalents:  <code>OnPostAsync()</code>, <code>OnGetAsync()</code> etc. You do not need to add the <code>Async</code> suffix. The option is provided for developers who prefer to use the <code>Async</code> suffix on methods that contain asynchronous code.</p>
+<p>As far as the Razor Pages framework is concerned, <code>OnGet</code> and <code>OnGetAsync</code> are the same handler. You cannot have both in the same page. If you do, the framework will raise an exception:</p>
+<blockquote class="blockquote">
+<p>InvalidOperationException: Multiple handlers matched. The following handlers matched route data and had all constraints satisfied:</p>
+<p>Void OnGetAsync(), Void OnGet()</p>
+</blockquote>
+<p>Parameters play no part in disambiguating between handlers based on the same verb, despite the fact that the compiler will allow it. Therefore the same exception will be raised even if the <code>OnGet</code> method takes parameters and the <code>OnGetAsync</code> method doesn't.</p>
+<p>Handler methods must be <code>public</code> and can have any return type, although typically, they are most likely to have a return type of <code>void</code> (or <code>Task</code> if asynchronous) or an <a href="action-results.html">action result</a>.</p>
+<p>The following example illustrates basic usage in a single Razor pages file:</p>
+<pre><code class="language-csharp">@page
+@{
+    @functions{
+        public string Message { get; set; }
+
+        public void OnGet()
+        {
+            Message = &quot;Get used&quot;;
+        }
+
+        public void OnPost()
+        {
+            Message = &quot;Post used&quot;;
+        }
+    }
+}
+</code></pre>
+<p>The HTML part of the page includes a form that uses the <code>POST</code> method and a hyperlink, which initiates a <code>GET</code> request:</p>
+<pre><code class="language-html">&lt;h3&gt;@Message&lt;/h3&gt;
+&lt;form method=&quot;post&quot;&gt;&lt;button class=&quot;btn btn-default&quot;&gt;Click to post&lt;/button&gt;&lt;/form&gt;
+&lt;p&gt;&lt;a href=&quot;/handlerexample&quot; class=&quot;btn btn-default&quot;&gt;Click to Get&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+<p>When the page is first navigated to, the &quot;Get used&quot; message is displayed because the HTTP <code>GET</code> verb was used for the request, firing the <code>OnGet()</code> handler.</p>
+<p>When the &quot;Click to post&quot; button is pressed, the form is posted and the <code>OnPost()</code> handler fires, resulting in the &quot;Post used&quot; message being displayed.</p>
+<p>Clicking the hyperlink results in the &quot;Get used&quot; message being displayed once more.</p>
+<div class="alert alert-info"><p>Applications that target version 2.1 onwards and that have the correct <a href="../startup.html#compatibility-version">Compatibility Version</a> set will automatically map <code>HEAD</code> requests to a <code>GET</code> handler if no <code>HEAD</code> handler is specified. This behaviour can be further controlled by the <code>AllowMappingHeadRequestsToGetHandler</code> Razor Pages option:</p>
+<pre><code class="language-csharp">// turn this feature off
+services.AddMvc().AddRazorPagesOptions(options =&gt; {
+    options.AllowMappingHeadRequestsToGetHandler= false;
+}).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+</code></pre>
+</div>
+<h2 id="named-handler-methods">Named Handler Methods</h2>
+<p>Razor Pages includes a feature called  &quot;named handler methods&quot;. This feature enables you to specify multiple methods that can be executed for a single verb. You might want to do this if your page features multiple forms, each one responsible for a different outcome, for example.</p>
+<p>The following code shows a collection of named handler methods declared in a code block at the top of a Razor page (although they can also be placed in the PageModel class if you are using one):</p>
+<pre><code class="language-csharp">@page 
+@{
+    
+    @functions{
+        public string Message { get; set; } = &quot;Initial Request&quot;;
+
+        public void OnGet()
+        {
+
+        }
+
+        public void OnPost()
+        {
+            Message = &quot;Form Posted&quot;;
+        }
+
+        public void OnPostDelete()
+        {
+            Message = &quot;Delete handler fired&quot;;
+        }
+
+        public void OnPostEdit(int id)
+        {
+            Message = &quot;Edit handler fired&quot;;
+        }
+
+        public void OnPostView(int id)
+        {
+            Message = &quot;View handler fired&quot;;
+        }
+    }
+}
+</code></pre>
+<p>The name of the method is appended to &quot;OnPost&quot; or &quot;OnGet&quot;, depending on whether the handler should be called as a result of a <code>POST</code> or <code>GET</code> request. The next step is to associate a specific form action with a named handler. This is achieved by setting the <code>asp-page-handler</code> attribute value for a form tag helper:</p>
+<pre><code class="language-html">&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-lg-1&quot;&gt;
+        &lt;form asp-page-handler=&quot;edit&quot; method=&quot;post&quot;&gt;
+            &lt;button class=&quot;btn btn-default&quot;&gt;Edit&lt;/button&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-lg-1&quot;&gt;
+        &lt;form asp-page-handler=&quot;delete&quot; method=&quot;post&quot;&gt;
+            &lt;button class=&quot;btn btn-default&quot;&gt;Delete&lt;/button&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-lg-1&quot;&gt;
+        &lt;form asp-page-handler=&quot;view&quot; method=&quot;post&quot;&gt;
+            &lt;button class=&quot;btn btn-default&quot;&gt;View&lt;/button&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 class=&quot;clearfix&quot;&gt;@Model.Message&lt;/h3&gt;
+</code></pre>
+<p>The code above renders as three buttons, each in their own form along with the default value for the Message property:</p>
+<p><img src="../../www.mikesdotnetting.com/images/2017-05-19_22-10-01.png" class="img-fluid" alt="FormTagHelpers" /></p>
+<p>The name of the handler is added to the form's action as a query string parameter:
+<img src="../../www.mikesdotnetting.com/images/2017-05-19_22-22-34.png" class="img-fluid" alt="Handlers" /></p>
+<p>As you click each button, the code in the handler associated with the query string value is executed, changing the message each time.</p>
+<p><img src="../../www.mikesdotnetting.com/images/2017-05-19_22-43-02.png" class="img-fluid" alt="Handlers" /></p>
+<p>If you prefer not to have query string values representing the handler's name in the URL, you can use <a href="routing.html">routing</a> to add an optional route value for &quot;handler&quot; as part of the route template in the @page directive:</p>
+<pre><code class="language-csharp">@page &quot;{handler?}&quot;
+</code></pre>
+<p>The name of the handler is then appended to the URL:</p>
+<p><img src="../../www.mikesdotnetting.com/images/22-05-2017-08-04-11.png" class="img-fluid" alt="Handler Routevalue" /></p>
+<h2 id="parameters-in-handler-methods">Parameters in Handler Methods</h2>
+<p>Handler methods can be designed to accept parameters:</p>
+<pre><code class="language-csharp">public void OnPostView(int id)
+{
+    Message = $&quot;View handler fired for {id}&quot;;
+}
+</code></pre>
+<p>The parameter name must match a form field name for it to be automatically bound to the value:</p>
+<pre><code class="language-html">&lt;div class=&quot;col-lg-1&quot;&gt;
+    &lt;form asp-page-handler=&quot;view&quot; method=&quot;post&quot;&gt;
+        &lt;button class=&quot;btn btn-default&quot;&gt;View&lt;/button&gt;
+        &lt;input type=&quot;hidden&quot; name=&quot;id&quot; value=&quot;3&quot; /&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+</code></pre>
+<p><img src="../../www.mikesdotnetting.com/images/22-05-2017-08-30-22.png" class="img-fluid" alt="Handler parameters" /></p>
+<p>Alternatively, you can use the <a href="tag-helpers/form-tag-helper.html">form tag helper's</a> <code>asp-route</code> attribute to pass parameter values as part of the URL, either as a query string value or as route data:</p>
+<pre><code class="language-html">&lt;form asp-page-handler=&quot;delete&quot; asp-route-id=&quot;10&quot; method=&quot;post&quot;&gt;
+    &lt;button class=&quot;btn btn-default&quot;&gt;Delete&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<p>You append the name of the parameter to the <code>asp-route</code> attribute (in this case &quot;id&quot;) and then provide a value. This will result in the parameter being passed as a querystring value:</p>
+<p><img src="../../www.mikesdotnetting.com/images/22-05-2017-09-17-21.png" class="img-fluid" alt="Parameter as Query String" /></p>
+<p>Or you can extend the route defintion for the page to account for an optional parameter:</p>
+<pre><code class="language-csharp">@page &quot;{handler?}/{id?}&quot;
+</code></pre>
+<p>This results in the parameter value being added as a separate segment in the URL:</p>
+<p><img src="../../www.mikesdotnetting.com/images/22-05-2017-09-21-41.png" class="img-fluid" alt="Parameter as route segment" /></p>
+<h2 id="handling-multiple-actions-for-the-same-form">Handling Multiple Actions For The Same Form</h2>
+<p>Some forms need to be designed to cater for more than one possible action. Where this is the case, you can either write some conditional code to determine which action should be taken, or you can write separate named handler methods and then use the <a href="tag-helpers/form-action-tag-helper.html">form action tag helper</a> to specify the handler method to execute on submission of the form:</p>
+<pre><code class="language-html">&lt;form method=&quot;post&quot;&gt;
+    &lt;button asp-page-handler=&quot;Register&quot;&gt;Register Now&lt;/button&gt;
+    &lt;button asp-page-handler=&quot;RequestInfo&quot;&gt;Request Info&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<p>The value passed to the <code>page-handler</code> attribute is the name of the handler method without the <code>OnPost</code> prefix or <code>Async</code> suffix:</p>
+<pre><code class="language-csharp">public async Task&lt;IActionResult&gt; OnPostRegisterAsync()
+{
+    //…
+    return RedirectToPage();
+}
+
+public async Task&lt;IActionResult&gt; OnPostRequestInfo()
+{
+    //…
+    return RedirectToPage();
+}
+</code></pre>
+<h2 id="the-nonhandler-attribute">The NonHandler Attribute</h2>
+<p>There may be occasions where you don't want a public method on a page to be considered as a handler method, despite its name matching the conventions for handler method discovery. You can use the <code>NonHandler</code> attribute to specify that the decorated method is not a page handler method:</p>
+<pre><code class="language-csharp">[NonHandler]
+public void OnGetFoo()
+{
+    ...
+}
+</code></pre>
+
+</div>
+</div>
+<section id="file-meta">
+    <span class="file-meta-label">Last updated:</span> <span itemprop="dateModified">24/10/2018 22:20:11</span><br />
+</section>
+
+                </div>
+                <div class="col-md-3 right-col">
+                    
+                            <script>
+                        (function() {
+                            var cx = 'partner-pub-8046723421340367:6108194070';
+                            var gcse = document.createElement('script');
+                            gcse.type = 'text/javascript';
+                            gcse.async = true;
+                            gcse.src = '../../cse.google.com/cse07b6.html?cx=' + cx;
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(gcse, s);
+                        })();
+                            </script>
+                        <gcse:searchbox-only></gcse:searchbox-only>
+                    
+                    <div id="doc-outline" class="doc-outline well">
+                            <h3 class="doc-outline">On this page</h3>
+                            <nav class="doc-outline">
+                                <ul>
+                                        <li><a itemprop="url" href="#handler-methods-in-razor-pages" class="page-scroll">Handler Methods in Razor Pages</a></li>
+                                        <li><a itemprop="url" href="#named-handler-methods" class="page-scroll">Named Handler Methods</a></li>
+                                        <li><a itemprop="url" href="#parameters-in-handler-methods" class="page-scroll">Parameters in Handler Methods</a></li>
+                                        <li><a itemprop="url" href="#handling-multiple-actions-for-the-same-form" class="page-scroll">Handling Multiple Actions For The Same Form</a></li>
+                                        <li><a itemprop="url" href="#the-nonhandler-attribute" class="page-scroll">The NonHandler Attribute</a></li>
+                                </ul>
+                            </nav>
+
+                    </div>
+                    <div class="rectangle">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Rectangle -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:250px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="7622896857"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <div class="doc-outline well">
+                        <h3 class="doc-outline">Latest Updates</h3>
+                        <nav class="doc-outline">
+                            <ul>
+                                    <li><a itemprop="url" href="tutorial/bakery/migration.html">Creating A Migration</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/create-model.html">Working With A Model</a></li>
+                                    <li><a itemprop="url" href="routing.html">Routing in Razor Pages</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/working-with-data.html">Working With Data</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery/new-page.html">Adding a New Page</a></li>
+                                    <li><a itemprop="url" href="tutorial/bakery.html">Creating an Application</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="skyscraper">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Skyscraper -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:600px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="4239197376"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <footer>
+                        <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <a href="#page-top" id="back-to-top" class="page-scroll" title="Back to top"><i class="fas fa-arrow-alt-circle-up"></i></a>
+    </div>
+    <div class="cookie-box" id="cookie-warning">
+        <div class="cookie-box-contents" id="learnrazorpages">This site uses cookies to analyse traffic, remember your preferences, and optimise your experience.</div>
+        <div class="cookie-box-buttons"><a href="../privacy.html" class="cookie-button">Learn more</a><a href="#" class="cookie-button" id="cookie-close">Close</a></div>
+    </div>
+    <script src="../../ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+    <script src="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="../../code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="../js/site59f2.js?v=gJZRD7PDF8oEm1Xb0uhLZcpf7Vs12fGO-q0DErBSF_Y"></script>
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1264020-21"></script>
+        <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-1264020-21');
+        </script>
+    
+    
+</body>
+
+<!-- Mirrored from www.learnrazorpages.com/razor-pages/handler-methods by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:07:06 GMT -->
+</html>

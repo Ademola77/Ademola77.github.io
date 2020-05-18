@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from www.learnrazorpages.com/advanced/dependency-injection by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:20:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Dependency Injection (DI) is a technique that promotes loose coupling of software through separation of concerns. In the context of a Razor Pages application, DI encourages you to develop discrete components for specific tasks, which are then injected into classes that need to use their functionality." />
+    <meta name="google-site-verification" content="MpV6gEoCh9OASgnoi656klwnlkni3_qOenITGlxBrjc" />
+    <title>Dependency Injection in Razor Pages | Learn Razor Pages</title>
+    <link rel="canonical" href="dependency-injection.html" />
+    <link rel="stylesheet" href="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i|Roboto:300i,500,700" />
+    <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <link rel="stylesheet" href="../css/site8249.css?v=PCA7f9VuZUscxMwrePJfyFKXCF9mh2dMpXEDQU8oP3o" />
+    <link rel="stylesheet" href="../css/rp14c5.css?v=ZxkVB0StHjR5-UMElJII7nwWe6Wmc6_qgJ97GsY4yNw" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-8046723421340367",
+                enable_page_level_ads: true
+            });
+        </script>
+</head>
+<body id="page-top">
+    <div class="navbar navbar-default navbar-static-top">
+        <div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <i class="fas fa-graduation-cap"></i> <a href="../index.html">Learn Razor Pages</a>
+                    <br />
+                    <span class="byline">Your guide to using ASP.NET Core Razor Pages</span>
+                </div>
+                <div class="banner">
+                    
+                        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                        <!-- EF Core Leaderboard -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:728px;height:90px"
+                             data-ad-client="ca-pub-8046723421340367"
+                             data-ad-slot="1832525889"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <nav class="main-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+    <ul class="nav nav-level-one" id="side-menu">
+        <li>
+            <a itemprop="url" href="../index.html">Home</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../first-look.html">A First Look</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../asp-net-core.html">ASP.NET Core</a>
+        </li>
+        <li><a itemprop="url" href="../razor-pages/tutorial/bakery.html">Tutorials</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/tutorial/bakery.html">The Bakery</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages.html">Razor Page Files</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/files/index.html">Razor Files</a></li>
+                <li><a itemprop="url" href="../razor-pages/partial-pages.html">Partial Pages</a></li>
+                <li><a itemprop="url" href="../razor-pages/files/layout.html">Layout Files</a></li>
+                <li><a itemprop="url" href="../razor-pages/files/viewimports.html">ViewImports File</a></li>
+                <li><a itemprop="url" href="../razor-pages/files/viewstart.html">ViewStart File</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-syntax.html">Razor Syntax</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/pagemodel.html">Page Models</a>
+            <ul class="nav-level-two">
+                <li>
+                    <a itemprop="url" href="../razor-pages/handler-methods.html">Handler Methods</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="../razor-pages/viewdata.html">ViewData</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="../razor-pages/action-results.html">Action Results</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/tag-helpers/index.html">Tag Helpers</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/anchor-tag-helper.html">Anchor Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/cache-tag-helper.html">Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/distributed-cache-tag-helper.html">Distributed Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/environment-tag-helper.html">Environment Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/form-action-tag-helper.html">Form Action Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/form-tag-helper.html">Form Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/image-tag-helper.html">Image Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/input-tag-helper.html">Input Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/label-tag-helper.html">Label Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/link-tag-helper.html">Link Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/option-tag-helper.html">Option Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/partial-tag-helper.html">Partial Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/script-tag-helper.html">Script Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/select-tag-helper.html">Select Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/textarea-tag-helper.html">TextArea Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/validation-message-tag-helper.html">Validation Message Tag Helper</a></li>
+                <li><a itemprop="url" href="../razor-pages/tag-helpers/validation-summary-tag-helper.html">Validation Summary Tag Helper</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/view-components.html">View Components</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/routing.html">Routing and URLs</a>
+            <ul class="nav-level-two">
+                <li><a href="custom-route-conventions.html">Customising Route Conventions</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../startup.html">Startup</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../configuration.html">Configuration</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../configuration/global-error-handling.html">Global Error Handling And Logging</a></li>
+                <li><a itemprop="url" href="../configuration/custom-errors.html">Custom Error Pages</a></li>
+                <li><a itemprop="url" href="../configuration/https.html">Configuring HTTPS</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../middleware.html">Middleware</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/forms.html">Working With Forms</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../razor-pages/forms/file-upload.html">Uploading Files in Razor Pages</a></li>
+                <li><a itemprop="url" href="../razor-pages/forms/checkboxes.html">Working With Checkboxes</a></li>
+                <li><a itemprop="url" href="../razor-pages/forms/select-lists.html">Select Lists in a Razor Pages Form</a></li>
+                <li><a itemprop="url" href="../razor-pages/forms/radios.html">Working With Radio Buttons</a></li>
+                <li><a itemprop="url" href="../security/request-verification.html">Request Verification</a></li>
+            </ul>
+        </li>
+        <li><a itemprop="url" href="../razor-pages/validation.html">Validation</a></li>
+        <li>
+            <a itemprop="url" href="../razor-pages/model-binding.html">Model Binding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/state-management.html">State Management</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../razor-pages/caching.html">Caching</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../identity.html">Managing Security With ASP.NET Identity</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../identity/customising-identity.html">Customising Identity</a></li>
+            </ul>
+        </li>
+        <li>
+		<a itemprop="url" href="../razor-pages/ajax.html">Using AJAX</a>
+		<ul class="nav-level-two">
+			<li><a itemprop="url" href="../razor-pages/ajax/form-post.html">Posting Forms</a>    </li>
+			<li><a itemprop="url" href="../razor-pages/ajax/partial-update.html">Partial Page Updates</a></li>
+			<li><a itemprop="url" href="../razor-pages/ajax/upload-files.html">Uploading Files</a></li>
+			<li><a itemprop="url" href="../razor-pages/ajax/unobtrusive-ajax.html">Unobtrusive AJAX</a></li>
+		</ul>
+	</li>
+        <li>
+            <a itemprop="url" href="../web-api.html">Working with JSON</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../miscellaneous/scaffolding.html">Scaffolding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../publishing/publish-to-iis.html">Publishing To IIS</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../advanced.html">Advanced</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="areas.html">Areas</a></li>
+                <li><a itemprop="url" href="custom-tag-helpers.html">Custom Tag Helpers</a></li>
+                <li><a itemprop="url" href="custom-route-conventions.html">Customising Route Conventions</a></li>
+                <li><a itemprop="url" href="custom-constraints.html">Custom Route Constraints</a></li>
+                <li><a itemprop="url" href="route-parameter-transformers.html">Parameter Transformers For Routes</a></li>
+                <li><a itemprop="url" href="dependency-injection.html">Dependency Injection</a></li>
+                <li><a itemprop="url" href="../razor-pages/filters.html">Filters</a></li>
+                <li><a itemprop="url" href="razor-class-library.html">Razor Class Libraries</a></li>
+                <li><a itemprop="url" href="render-partial-to-string.html">Rendering A Partial View To A String</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../table-of-contents.html">Table Of Contents</a>
+        </li>
+    </ul>
+</nav>
+
+            <footer>
+                <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+            </footer>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+
+    <div id="page-wrapper">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-md-9">
+                    
+<div id="article">
+    <h1 itemprop="headline" id="dependency-injection-in-razor-pages">Dependency Injection in Razor Pages</h1>
+<div itemprop="articleBody"><p>Dependency Injection (DI) is a technique that promotes loose coupling of software through separation of concerns. In the context of a Razor Pages application, DI encourages you to develop discrete components for specific tasks, which are then injected into classes that need to use their functionality. This results in an application that is easier to maintain and test.</p>
+<h2 id="the-problem">The Problem</h2>
+<p>Many people think that the real problem with DI is the terminology that surrounds it. This section seeks to address that by providing an illustration of the problem that DI is designed to solve.</p>
+<p>The following sample of code features the <a href="../razor-pages/pagemodel.html">page model</a> class for a contact form:</p>
+<pre><code class="language-csharp">public class ContactModel : PageModel
+{
+    [BindProperty] public string From { get; set; }
+    [BindProperty] public string Email { get; set; }
+    [BindProperty] public string Subject { get; set; }
+    [BindProperty] public string Comments { get; set; }
+    
+    public async Task&lt;IActionResult&gt; OnPost()
+    {
+        using (var smtp = new SmtpClient())
+        {
+            var credential = new NetworkCredential
+            {
+                UserName = &quot;<a href="../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="a3d6d0c6d1e3ccd6d7cfccccc88dc0ccce">[email&#160;protected]</a>&quot;,  // replace with valid value
+                Password = &quot;password&quot;  // replace with valid value
+            };
+            smtp.Credentials = credential;
+            smtp.Host = &quot;smtp-mail.outlook.com&quot;;
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
+            var message = new MailMessage
+            {
+                Body = $&quot;From: {From} at {Email}&lt;p&gt;{Comments}&lt;/p&gt;&quot;,
+                Subject = Subject,
+                IsBodyHtml = true
+            };
+            message.To.Add(&quot;<a href="../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="caa9a5a4beaba9be8aaea5a7aba3a4e4a9a5a7">[email&#160;protected]</a>&quot;);
+            await smtp.SendMailAsync(message);
+            return RedirectToPage(&quot;Thanks&quot;);
+        }
+    }
+}
+</code></pre>
+<p>And, for completeness, here is the contact form:</p>
+<pre><code class="language-html">&lt;form method=&quot;post&quot;&gt;
+    &lt;label asp-for=&quot;From&quot;&gt;&lt;/label&gt; &lt;input type=&quot;text&quot; asp-for=&quot;From&quot;/&gt;&lt;br&gt;
+    &lt;label asp-for=&quot;Email&quot;&gt;&lt;/label&gt; &lt;input type=&quot;text&quot; asp-for=&quot;Email&quot;/&gt;&lt;br&gt;
+    &lt;label asp-for=&quot;Subject&quot; &gt;&lt;/label&gt; &lt;input type=&quot;text&quot; asp-for=&quot;Subject&quot; /&gt;&lt;br&gt;
+    &lt;label asp-for=&quot;Comments&quot;&gt;&lt;/label&gt; &lt;textarea asp-for=&quot;Comments&quot;&gt;&lt;/textarea&gt;&lt;br&gt;
+    &lt;input type=&quot;submit&quot;/&gt;
+&lt;/form&gt;
+</code></pre>
+<p>When the form is posted, the email is constructed in the <code>OnPost</code> handler method and sent, and the user is redirected to a page named &quot;Thanks&quot;.</p>
+<p>This is an extremely simple example for the purposes of explanation. The code is brief and looks similar to countless other examples of sending email using ASP.NET. But there are issues with the code - if you want to change the way that the comments are handled, you have to change the <code>ContactModel</code> class, which increases the chances of introducing bugs into the <code>ContactModel</code>. Also, you cannot possibly unit test the code in the <code>ContactModel</code>'s <code>OnPost</code> method without causing an email to be sent which means that the unit test is not a unit test. It's an integration test. Finally, if you have other pages on the site that use the same code (e.g. a support form), you have multiple places to update if you want to change from Outlook to Gmail, for example.</p>
+<p>Developers are advised to implement the <a href="https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)"><strong>SOLID</strong> principals of software design</a> to ensure that their applications are robust and easier to maintain and extend. Another important guiding principal for developers is Don't Repeat Yourself (DRY), which states that you should aim to reduce code repetition wherever possible.</p>
+<p>The <code>ContactModel</code> contravenes the <strong>S</strong> in <strong>SOLID</strong> - the <em>Single Responsibility Principal</em> (SRP) which states that a class should only have <em>one</em> responsibility. Page model classes have a responsibility - to determine the response based on the request. Any other tasks that need to be performed as part of processing the request should be handled by different classes, designed solely for those responsibilities.</p>
+<p>The <code>ContactModel</code> class also contravenes the <strong>D</strong> in <strong>SOLID</strong> - the <em>Dependency Inversion Principal</em> (DIP) which states that high level modules (the <code>ContactModel</code> class) should not rely (depend) on low level modules (in this case, <code>System.Net.Mail</code>). They should rely on abstractions (typically interfaces, but also abstract classes) instead. Dependency Injection is the most common way to achieve DIP.</p>
+<h2 id="single-responsibility-principal-and-dry">Single Responsibility Principal and DRY</h2>
+<p>The first part of the solution to reducing the issues outlined above is to implement SRP, and at the same time, adhere to DRY. This is achieved by creating a separate class for handling the comments.</p>
+<pre><code class="language-csharp">using System.Net;
+using System.Net.Mail;
+using System.Threading.Tasks;
+
+namespace RazorPages.Services
+{
+    public class CommentService
+    {
+        public async Task Send(string from, string subject, string email, string comments)
+        {
+            using (var smtp = new SmtpClient())
+            {
+                var credential = new NetworkCredential
+                {
+                    UserName = &quot;<a href="../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="c5b0b6a0b785aab0b1a9aaaaaeeba6aaa8">[email&#160;protected]</a>&quot;,  // replace with valid value
+                    Password = &quot;password&quot;  // replace with valid value
+                };
+                smtp.Credentials = credential;
+                smtp.Host = &quot;smtp-mail.outlook.com&quot;;
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                var message = new MailMessage
+                {
+                    Body = $&quot;From: {from} at {email}&lt;p&gt;{comments}&lt;/p&gt;&quot;,
+                    Subject = subject,
+                    IsBodyHtml = true
+                };
+                message.To.Add(&quot;<a href="../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="fb9894958f9a988fbb9f94969a9295d5989496">[email&#160;protected]</a>&quot;);
+                await smtp.SendMailAsync(message);
+            }
+        }
+    }
+}
+</code></pre>
+<p>Now the <code>OnPost</code> method can be refactored:</p>
+<pre><code class="language-csharp">public class ContactModel : PageModel
+{
+    [BindProperty] public string From { get; set; }
+    [BindProperty] public string Email { get; set; }
+    [BindProperty] public string Subject { get; set; }
+    [BindProperty] public string Comments { get; set; }
+    
+    public async Task&lt;IActionResult&gt; OnPost()
+    {
+        var service = new CommentService();
+        await service.Send(From, Subject, Email, Comments);
+        return RedirectToPage(&quot;Thanks&quot;);
+    }
+}
+</code></pre>
+<p>The code for sending emails is located in one place - the <code>CommentService</code> class. Its <code>Send</code> method contains the code that previously occupied the majority of the <code>ContactModel</code>'s <code>OnPost</code> method. The service class can be called anywhere in the application where its functionality is required. This satisfies DRY. The <code>ContactModel</code> is no longer responsible for creating and sending the email. It uses the <code>CommentService</code> to do that. Both classes satisfy SRP.</p>
+<h2 id="dependency-inversion-principal">Dependency Inversion Principal</h2>
+<p>The <code>ContactModel</code> is still dependent on a specific comment handling component - the <code>CommentService</code> class. It is &quot;tightly coupled&quot; to this dependency. It instantiates an instance of <code>CommentService</code> in the <code>OnPost</code> method. There is currently no getting away from it. If you want to change the way that comments are handled, you still have to make changes to the body of the <code>ContactModel</code> to change the component that provides the service, and/or the method that is called.</p>
+<p>DIP states that the <code>CommentService</code> should be represented as an abstraction - an interface or abstract class. The most common approach is to use interfaces to provide the abstraction. Here is an interface that represents sending a message:</p>
+<pre><code class="language-csharp">using System.Threading.Tasks;
+
+namespace RazorPages.Services
+{
+    public interface ICommentService
+    {
+        Task Send(string from, string subject, string email, string comments);
+    }
+}
+</code></pre>
+<p>Next, the existing CommentService has to implement the interface:</p>
+<pre><code class="language-csharp">namespace RazorPages.Services
+{
+    public class CommentService : ICommentService
+    {
+        public async Task Send(string from, string subject, string email, string comments)
+        {
+            // rest of existing code
+</code></pre>
+<p>Now the <code>ContactModel</code> can depend on an interface:</p>
+<pre><code class="language-csharp">using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using RazorPages.Services;
+using System.Threading.Tasks;
+
+namespace RazorPages.Pages
+{
+    public class ContactModel : PageModel
+    {
+        private readonly ICommentService _commentService;
+
+        public ContactModel(ICommentService commentService)
+        {
+            _commentService = commentService;
+        }
+
+        [BindProperty] public string From { get; set; }
+        [BindProperty] public string Email { get; set; }
+        [BindProperty] public string Subject { get; set; }
+        [BindProperty] public string Comments { get; set; }
+
+        public async Task&lt;IActionResult&gt; OnPost()
+        {
+            await _commentService.Send(From, Subject, Email, Comments);
+            return RedirectToPage(&quot;Thanks&quot;);
+        }
+    }
+}
+</code></pre>
+<p>The change sees a private field called <code>_commentService</code> added to the <code>ContactModel</code>. The <code>ContactModel</code> also has a constructor added that takes a parameter of type <code>ICommentService</code>. This is assigned to the private field in the constructor, and then it is used in the <code>OnPost</code> method.</p>
+<p>Now you can provide any component to the <code>ContactModel</code>, so long as it implements the <code>ICommentService</code> interface i.e. it has a <code>Send</code> method that takes four strings. It doesn't matter whether the Send method uses SMTP to send an email, stores the comments in a text file, Tweets them or posts them to Facebook. The <code>ContactModel</code> doesn't need to know, nor will it need to be modified if the Send action changes. Concerns are separated into different classes which are now loosely coupled. They are not dependent on each other.</p>
+<p>At the moment, the code above will compile, but it will generate an <code>InvalidOperationException</code> at runtime whenever the ASP.NET framework attempts to create an instance of <code>ContactModel</code>. The reason for this is that currently, the framework is unable to resolve an implementation of <code>ICommentService</code> to pass to the constructor of the <code>ContactModel</code> when an instance is instantiated.</p>
+<p>So how does the <code>CommentService</code> class used by the <code>ContactModel</code> class get resolved?</p>
+<h2 id="inversion-of-control-containers">Inversion of Control Containers</h2>
+<p>At their most basic, Inversion of Control (IoC) containers, also know as Dependency Injection Containers, are components that</p>
+<ul>
+<li>maintain a registry of interfaces and concrete implementations</li>
+<li>resolve and provide the registered concrete implementation when they are requested</li>
+<li>manage the lifetime of the component.</li>
+</ul>
+<p>ASP.NET Core's built in DI system supports <em>constructor injection</em>, so it resolves implementations of dependencies passed in as parameters to the constructor method of objects. Before it can do that, the implementations must be registered with the container. Typically, implementations (or &quot;services&quot;) are registered in the <code>ConfigureServices</code> method in the <a href="../startup.html">Startup</a> class. The following code shows the <code>CommentService</code> being registered:</p>
+<pre><code class="language-csharp">public void ConfigureServices(IServiceCollection services)
+{
+	services.AddMvc();
+    services.AddTransient&lt;ICommentService, CommentService&gt;();
+}
+</code></pre>
+<p>The <code>CommentService</code> is registered with the <code>AddTransient</code> method. This ensures that a new instance of <code>CommentService</code> is created each time it is requested. There are two other methods for registering services: <code>AddSingleton</code>, which ensures that an instance is created the first time one is requested, and then maintained for the lifetime of the application, and <code>AddScoped</code>, which results in an instance of the dependency being created and maintained for the duration of a request.</p>
+<h2 id="registering-a-service-with-constructor-parameters">Registering a Service with Constructor Parameters</h2>
+<p>Sometimes the service implementation that you register requires one or more constructor parameters to be passed to it. For example, you might decide to use a data access technology that requires an explicit connection string to be passed to it (e.g. <a href="https://github.com/StackExchange/Dapper">Dapper</a>). Rather than refer to the same connection string throughout the application, you create a Factory class to create the connection that the application can use, and pass the connection string as a parameter in one place - in the Startup class.</p>
+<p>Here is an example Factory class that returns a connection object, preceded by an interface that it implements:</p>
+<pre><code class="language-csharp">public interface IConnectionFactory
+{ 
+    IDbConnection CreateConnection();
+}
+
+public class SqlConnectionFactory: IConnectionFactory 
+{
+        
+	readonly string _connectionString;
+
+    public SqlConnectionFactory(string connectionString)
+    {
+        _connectionString = connectionString;
+    }
+
+    public IDbConnection CreateConnection()
+    {
+        return new SqlConnection(_connectionString);
+    }
+}
+</code></pre>
+<p>The constructor of the Factory class requires a parameter representing the connection string to be passed to the connection. The following example illustrates how to use an overload of the <code>AddSingleton</code> method to register the <code>IConnectionFactory</code> as a service, resolving it to the <code>SqlConnectionFactory</code>, while satisfying the requirement to provide a connection string:</p>
+<pre><code class="language-csharp">public void ConfigureServices(IServiceCollection services)
+{
+    var connString = Configuration.GetConnectionString(&quot;DefaultConnection&quot;);
+    if (connString == null)
+        throw new ArgumentNullException(&quot;Connection string cannot be null&quot;);
+    
+    services.AddSingleton&lt;IConnectionFactory&gt;(s =&gt;  new SqlConnectionFactory(connString));
+	//...
+}
+</code></pre>
+<p>Similar overloads exist for the <code>AddTransient</code> and <code>AddScoped</code> methods.</p>
+<h2 id="iservicecollection-extension-methods">IServiceCollection Extension Methods</h2>
+<p>The <code>AddMvc</code> method is an extension method on <code>IServiceCollection</code> that wraps the registration of all the dependencies related to the MVC framework, such as model binding, action and page invokers and so on in one tidy method call. Similar wrapper methods exist for registering other commonly used services within a Razor Pages application such as <code>AddDbContext</code> to register an Entity Framework <code>DbContext</code>.</p>
+<p>You can create your own extension methods easily enough. Here's an example for the <code>CommentService</code>:</p>
+<pre><code class="language-csharp">using Microsoft.Extensions.DependencyInjection;
+using RazorPages.Services;
+
+namespace RazorPages
+{
+    public static class ServiceExtensions
+    {
+        public static IServiceCollection RegisterCommentService(this IServiceCollection services)
+        {
+            return services.AddTransient&lt;ICommentService, CommentService&gt;();
+        }
+    }
+}
+</code></pre>
+<p>This can be used in the <code>ConfigureServices</code> method as follows:</p>
+<pre><code class="language-csharp">public void ConfigureServices(IServiceCollection services)
+{
+	services.AddMvc();
+    services.RegisterCommentService();
+}
+</code></pre>
+<p>This approach helps to keep the Startup class a lot less cluttered, especially as you can chain calls to the various <code>AddTransient</code>, <code>AddScoped</code> etc. methods, which means your extension method could look like this:</p>
+<pre><code class="language-csharp">public static IServiceCollection RegisterMyServices(this IServiceCollection services)
+{
+    return services
+            .AddTransient&lt;ICommentService, CommentService&gt;()
+            .AddTransient&lt;ISecondService, SecondService&gt;()
+            .AddTransient&lt;IThirdService, ThirdService&gt;()
+            .AddTransient&lt;IFourthService, FourthService&gt;();
+}
+
+</code></pre>
+<p>And then only one line is required in the <code>ConfigureServices</code> method to register numerous services:</p>
+<pre><code class="language-csharp">public void ConfigureServices(IServiceCollection services)
+{
+	services.AddMvc();
+    services.RegisterMyServices();
+}
+</code></pre>
+
+</div>
+</div>
+<section id="file-meta">
+    <span class="file-meta-label">Last updated:</span> <span itemprop="dateModified">23/11/2018 08:55:01</span><br />
+</section>
+
+                </div>
+                <div class="col-md-3 right-col">
+                    
+                            <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+                        (function() {
+                            var cx = 'partner-pub-8046723421340367:6108194070';
+                            var gcse = document.createElement('script');
+                            gcse.type = 'text/javascript';
+                            gcse.async = true;
+                            gcse.src = '../../cse.google.com/cse07b6.html?cx=' + cx;
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(gcse, s);
+                        })();
+                            </script>
+                        <gcse:searchbox-only></gcse:searchbox-only>
+                    
+                    <div id="doc-outline" class="doc-outline well">
+                            <h3 class="doc-outline">On this page</h3>
+                            <nav class="doc-outline">
+                                <ul>
+                                        <li><a itemprop="url" href="#dependency-injection-in-razor-pages" class="page-scroll">Dependency Injection in Razor Pages</a></li>
+                                        <li><a itemprop="url" href="#the-problem" class="page-scroll">The Problem</a></li>
+                                        <li><a itemprop="url" href="#single-responsibility-principal-and-dry" class="page-scroll">Single Responsibility Principal and DRY</a></li>
+                                        <li><a itemprop="url" href="#dependency-inversion-principal" class="page-scroll">Dependency Inversion Principal</a></li>
+                                        <li><a itemprop="url" href="#inversion-of-control-containers" class="page-scroll">Inversion of Control Containers</a></li>
+                                        <li><a itemprop="url" href="#registering-a-service-with-constructor-parameters" class="page-scroll">Registering a Service with Constructor Parameters</a></li>
+                                        <li><a itemprop="url" href="#iservicecollection-extension-methods" class="page-scroll">IServiceCollection Extension Methods</a></li>
+                                </ul>
+                            </nav>
+
+                    </div>
+                    <div class="rectangle">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Rectangle -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:250px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="7622896857"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <div class="doc-outline well">
+                        <h3 class="doc-outline">Latest Updates</h3>
+                        <nav class="doc-outline">
+                            <ul>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/migration.html">Creating A Migration</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/create-model.html">Working With A Model</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/routing.html">Routing in Razor Pages</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/working-with-data.html">Working With Data</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery/new-page.html">Adding a New Page</a></li>
+                                    <li><a itemprop="url" href="../razor-pages/tutorial/bakery.html">Creating an Application</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="skyscraper">
+                        
+                                <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Skyscraper -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:600px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="4239197376"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <footer>
+                        <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <a href="#page-top" id="back-to-top" class="page-scroll" title="Back to top"><i class="fas fa-arrow-alt-circle-up"></i></a>
+    </div>
+    <div class="cookie-box" id="cookie-warning">
+        <div class="cookie-box-contents" id="learnrazorpages">This site uses cookies to analyse traffic, remember your preferences, and optimise your experience.</div>
+        <div class="cookie-box-buttons"><a href="../privacy.html" class="cookie-button">Learn more</a><a href="#" class="cookie-button" id="cookie-close">Close</a></div>
+    </div>
+    <script src="../../ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+    <script src="../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="../../code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    
+    <script src="../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="../js/site59f2.js?v=gJZRD7PDF8oEm1Xb0uhLZcpf7Vs12fGO-q0DErBSF_Y"></script>
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1264020-21"></script>
+        <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-1264020-21');
+        </script>
+    
+    
+</body>
+
+<!-- Mirrored from www.learnrazorpages.com/advanced/dependency-injection by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:20:26 GMT -->
+</html>

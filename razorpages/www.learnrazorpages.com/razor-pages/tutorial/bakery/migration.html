@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from www.learnrazorpages.com/razor-pages/tutorial/bakery/migration by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:22:51 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="google-site-verification" content="MpV6gEoCh9OASgnoi656klwnlkni3_qOenITGlxBrjc" />
+    <title>Creating A Migration | Learn Razor Pages</title>
+    <link rel="canonical" href="migration.html" />
+    <link rel="stylesheet" href="../../../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i|Roboto:300i,500,700" />
+    <link rel="stylesheet" href="../../../../use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="../../../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <link rel="stylesheet" href="../../../css/site8249.css?v=PCA7f9VuZUscxMwrePJfyFKXCF9mh2dMpXEDQU8oP3o" />
+    <link rel="stylesheet" href="../../../css/rp14c5.css?v=ZxkVB0StHjR5-UMElJII7nwWe6Wmc6_qgJ97GsY4yNw" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script async src="../../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-8046723421340367",
+                enable_page_level_ads: true
+            });
+        </script>
+</head>
+<body id="page-top">
+    <div class="navbar navbar-default navbar-static-top">
+        <div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <i class="fas fa-graduation-cap"></i> <a href="../../../index.html">Learn Razor Pages</a>
+                    <br />
+                    <span class="byline">Your guide to using ASP.NET Core Razor Pages</span>
+                </div>
+                <div class="banner">
+                    
+                        <script async src="../../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                        <!-- EF Core Leaderboard -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:728px;height:90px"
+                             data-ad-client="ca-pub-8046723421340367"
+                             data-ad-slot="1832525889"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <nav class="main-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+    <ul class="nav nav-level-one" id="side-menu">
+        <li>
+            <a itemprop="url" href="../../../index.html">Home</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../../../first-look.html">A First Look</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../../../asp-net-core.html">ASP.NET Core</a>
+        </li>
+        <li><a itemprop="url" href="../bakery.html">Tutorials</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../bakery.html">The Bakery</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../../../razor-pages.html">Razor Page Files</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../../files/index.html">Razor Files</a></li>
+                <li><a itemprop="url" href="../../partial-pages.html">Partial Pages</a></li>
+                <li><a itemprop="url" href="../../files/layout.html">Layout Files</a></li>
+                <li><a itemprop="url" href="../../files/viewimports.html">ViewImports File</a></li>
+                <li><a itemprop="url" href="../../files/viewstart.html">ViewStart File</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../../../razor-syntax.html">Razor Syntax</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../../pagemodel.html">Page Models</a>
+            <ul class="nav-level-two">
+                <li>
+                    <a itemprop="url" href="../../handler-methods.html">Handler Methods</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="../../viewdata.html">ViewData</a>
+                </li>
+                <li>
+                    <a itemprop="url" href="../../action-results.html">Action Results</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../../tag-helpers/index.html">Tag Helpers</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../../tag-helpers/anchor-tag-helper.html">Anchor Tag Helper</a></li>
+                <li><a itemprop="url" href="../../tag-helpers/cache-tag-helper.html">Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="../../tag-helpers/distributed-cache-tag-helper.html">Distributed Cache Tag Helper</a></li>
+                <li><a itemprop="url" href="../../tag-helpers/environment-tag-helper.html">Environment Tag Helper</a></li>
+                <li><a itemprop="url" href="../../tag-helpers/form-action-tag-helper.html">Form Action Tag Helper</a></li>
+                <li><a itemprop="url" href="../../tag-helpers/form-tag-helper.html">Form Tag Helper</a></li>
+                <li><a itemprop="url" href="../../tag-helpers/image-tag-helper.html">Image Tag Helper</a></li>
+                <li><a itemprop="url" href="../../tag-helpers/input-tag-helper.html">Input Tag Helper</a></li>
+                <li><a itemprop="url" href="../../tag-helpers/label-tag-helper.html">Label Tag Helper</a></li>
+                <li><a itemprop="url" href="../../tag-helpers/link-tag-helper.html">Link Tag Helper</a></li>
+                <li><a itemprop="url" href="../../tag-helpers/option-tag-helper.html">Option Tag Helper</a></li>
+                <li><a itemprop="url" href="../../tag-helpers/partial-tag-helper.html">Partial Tag Helper</a></li>
+                <li><a itemprop="url" href="../../tag-helpers/script-tag-helper.html">Script Tag Helper</a></li>
+                <li><a itemprop="url" href="../../tag-helpers/select-tag-helper.html">Select Tag Helper</a></li>
+                <li><a itemprop="url" href="../../tag-helpers/textarea-tag-helper.html">TextArea Tag Helper</a></li>
+                <li><a itemprop="url" href="../../tag-helpers/validation-message-tag-helper.html">Validation Message Tag Helper</a></li>
+                <li><a itemprop="url" href="../../tag-helpers/validation-summary-tag-helper.html">Validation Summary Tag Helper</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../../view-components.html">View Components</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../../routing.html">Routing and URLs</a>
+            <ul class="nav-level-two">
+                <li><a href="../../../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../../../startup.html">Startup</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../../../configuration.html">Configuration</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../../../configuration/global-error-handling.html">Global Error Handling And Logging</a></li>
+                <li><a itemprop="url" href="../../../configuration/custom-errors.html">Custom Error Pages</a></li>
+                <li><a itemprop="url" href="../../../configuration/https.html">Configuring HTTPS</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../../../middleware.html">Middleware</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../../forms.html">Working With Forms</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../../forms/file-upload.html">Uploading Files in Razor Pages</a></li>
+                <li><a itemprop="url" href="../../forms/checkboxes.html">Working With Checkboxes</a></li>
+                <li><a itemprop="url" href="../../forms/select-lists.html">Select Lists in a Razor Pages Form</a></li>
+                <li><a itemprop="url" href="../../forms/radios.html">Working With Radio Buttons</a></li>
+                <li><a itemprop="url" href="../../../security/request-verification.html">Request Verification</a></li>
+            </ul>
+        </li>
+        <li><a itemprop="url" href="../../validation.html">Validation</a></li>
+        <li>
+            <a itemprop="url" href="../../model-binding.html">Model Binding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../../state-management.html">State Management</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../../caching.html">Caching</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../../../identity.html">Managing Security With ASP.NET Identity</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../../../identity/customising-identity.html">Customising Identity</a></li>
+            </ul>
+        </li>
+        <li>
+		<a itemprop="url" href="../../ajax.html">Using AJAX</a>
+		<ul class="nav-level-two">
+			<li><a itemprop="url" href="../../ajax/form-post.html">Posting Forms</a>    </li>
+			<li><a itemprop="url" href="../../ajax/partial-update.html">Partial Page Updates</a></li>
+			<li><a itemprop="url" href="../../ajax/upload-files.html">Uploading Files</a></li>
+			<li><a itemprop="url" href="../../ajax/unobtrusive-ajax.html">Unobtrusive AJAX</a></li>
+		</ul>
+	</li>
+        <li>
+            <a itemprop="url" href="../../../web-api.html">Working with JSON</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../../../miscellaneous/scaffolding.html">Scaffolding</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../../../publishing/publish-to-iis.html">Publishing To IIS</a>
+        </li>
+        <li>
+            <a itemprop="url" href="../../../advanced.html">Advanced</a>
+            <ul class="nav-level-two">
+                <li><a itemprop="url" href="../../../advanced/areas.html">Areas</a></li>
+                <li><a itemprop="url" href="../../../advanced/custom-tag-helpers.html">Custom Tag Helpers</a></li>
+                <li><a itemprop="url" href="../../../advanced/custom-route-conventions.html">Customising Route Conventions</a></li>
+                <li><a itemprop="url" href="../../../advanced/custom-constraints.html">Custom Route Constraints</a></li>
+                <li><a itemprop="url" href="../../../advanced/route-parameter-transformers.html">Parameter Transformers For Routes</a></li>
+                <li><a itemprop="url" href="../../../advanced/dependency-injection.html">Dependency Injection</a></li>
+                <li><a itemprop="url" href="../../filters.html">Filters</a></li>
+                <li><a itemprop="url" href="../../../advanced/razor-class-library.html">Razor Class Libraries</a></li>
+                <li><a itemprop="url" href="../../../advanced/render-partial-to-string.html">Rendering A Partial View To A String</a></li>
+            </ul>
+        </li>
+        <li>
+            <a itemprop="url" href="../../../table-of-contents.html">Table Of Contents</a>
+        </li>
+    </ul>
+</nav>
+
+            <footer>
+                <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+            </footer>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+
+    <div id="page-wrapper">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-md-9">
+                    
+<div id="article">
+    <h1 itemprop="headline" id="creating-a-migration">Creating a Migration</h1>
+<div itemprop="articleBody"><p>When developing applications, the model is likely to change often as new requirements come to light. The database needs to be kept in sync with the model. The Entity Framework Core migrations feature enables you to make changes to your model and then propagate those changes to your database schema. The migrations feature can also be used to create the database if it doesn't exist.</p>
+<h2 id="configure-the-model">Configure the model</h2>
+<p>EF Core migrations are based on a set of <a href="https://www.learnentityframeworkcore.com/conventions">conventions</a>. The conventions govern how <code>DbSet</code> objects are mapped to tables in the database, how properties are mapped to columns, how .NET data types are mapped to suitable types exposed by the database provider and how keys and indexes are created and managed. Sometimes the conventions don't satisfy your needs, or EF Core is unable to determine your intentions. In these cases, you can use <a href="https://www.learnentityframeworkcore.com/configuration">configuration</a> to tell EF Core what you want.</p>
+<p>Configuration can be applied in two ways; through decorating classes and properties with <a href="https://www.learnentityframeworkcore.com/configuration/data-annotation-attributes">attributes</a>, or by using the <a href="https://www.learnentityframeworkcore.com/configuration/fluent-api">Fluent API</a>. Attributes only provide a subset of configuration options. Therefore for any reasonably complex model, you are likely to need to rely on the fluent API for configuration. Consequently it makes sense to use fluent API for <strong>all</strong> configuration, thereby keeping your configuration code consistent and therefore easier to reason about, and in one place.</p>
+<p>So where should you put your fluent API configuration code?</p>
+<p>You have two options: you can place it directly in the <code>OnModelCreating</code> method of your <code>DbContext</code> class; or you can place configuration code on separate classes per entity. This example will demonstrate the latter approach, since it is the recommended way to manage this.</p>
+<p>Add a new folder to the <em>Data</em> folder and name it <em>Configurations</em>. Then add a new C# class file named <em>ProductConfiguration.cs</em> to the <em>Configurations</em> folder. Replace the content with the following:</p>
+<pre><code class="language-csharp">using Bakery.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace Bakery.Data.Configurations
+{
+    public class ProductConfiguration : IEntityTypeConfiguration&lt;Product&gt;
+    {
+        public void Configure(EntityTypeBuilder&lt;Product&gt; builder)
+        {
+            builder.Property(p =&gt; p.ImageName).HasColumnName(&quot;ImageFileName&quot;);
+        }
+    }
+}
+</code></pre>
+<p>The class implements the <code>IEntityTypeConfiguration&lt;TEntity&gt;</code> interface, which has one method: <code>Configure</code>. Configurations are defined in this method. In this instance, the <code>ImageName</code> property is mapped to a column named  &quot;ImageFileName&quot;. The default behaviour is to map to columns that are named the same as the property.</p>
+<p>The configuration class is registered in the <code>OnModelCreating</code> method of <code>BakeryContext</code> as shown in the highlighted section:</p>
+<pre><code class="language-csharp" data-lines="10-13">public class BakeryContext : DbContext
+{
+    public DbSet&lt;Product&gt; Products { get; set; }
+    
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlite(@&quot;Data source=Bakery.db&quot;);
+    }
+     
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfiguration(new ProductConfiguration());
+    }
+}
+</code></pre>
+<h2 id="create-seed-data">Create Seed Data</h2>
+<p>The original Bakery template included a database prepopulated with product data. When you first create the database, it will be empty - unless you &quot;seed&quot; it with data at the time that the migration is executed. In this section, you will use the API provided by EF Core (since version 2.1) for achieving this.</p>
+<p>Create a new C# class file in the Data folder and name it <em>ModelBuilderExtensions.cs</em>. Replace the content with the following code:</p>
+<pre><code class="language-csharp">using Bakery.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace Bakery.Data
+{
+    public static class ModelBuilderExtensions
+    {
+        public static ModelBuilder Seed(this ModelBuilder modelBuilder){
+
+            modelBuilder.Entity&lt;Product&gt;().HasData(
+                new Product
+                {
+                    Id = 1,
+                    Name = &quot;Carrot Cake&quot;,
+                    Description = &quot;A scrumptious mini-carrot cake encrusted with sliced almonds&quot;,
+                    Price = 8.99m,
+                    ImageName = &quot;carrot_cake.jpg&quot;
+                },
+                new Product
+                {
+                    Id = 2,
+                    Name = &quot;Lemon Tart&quot;,
+                    Description = &quot;A delicious lemon tart with fresh meringue cooked to perfection&quot;,
+                    Price = 9.99m,
+                    ImageName = &quot;lemon_tart.jpg&quot;
+                },
+                new Product
+                {
+                    Id = 3,
+                    Name = &quot;Cupcakes&quot;,
+                    Description = &quot;Delectable vanilla and chocolate cupcakes&quot;,
+                    Price = 5.99m,
+                    ImageName = &quot;cupcakes.jpg&quot;
+                },
+                new Product
+                {
+                    Id = 4,
+                    Name = &quot;Bread&quot;,
+                    Description = &quot;Fresh baked French-style bread&quot;,
+                    Price = 1.49m,
+                    ImageName = &quot;bread.jpg&quot;
+                },
+                new Product
+                {
+                    Id = 5,
+                    Name = &quot;Pear Tart&quot;,
+                    Description = &quot;A glazed pear tart topped with sliced almonds and a dash of cinnamon&quot;,
+                    Price = 5.99m,
+                    ImageName = &quot;pear_tart.jpg&quot;
+                },
+                new Product
+                {
+                    Id = 6,
+                    Name = &quot;Chocolate Cake&quot;,
+                    Description = &quot;Rich chocolate frosting cover this chocolate lover's dream&quot;,
+                    Price = 8.99m,
+                    ImageName = &quot;chocolate_cake.jpg&quot;
+                }
+            );
+            return modelBuilder;
+        }
+    }
+}
+</code></pre>
+<p>The <code>Seed</code> method is an extension method on the <code>ModelBuilder</code> type, which is passed in to the <code>OnModelCreating</code> method that you worked with earlier. The body of the method uses the <code>HasData</code> method introduced in EF Core 2.1 to configure the specified entity to have seed data. The values provided for each entity mirror those from the original template and include the key values. SQLite happily accepts values in an <code>autoincrement</code> column if they are provided as part of an <code>INSERT</code> statement. SQL Server, on the other hand, will enable IDENTITY_INSERT on the target table, and then turn it off again once the seed data has been added.</p>
+<p>The seed method itself is called in the <code>OnModelCreating</code> method. It returns an instance of the <code>ModelBuilderType</code>, so it can be chained to other calls that also return the <code>ModelBuilder</code> type. The <code>ApplyConfiguration</code> fits this requirement, so you can chain the <code>Seed</code> method to that:</p>
+<pre><code class="language-csharp">protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.ApplyConfiguration(new ProductConfiguration()).Seed();
+}
+</code></pre>
+<h2 id="create-the-migration">Create the migration</h2>
+<p>Now that the model configuration is complete and provision for seed data has been made, you can create the actual migration. Execute the following command from the terminal:</p>
+<pre><code>dotnet ef migrations add CreateDatabase --output-dir Data/Migrations
+</code></pre>
+<p>This creates a migration called <em>CreateDatabase</em>. The files for the migration are generated in a newly created folder named <em>Migrations</em> in the <em>Data</em> folder (as specified by the value passed to the <code>output-dir</code> switch):</p>
+<p><img src="../../../images/26-11-2018-11-10-22.png" class="img-fluid" alt="EF Core Migrations" /></p>
+<p>The first file contains C# code that gets translated into SQL statements to be executed, while the snapshot file contains a C# representation of the current model. This is used by subsequent migrations to calculate the changes required to update the schema of the database.</p>
+<h2 id="execute-the-migration">Execute the migration</h2>
+<p>Having configured and created the migration, it is time to execute it. At the terminal, type the following and hit enter to execute the command:</p>
+<pre><code>dotnet ef database update
+</code></pre>
+<p>Once you get confirmation that the migration has been applied, you should see the <em>Bakery.db</em> file that has been created in the root of the site:</p>
+<p><img src="../../../images/26-11-2018-13-44-21.png" class="img-fluid" alt="Image" /></p>
+<p>You can open this using a suitable utility. I use <a href="https://sqlitebrowser.org/">DB Browser For SQLite</a>. You can explore the generated tables. The __<em>EFMigrationsHistory</em> table contains details of each migration. The products table contains the data that you seeded it with:</p>
+<p><img src="../../../images/26-11-2018-13-49-26.png" class="img-fluid" alt="Image" /></p>
+<h2 id="summary">Summary</h2>
+<p>You have learned how to configure a model prior to a migration, generate seed data and then create a migration and execute it. Now that you have a database with data, you can start working with it.</p>
+<div class="pull-right"><p>Next: <a href="working-with-data.html">Working with Data</a></p>
+</div>
+<div class="pull-left"><p>Previous: <a href="create-model.html">Creating a model</a></p>
+</div>
+
+</div>
+</div>
+<section id="file-meta">
+    <span class="file-meta-label">Last updated:</span> <span itemprop="dateModified">29/05/2019 08:05:08</span><br />
+</section>
+
+                </div>
+                <div class="col-md-3 right-col">
+                    
+                            <script>
+                        (function() {
+                            var cx = 'partner-pub-8046723421340367:6108194070';
+                            var gcse = document.createElement('script');
+                            gcse.type = 'text/javascript';
+                            gcse.async = true;
+                            gcse.src = '../../../../cse.google.com/cse07b6.html?cx=' + cx;
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(gcse, s);
+                        })();
+                            </script>
+                        <gcse:searchbox-only></gcse:searchbox-only>
+                    
+                    <div id="doc-outline" class="doc-outline well">
+                            <h3 class="doc-outline">On this page</h3>
+                            <nav class="doc-outline">
+                                <ul>
+                                        <li><a itemprop="url" href="#creating-a-migration" class="page-scroll">Creating a Migration</a></li>
+                                        <li><a itemprop="url" href="#configure-the-model" class="page-scroll">Configure the model</a></li>
+                                        <li><a itemprop="url" href="#create-seed-data" class="page-scroll">Create Seed Data</a></li>
+                                        <li><a itemprop="url" href="#create-the-migration" class="page-scroll">Create the migration</a></li>
+                                        <li><a itemprop="url" href="#execute-the-migration" class="page-scroll">Execute the migration</a></li>
+                                        <li><a itemprop="url" href="#summary" class="page-scroll">Summary</a></li>
+                                </ul>
+                            </nav>
+
+                    </div>
+                    <div class="rectangle">
+                        
+                                <script async src="../../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Rectangle -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:250px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="7622896857"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <div class="doc-outline well">
+                        <h3 class="doc-outline">Latest Updates</h3>
+                        <nav class="doc-outline">
+                            <ul>
+                                    <li><a itemprop="url" href="migration.html">Creating A Migration</a></li>
+                                    <li><a itemprop="url" href="create-model.html">Working With A Model</a></li>
+                                    <li><a itemprop="url" href="../../routing.html">Routing in Razor Pages</a></li>
+                                    <li><a itemprop="url" href="working-with-data.html">Working With Data</a></li>
+                                    <li><a itemprop="url" href="new-page.html">Adding a New Page</a></li>
+                                    <li><a itemprop="url" href="../bakery.html">Creating an Application</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="skyscraper">
+                        
+                                <script async src="../../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+                            <!-- EF Core Skyscraper -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:600px"
+                                 data-ad-client="ca-pub-8046723421340367"
+                                 data-ad-slot="4239197376"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        
+                    </div>
+                    <footer>
+                        <p>&copy; 2019 - Learn Razor Pages.<br />All rights reserved.</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <a href="#page-top" id="back-to-top" class="page-scroll" title="Back to top"><i class="fas fa-arrow-alt-circle-up"></i></a>
+    </div>
+    <div class="cookie-box" id="cookie-warning">
+        <div class="cookie-box-contents" id="learnrazorpages">This site uses cookies to analyse traffic, remember your preferences, and optimise your experience.</div>
+        <div class="cookie-box-buttons"><a href="../../../privacy.html" class="cookie-button">Learn more</a><a href="#" class="cookie-button" id="cookie-close">Close</a></div>
+    </div>
+    <script src="../../../../ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+    <script src="../../../../ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="../../../../code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    
+    <script src="../../../../cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="../../../js/site59f2.js?v=gJZRD7PDF8oEm1Xb0uhLZcpf7Vs12fGO-q0DErBSF_Y"></script>
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1264020-21"></script>
+        <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-1264020-21');
+        </script>
+    
+    
+</body>
+
+<!-- Mirrored from www.learnrazorpages.com/razor-pages/tutorial/bakery/migration by HTTrack Website Copier/3.x [XR&CO'2005], Fri, 07 Jun 2019 04:22:52 GMT -->
+</html>
