@@ -1,0 +1,356 @@
+*{margin:0;padding:0;box-sizing: border-box;list-style: none;text-decoration: none;}
+
+/*BEGIN OVERALL WRAPPER*/
+.wrapper{
+    height: 100vh;
+
+    border:1px solid red;
+    background-color: rgb(228, 220, 210);
+
+    display: grid;
+    grid-template-columns: 15fr 85fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "sidePanel mainPanel";
+    
+
+}
+/*END OVERALL WRAPPER*/
+
+
+/*BEGIN SIDEPANEL AND MAINPANEL*/
+
+.sidePanel{
+   /*position: relative;
+   left: 0;
+   width: 225px;
+*/
+   border:1px solid darkred;
+   background-color: brown;
+   grid-area: sidePanel;
+   transition: all 5s ease-in-out; 
+   overflow: hidden;
+   z-index: 1;
+   /**/
+   display: grid;
+
+   grid-template-columns: 2fr 8fr 2fr;
+   grid-template-rows: 0.25fr 1fr 0.25fr 2.5fr 0.25fr 0.25fr 12fr 4fr ;
+   grid-template-areas: ". buffer0 ."
+                        "appName appName appName" 
+                        ". buffer1 ."
+                        ". userImage ."
+                        ". userWelcomeMsg ."
+                        ". buffer2 ."
+                        ". accordionParent ." 
+                        ". buffer3 ."
+                        ;
+}
+.card-body 
+{
+  margin-top:0px;
+}
+
+.sidePanel ul a
+{
+   display: block;
+   height: 10%;
+   border-top:1px solid rgba(165, 42, 42,0.3);
+   border-bottom:1px solid rgba(165, 42, 42,0.3);
+   line-height: 40px;
+   font-size: 15px;
+   transition:all .15s ;
+ 
+}
+
+.sidePanel ul i
+{
+   margin-left: 50px;
+ 
+}
+
+
+
+.sidePanel  a:hover
+{
+   color:blueviolet;
+   padding-left: 20px;
+  font-size: 17px;
+
+}
+
+
+
+
+
+/**/
+.buffer0{
+   border:1px solid brown;
+   grid-area: buffer0;
+}
+
+.appName{
+   border:1px solid brown;
+   grid-area: appName;
+}
+.buffer1{
+   border:1px solid brown;
+   grid-area: buffer1;
+}
+
+.userImage{
+   border:1px solid brown;
+   grid-area: userImage;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+
+.userWelcomeMsg{
+   border:1px solid brown;
+   grid-area: userWelcomeMsg;
+}
+
+.buffer2{
+   border:1px solid brown;
+   grid-area: buffer2;
+}
+
+.accordionParent{
+   border:1px solid brown;
+   grid-area: accordionParent;
+}
+
+.buffer3{
+   border:1px solid brown;
+   grid-area: buffer3;
+}
+
+
+
+
+
+
+
+
+
+.wrapper.ON {
+    grid-template-columns: 0fr 100fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "sidePanel mainPanel";
+
+}
+
+
+
+
+
+.mainPanel{
+
+
+
+    border:1px solid darkred;
+    grid-area:mainPanel ;
+
+    display: grid;
+    grid-template-columns:1fr;
+    grid-template-rows: 10fr 85fr 5fr;
+    grid-template-areas: "  header_MainPanel"
+                         "  main_MainPanel"
+                         "  footer_MainPanel";
+
+                                                                  
+}
+
+/*END SIDEPANEL AND MAINPANEL*/
+
+
+/*BEGIN HEADER_MAINPANEL*/
+
+.header_MainPanel{
+    border:1px solid darkred;
+    grid-area: header_MainPanel;
+
+
+    display: grid;
+    grid-template-columns: 5fr 90fr 5fr;
+    grid-template-rows: 1fr; 
+    grid-template-areas: "header_Left header_Middle header_Right";   
+ }
+
+
+ .header_Left{
+    border:1px solid darkred;
+    grid-area: header_Left;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+ .hamburger_Parent{
+
+    width: 40px;
+    height: 40px;
+    
+    border:1px solid white;
+    border-radius: 0.35em;
+    background-color:rgb(190, 150, 150);
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+ }
+
+
+ .hamburger_Child{
+ 
+    width: 25px; height: 4px;
+    
+    border:1px solid white;
+    border-radius: 0.25em;
+    background-color: wheat;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 1s ease-in-out;
+   
+ }
+
+ .hamburger_Child::before{
+    content: '';
+    position: absolute;
+
+    width: 25px; height: 4px;
+    border:1px solid white;
+    border-radius: 0.25em;
+    background-color: wheat;
+    transform: translateY(8px);
+    transition: all 1s ease-in-out;
+
+ }
+
+ .hamburger_Child::after{
+    content: '';
+    position: absolute;
+
+    width: 25px; height: 4px;
+    border:1px solid white;
+    border-radius: 0.25em;
+    background-color: wheat;
+    transform: translateY(-8px);
+    transition: all 1s ease-in-out;
+
+ }
+
+ .wrapper.ON .hamburger_Child{
+    border:transparent;
+    background-color: transparent;
+    
+ }
+
+ .wrapper.ON .hamburger_Child::before{
+    
+    background-color: wheat;
+    transform: rotate(90deg);
+ }
+
+
+ .wrapper.ON .hamburger_Child::after{
+    
+    background-color: wheat;
+    transform: rotate(0deg);
+ }
+
+
+
+
+
+
+ .header_Middle{
+    border:1px solid darkred;
+    grid-area: header_Middle;
+ }
+
+ .header_Right{
+    border:1px solid darkred;
+    grid-area: header_Right;
+ }
+
+
+ /*END HEADER_MAINPANEL*/
+
+
+/*BEGIN MAIN_MAINPANEL*/
+
+.main_MainPanel{
+    border:1px solid darkred;
+    grid-area: main_MainPanel;
+ }
+
+ /*END MAIN_MAINPANEL*/
+
+/*BEGIN FOOTER_MAINPANEL*/
+
+.footer_MainPanel{
+    border:1px solid darkred;
+   
+    grid-area: footer_MainPanel;
+ }
+
+ /*END FOOTER_MAINPANEL*/
+
+
+.accordionParent{
+   display: flex;
+   justify-content:center;
+   align-items: center;
+}
+
+
+.card{
+   border-color: yellow;
+
+}
+
+.card-header
+{
+background-color: brown;
+
+}
+
+.card-header button
+{
+  color: white;
+
+}
+
+.card-header button:hover
+{
+  color: burlywood;
+
+}
+
+
+ .collapsed .card-header
+{
+   background-color: rgb(29, 147, 194);
+
+}
+
+
+
+.card-body
+{
+   background-color: white;
+   color: bisque;
+   border-top: 1px solid red;
+}
+
+
+ 
