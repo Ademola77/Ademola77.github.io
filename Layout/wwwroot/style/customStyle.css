@@ -105,7 +105,20 @@
    display: flex;
    justify-content: center;
    align-items: center;
+
+
+   transition-duration: 1000ms;
+   transition-property: transform;
 }
+
+
+.userImage:hover{
+transform: rotate(45deg);
+}
+
+
+
+
 
 
 .userWelcomeMsg{
