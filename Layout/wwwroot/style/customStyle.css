@@ -28,7 +28,8 @@
    background-color: brown;
    grid-area: sidePanel;
    transition: all 5s ease-in-out; 
-   overflow: hidden;
+   overflow-x: hidden;
+   overflow-y: scroll;
    z-index: 1;
    /**/
    display: grid;
