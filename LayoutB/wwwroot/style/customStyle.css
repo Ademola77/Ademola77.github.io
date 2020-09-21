@@ -37,6 +37,18 @@
 }
 
 
+.sidePanel.OFF
+{
+transform: translateX(200px);
+
+}
+
+
+
+
+
+
+
                .sp_appName
                {
                   grid-area: sp_appName;
@@ -54,7 +66,6 @@
 
                .sp_userImage 
                {
-
                   grid-area: sp_userImage;
                   background: gold;
                   
@@ -90,9 +101,7 @@
 
                      .sp_userMsg h6
                      {
-
                         color:white;
-
                      }
 
                
@@ -139,19 +148,23 @@
    
 /**/
 display: grid;
-grid-template-columns: 75px 8fr 1fr;
-grid-template-rows: 75px 8fr 50px;
-grid-template-areas: "hamburger_Parent  top top"
+grid-template-columns: 50px 8fr 1fr;
+grid-template-rows: 50px 8fr 50px;
+grid-template-areas: "hamburger_Section  top top"
                       "middle middle middle"
                       "bottom bottom bottom";
 
 }
 
 
-                     .hamburger_Parent
+                     .hamburger_Section
                      {
-                        grid-area: hamburger_Parent;
+                        grid-area: hamburger_Section;
                         background: green;
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
                      }
                      .top
                      {
@@ -172,4 +185,58 @@ grid-template-areas: "hamburger_Parent  top top"
 
 
 
+ .hamburger_Parent
+ {
+   border:1px solid red;
+   border-radius: 6px;
 
+   width:40px;height:40px;
+   cursor: pointer;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+
+
+ 
+
+
+ .hamburger_Main
+ {
+   border:1px solid red;
+   border-radius: 5px;
+   background:white;
+   width:30px;height:5px;
+   position: relative;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ } 
+ 
+ 
+ .hamburger_Main::before
+ {
+    content:"";
+    position: absolute;
+   border:1px solid red;
+   border-radius: 5px;
+   background:white;
+   width:30px;height:5px;
+   transform: translateY(-10px);
+
+ }
+ 
+ 
+ .hamburger_Main::after
+ {
+    content:"";
+    position: absolute;
+   border:1px solid red;
+   border-radius: 5px;
+   background:white;
+   width:30px;height:5px;
+   transform: translateY(10px);
+
+ }
