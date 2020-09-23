@@ -1,0 +1,24 @@
+@import './variables';
+@import './layout';
+
+
+
+@include MediaQuery ();
+
+.wrapper{
+    height:100vh;
+
+    .sidePanel{
+        grid-area: 'sidePanelArea';
+        @include  border_OnOff()
+    }
+
+    .mainPanel{
+        grid-area: 'mainPanelArea';
+      @include  border_OnOff()
+    }
+
+
+
+}
+

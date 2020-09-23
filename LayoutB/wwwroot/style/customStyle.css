@@ -37,9 +37,9 @@
 }
 
 
-.sidePanel.OFF
+.sidePanel.ON
 {
-transform: translateX(200px);
+transform: translateX(-250px);
 
 }
 

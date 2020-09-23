@@ -1,0 +1,17 @@
+*{margin:0;padding:0;box-sizing: border-box;}
+
+$device_Size:("mobile":300px,"tablet":750px);
+
+
+
+
+
+
+
+
+
+//border not needed in production
+@mixin border_OnOff()
+{
+    border :1px solid green;
+}
