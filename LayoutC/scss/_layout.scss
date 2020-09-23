@@ -1,26 +1,26 @@
 
 
 
-//Wrapper Section
+//MediaQuery Section
  
 
 @mixin MediaQuery ()
 {
     //Mobile MediaQuery
-    @media screen and (max-width:300px) 
+    @media screen and (max-width:175px) 
     {
         .wrapper
         {
             display: grid;
             grid-template-columns: 1fr;
-            grid-template-rows: 9fr 1fr ;
+            grid-template-rows: 25px 1fr ;
             grid-template-areas: "sidePanelArea" "mainPanelArea"; 
          
         }
 
         .sidePanel{
             background: blue;
-            grid-area: sidePanelArea ;
+            grid-area: sidePanelArea;
         }
 
         .mainPanel{
@@ -35,7 +35,7 @@
 
  //Tablet MediaQuery   
 
-    @media screen and (min-width:300px) and (max-width:750px )
+    @media screen and (min-width:175px) and (max-width:750px )
     {
         .wrapper
         {
@@ -43,7 +43,7 @@
             grid-template-columns: 1fr;
             grid-template-rows: 1fr 50px;
             grid-template-areas: "sidePanelArea "
-                                 "mainPanelArea ";
+                                 "mainPanelArea";
         }
 
         .sidePanel{
