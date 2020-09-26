@@ -1,21 +1,33 @@
 @import './variables';
 @import './layout';
+@import './sidePanel';
+@import './/mainPanel';
 
 
 
-@include MediaQuery ();
 
-.wrapper{
+@include MediaQuery_Eng ();
+
+.wrapper
+{
+
     height:100vh;
+    display: grid;
+    overflow-y: hidden;
+    @include  border_OnOff();
 
-    .sidePanel{
-        
-        @include  border_OnOff()
-    }
 
-    .mainPanel{
-        
-      @include  border_OnOff()
+   
+    @include  sidePanel_Code() ;
+
+
+
+  
+
+    .mainPanel
+    {
+         
+
     }
 
 

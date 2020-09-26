@@ -28,8 +28,7 @@
    background-color: brown;
    grid-area: sidePanel;
    transition: all 5s ease-in-out; 
-   overflow-x: hidden;
-   overflow-y: auto ;
+
    z-index: 1;
    /**/
    display: grid;
@@ -50,6 +49,15 @@
 {
   margin-top:0px;
 }
+
+.accordion .card-body{
+   overflow: hidden;
+   overflow-y: scroll;
+}
+
+
+
+
 
 .sidePanel ul a
 {

@@ -1,0 +1,124 @@
+
+@mixin sidePanel_Code() 
+{
+   
+
+
+
+
+    .sidePanel
+    {
+        
+      @include  border_OnOff();
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-auto-rows: 25px 50px 25px 125px 25px 25px 1fr  50px ;
+        grid-template-areas: "spacer1Area"
+                            "appNameArea" 
+                            "spacer2Area" 
+                            "userImgArea" 
+                            "userMsgArea" 
+                            "spacer3Area"
+                            "accordionArea"
+                            "spacer4Area";
+
+                           
+                         
+
+
+    .spacer1
+            {
+                grid-area: spacer1Area;
+            }
+    .appName
+            {
+                grid-area: appNameArea;
+                color: white;
+                font-size: xx-large;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+    .spacer2
+            {
+                grid-area: spacer2Area;
+            }
+    .userImg
+            {
+                grid-area: userImgArea;
+                @include HorVertCenter() ;
+
+            img {
+
+                  width:125px; height:125px; 
+                  border-radius: 75px;
+                }
+                
+                
+            }
+    .userMsg
+            {
+                grid-area: userMsgArea;
+                @include HorVertCenter() ;
+                    color: white;
+                
+            }
+    .spacer3
+            {
+                grid-area: spacer3Area;
+            }
+
+    .accordionx
+            {
+              grid-area: accordionArea;
+              
+             
+           
+            overflow-x: hidden;
+            overflow-y:auto ;
+          
+
+    .accordion
+            {
+                border: 1px solid blueviolet;
+                         
+                  height: 0px;
+
+
+
+                  .card-header {
+                      background: red;
+                      
+                      button{
+                        color: white;  
+                      }
+                    
+                  }
+
+                  
+            }
+
+
+
+
+
+
+            }
+/**/
+
+
+            
+    .spacer4
+            {
+                grid-area: spacer4Area;
+                background:red;
+                
+            }
+
+    } 
+
+
+
+
+}
