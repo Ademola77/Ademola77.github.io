@@ -1,0 +1,141 @@
+@import 'sidePanelLayout';
+
+
+
+*{
+    margin:0;padding:0;box-sizing: border-box;
+    list-style: none;
+    list-style-type: none;
+    text-decoration: none;
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+.menu
+{
+    width: 300px;
+    border:1px solid #1170ff;
+    border-radius:8px;
+    overflow: hidden;
+}
+
+.menu .item
+{
+   // background-color: royalblue;
+   .btx
+   {
+    display: block;
+    border:1px solid #1170ff;
+    padding: 16px 25px;
+    background-color: #1170ff;
+    color: white;
+    position: relative;
+
+
+    i 
+    {
+        margin-right: 25px;
+    };
+
+
+
+
+
+    
+
+   }
+
+
+.item
+{
+    border-top: 1px solid yellow;
+}
+
+
+.btx::before
+{
+    content: '';
+    position: absolute;
+    width: 14px;height: 14px;
+    background-color: #1170ff;
+    bottom: -7px; left: 20px;
+    transform: rotate(45deg);
+}
+
+
+
+}
+
+.smenu
+{
+    border: 1px solid transparent;
+    background-color: rgba(14, 10, 10, 0.726);
+    transition:max-height 0.3ms  ;
+    max-height: 0px;
+}
+.smenu a
+{
+
+    //border:1px solid #1170ff;
+    display: block;
+    padding: 16px 25px;
+    font-size: 14px;
+    //margin: 4px 0;
+   
+    color: white;
+position: relative;
+
+
+   
+
+}
+
+.smenu a::before
+{
+    content: '';
+    position: absolute;
+    width: 4px;height: 100%;
+    border:1px solid #1170ff;
+    background-color: #1170ff;
+
+    left: 50px;top: 0;
+    opacity: 0;
+}
+
+.smenu a::after
+{
+    content: '';
+    position: absolute;
+    width: 4px;height: 100%;
+    border:1px solid #1170ff;
+    background-color: #1170ff;
+
+    left: 150px;top: 0;
+    opacity: 0;
+}
+
+
+
+
+.smenu a:hover::before,a:hover::after
+{
+color:red;
+opacity: 1;
+}
+
+.smenu a:hover::after
+{
+color:red;
+opacity: 1;
+}
+
+
+.item:target .smenu
+{
+max-height: 10em;
+}
+
+
+.smenu i
+{
+    margin-right: 25px;
+}
