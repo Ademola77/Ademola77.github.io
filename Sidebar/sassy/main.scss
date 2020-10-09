@@ -43,7 +43,8 @@ $knobBgColor:rgb(4, 33, 77);
                         (". . .")
                         (". userImg_Area .")
                         (". userMsg_Area  .")
-                        (". . .")
+                        (". line_Area .")
+
                         (" accordion_Area accordion_Area accordion_Area")
                         (". . .")  ;
 
@@ -133,6 +134,22 @@ background-color:$knobBgColor ;
     justify-content: center;
 
 }
+
+
+.lines
+{
+    hr
+    {
+    color:white;
+    border-top: 1px solid white;
+   border-bottom: 1px solid white;
+    }
+    grid-area: line_Area;
+
+
+}
+
+
 
 .accordion
 {
