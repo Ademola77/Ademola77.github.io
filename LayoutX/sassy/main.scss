@@ -1,0 +1,116 @@
+@import 'config';
+
+
+.wrapper
+{
+    border:1px solid rebeccapurple;
+    width:250px;height: 100vh;
+  //  overflow: hidden;
+    background-color:rgb(0, 153, 255);
+    
+}
+
+.menu
+{
+   
+    border:1px solid lighten($color: rgb(9, 129, 209), $amount: 30);
+    border-radius: 8px;
+    overflow: hidden;
+    
+}
+
+.btn
+{
+  background-color: rgb(0, 153, 255);
+  display: block;
+  color:white;
+  padding: 10px 35px;
+  position: relative;
+    
+ i
+    {
+      margin-right: 15px;
+      
+    }
+}
+
+.btn::before
+{
+    content:'';
+    position: absolute;
+    width: 20px;height:20px;
+    bottom:-10px;left:20px;
+    background-color: rgb(0, 153, 255);
+    transform: rotate(45deg);
+    border-bottom:1px solid lighten($color: rgb(9, 129, 209), $amount: 30);
+    border-right: 1px solid lighten($color: rgb(9, 129, 209), $amount: 30);
+z-index: 10;
+}
+
+.btn:hover
+{
+    color:rgb(2, 38, 63);
+    padding:10px 40px;
+   font-weight: bolder;
+}
+
+
+
+
+
+.item
+{
+  border-top:1px solid lighten($color: rgb(9, 129, 209), $amount: 30) ;
+    overflow: hidden;
+}
+
+.smenu
+{
+  background-color: rgb(158, 157, 157);
+    overflow-x: hidden;
+    overflow-y: auto;
+   // overflow: hidden;
+    transition: max-height 1s ease-in-out;
+    max-height: 0px;
+}
+
+.smenu a
+{
+  display: block;
+   border-top:1px solid  lighten($color: rgb(9, 129, 209), $amount: 80);
+  // border-bottom:1px solid lighten($color: rgb(9, 129, 209), $amount: 80);
+;
+   color:white;
+  margin:5px 0px;
+  padding:5px 50px;
+    position: relative;
+}
+
+.smenu a:hover
+{
+  color:rgb(2, 38, 63);
+  padding:10px 40px;
+ font-weight: bold;;
+}
+
+
+.smenu a::before
+{
+content:'';
+position: absolute;
+background-color: rgb(9, 129, 209);
+width:10px; height:100%;
+ top:0;left:0px; 
+ opacity: 0;  
+}
+
+.smenu a:hover::before
+{
+  opacity: 1;  
+}
+
+.item:target .smenu
+{
+    max-height:10em;
+  
+}

@@ -1,0 +1,205 @@
+@import 'config';
+@import 'menuContent';
+@import 'sidebarknobContent';
+
+
+$sideBarColor:rgb(21, 153, 241);
+//$sideBarColor:red;
+$sideBarColorInner:rgb(4, 98, 161);
+$sideBarTrimColor: rgb(200, 206, 233);
+$knobBgColor:rgb(4, 33, 77);
+
+
+
+
+
+
+.wrapper
+{
+    border:5px solid $sideBarColor;
+    height:100vh;
+
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows:  1fr;
+    grid-template-areas:" sidePanel_Area mainPanel_Area";
+}
+
+/*
+    SIDEPANEL SECTION
+*/
+.sidePanel
+{
+  //  border:5px solid $sideBarColor;
+  background-color: $sideBarColor;
+    overflow: hidden;
+    grid-area: sidePanel_Area;
+
+    display: grid;
+    grid-template-columns: 40px  1fr 40px;
+    grid-template-rows: 40px 50px 5px 100px 25px 50px 1fr 100px;
+    grid-template-areas:(". . sidebarKnob_Area")
+                        ("appTitle_Area appTitle_Area appTitle_Area")
+                        (". . .")
+                        (". userImg_Area .")
+                        (". userMsg_Area  .")
+                        (". . .")
+                        (" accordion_Area accordion_Area accordion_Area")
+                        (". . .")  ;
+
+}
+
+.sidebar_Knob_Item
+{
+  //  border: 1px solid $sideBarColor;
+}
+
+.sidebar_Knob
+{
+    grid-area: sidebarKnob_Area;
+    
+    @include  sideBarKnobLoad();
+    
+}
+
+.sidebar_Knob:hover 
+{
+background-color:$knobBgColor ;
+
+    .knob_Main
+    {
+        background-color:white ;
+       // border:1px solid $sideBarColor;
+    }
+
+    .knob_Main::before
+    {
+        background-color:white ;
+       // border:1px solid $sideBarColor;
+    }
+
+}
+
+//.sidebar_Knob:hover .knob_Main
+//{
+//background-color:white ;
+
+//}
+
+
+
+.app_Title
+{
+    grid-area: appTitle_Area;
+    letter-spacing: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    h2
+    {
+      color: white;
+      text-shadow: 5px 5px $sideBarColorInner;
+    }
+}
+
+.user_Img
+{
+    grid-area: userImg_Area;
+    
+    //border-radius: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    .imgx
+    {
+      border-radius: 50px;width: 100px;height:100px;
+     //@debug padding:1px;
+     // border:1px solid $sideBarColorInner;
+       border:2px solid white;
+    }
+}
+
+.user_Msg
+{
+    grid-area: userMsg_Area;
+    color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.accordion
+{
+    grid-area: accordion_Area;
+    overflow-x: hidden;
+    overflow-y: auto;
+    @include menuContentLoad();
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+    MAINPANEL SECTION
+*/
+
+.mainPanel
+{
+    border:1px solid green;
+    grid-area: mainPanel_Area;
+
+
+    display: grid;
+    grid-template-columns: 50px  1fr;
+    grid-template-rows: 50px  1fr 50px;
+    grid-template-areas:("mainPanelKnob_Area mainPanelTop_Area")
+                        ("mainPanelMiddle_Area mainPanelMiddle_Area")
+                        ("mainPanelBottom_Area mainPanelBottom_Area");
+
+    //mainPanel_Item top
+}
+
+.mainPanel_Item
+{
+    border:1px solid green;
+
+}
+
+
+.knob
+{
+   grid-area: mainPanelKnob_Area;
+}
+
+
+.top
+{
+   grid-area: mainPanelTop_Area;
+}
+
+.middle
+{
+   grid-area: mainPanelMiddle_Area;
+
+}
+
+.bottom
+{
+   grid-area: mainPanelBottom_Area;
+
+}

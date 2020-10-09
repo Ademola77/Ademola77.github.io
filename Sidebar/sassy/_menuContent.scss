@@ -1,0 +1,117 @@
+
+
+
+@mixin menuContentLoad()
+{
+
+
+
+
+    border:1px solid lighten($color: $sideBarTrimColor, $amount: 5);
+
+border-radius: 8px;
+background-color: $sideBarColorInner;
+   .menu
+   {
+      // 
+       border-radius: 0px;
+       overflow: hidden;
+   }
+  
+   .item
+   {
+       border-top: 1px solid lighten($color: $sideBarTrimColor, $amount: 5);
+       overflow: hidden;
+   }
+
+  .item .btn
+   {
+      display: block;
+      background-color: $sideBarColorInner;
+     // border-bottom: 1px solid lighten($color: $sideBarTrimColor, $amount: 5);
+      color: white;
+      padding:10px 35px;
+      display: flex;
+      align-items: center;
+position: relative;
+
+      i{
+          margin-right: 15px;
+      }
+   }
+
+
+   .item .btn::before
+   {
+       content: '';
+       position: absolute;
+      width: 20px; height: 20px;
+      left:15px;bottom:-10px;
+     // border-bottom: 1px solid lighten($color: $sideBarTrimColor, $amount: 5);
+     // border-right: 1px solid lighten($color: $sideBarTrimColor, $amount: 5);
+
+      background-color: $sideBarColorInner;
+      transform: rotate(45deg);
+
+   }
+
+   .item .btn:hover
+   {
+       color:rgb(1, 4, 22);
+       font-weight: bolder;
+   }
+
+  .smenu
+  {
+    background-color: lighten($color: $sideBarTrimColor, $amount: 5);
+    overflow: hidden;
+    max-height:0px;
+  }
+
+.smenu a
+{
+    display: block;
+    //border:1px solid lighten($color: red, $amount: 5);;
+    color: $sideBarColorInner;
+    padding: 10px 40px;
+    font-size: 14px;
+    margin:10px 0;
+    position: relative;;
+};
+
+
+.smenu a::before
+{
+    content:'';
+    position: absolute;
+    width:5px; height:100%;
+   left:0; top:0;
+  // border:1px solid red;
+
+   background-color: $sideBarColorInner;
+   opacity: 0;
+};
+
+.smenu a:hover
+{
+   opacity: 1;
+   font-weight: bolder;
+};
+
+
+.smenu a:hover::before
+{
+   opacity: 1;
+};
+
+
+.item:target  .smenu
+{
+    max-height:10em;
+}
+
+
+
+
+
+}

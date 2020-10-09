@@ -1,0 +1,48 @@
+
+
+
+
+@mixin sideBarKnobLoad()
+{
+ // background-color: greenyellow;
+ //sidebar_Knob
+ 
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 20px;
+
+
+
+
+
+
+  .knob_Main
+  {
+    border:1px solid white;
+    background-color: $sideBarColorInner;
+    border-radius: 5px;
+    width:25px;height:5px;
+     position: relative;
+  //  box-shadow: 1px 1px $sideBarTrimColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform:rotate(135deg);
+  }
+
+  .knob_Main::before
+  {
+    content: '';
+    position:absolute;
+    border:1px solid white;
+    background-color: $sideBarColorInner;
+    border-radius: 5px;
+    width:25px;height:5px;
+    transform:rotate(90deg);
+    box-sizing: border-box;
+   // box-shadow: 1px 1px $sideBarTrimColor;
+  }
+
+
+}

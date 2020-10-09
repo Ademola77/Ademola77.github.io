@@ -1,0 +1,231 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-decoration: none;
+}
+
+.wrapper {
+  border: 5px solid #1599f1;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: " sidePanel_Area mainPanel_Area";
+}
+
+/*
+    SIDEPANEL SECTION
+*/
+.sidePanel {
+  background-color: #1599f1;
+  overflow: hidden;
+  grid-area: sidePanel_Area;
+  display: grid;
+  grid-template-columns: 40px  1fr 40px;
+  grid-template-rows: 40px 50px 5px 100px 25px 50px 1fr 100px;
+  grid-template-areas: ". . sidebarKnob_Area" "appTitle_Area appTitle_Area appTitle_Area" ". . ." ". userImg_Area ." ". userMsg_Area  ." ". . ." " accordion_Area accordion_Area accordion_Area" ". . .";
+}
+
+.sidebar_Knob {
+  grid-area: sidebarKnob_Area;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.sidebar_Knob .knob_Main {
+  border: 1px solid white;
+  background-color: #0462a1;
+  border-radius: 5px;
+  width: 25px;
+  height: 5px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(135deg);
+}
+
+.sidebar_Knob .knob_Main::before {
+  content: '';
+  position: absolute;
+  border: 1px solid white;
+  background-color: #0462a1;
+  border-radius: 5px;
+  width: 25px;
+  height: 5px;
+  transform: rotate(90deg);
+  box-sizing: border-box;
+}
+
+.sidebar_Knob:hover {
+  background-color: #04214d;
+}
+
+.sidebar_Knob:hover .knob_Main {
+  background-color: white;
+}
+
+.sidebar_Knob:hover .knob_Main::before {
+  background-color: white;
+}
+
+.app_Title {
+  grid-area: appTitle_Area;
+  letter-spacing: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app_Title h2 {
+  color: white;
+  text-shadow: 5px 5px #0462a1;
+}
+
+.user_Img {
+  grid-area: userImg_Area;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user_Img .imgx {
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+  border: 2px solid white;
+}
+
+.user_Msg {
+  grid-area: userMsg_Area;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.accordion {
+  grid-area: accordion_Area;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: 1px solid #dadef0;
+  border-radius: 8px;
+  background-color: #0462a1;
+}
+
+.accordion .menu {
+  border-radius: 0px;
+  overflow: hidden;
+}
+
+.accordion .item {
+  border-top: 1px solid #dadef0;
+  overflow: hidden;
+}
+
+.accordion .item .btn {
+  display: block;
+  background-color: #0462a1;
+  color: white;
+  padding: 10px 35px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.accordion .item .btn i {
+  margin-right: 15px;
+}
+
+.accordion .item .btn::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 15px;
+  bottom: -10px;
+  background-color: #0462a1;
+  transform: rotate(45deg);
+}
+
+.accordion .item .btn:hover {
+  color: #010416;
+  font-weight: bolder;
+}
+
+.accordion .smenu {
+  background-color: #dadef0;
+  overflow: hidden;
+  max-height: 0px;
+}
+
+.accordion .smenu a {
+  display: block;
+  color: #0462a1;
+  padding: 10px 40px;
+  font-size: 14px;
+  margin: 10px 0;
+  position: relative;
+}
+
+.accordion .smenu a::before {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: #0462a1;
+  opacity: 0;
+}
+
+.accordion .smenu a:hover {
+  opacity: 1;
+  font-weight: bolder;
+}
+
+.accordion .smenu a:hover::before {
+  opacity: 1;
+}
+
+.accordion .item:target .smenu {
+  max-height: 10em;
+}
+
+/*
+    MAINPANEL SECTION
+*/
+.mainPanel {
+  border: 1px solid green;
+  grid-area: mainPanel_Area;
+  display: grid;
+  grid-template-columns: 50px  1fr;
+  grid-template-rows: 50px  1fr 50px;
+  grid-template-areas: "mainPanelKnob_Area mainPanelTop_Area" "mainPanelMiddle_Area mainPanelMiddle_Area" "mainPanelBottom_Area mainPanelBottom_Area";
+}
+
+.mainPanel_Item {
+  border: 1px solid green;
+}
+
+.knob {
+  grid-area: mainPanelKnob_Area;
+}
+
+.top {
+  grid-area: mainPanelTop_Area;
+}
+
+.middle {
+  grid-area: mainPanelMiddle_Area;
+}
+
+.bottom {
+  grid-area: mainPanelBottom_Area;
+  
+}
