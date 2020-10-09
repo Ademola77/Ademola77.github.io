@@ -1,5 +1,0 @@
-# HTTrack Website Copier Cookie File
-# This file format is compatible with Netscape cookies
-.learnrazorpages.com	TRUE	/	FALSE	1999999999	__cfduid	d9b7cda898bfd513deb4a55800d8564361559878798
-.mikesdotnetting.com	TRUE	/	FALSE	1999999999	__cfduid	d7c16bcf4e56a6bcae8d8a4cdd7d8fe851559878852
-

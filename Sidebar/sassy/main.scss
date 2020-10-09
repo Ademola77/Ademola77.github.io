@@ -138,17 +138,17 @@ background-color:$knobBgColor ;
 
 .lines
 {
+    grid-area: line_Area;  
     hr
     {
     color:white;
     border-top: 1px solid white;
    border-bottom: 1px solid white;
     }
-    grid-area: line_Area;
+  
 
 
 }
-
 
 
 .accordion
