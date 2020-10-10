@@ -25,8 +25,8 @@
   grid-area: sidePanel_Area;
   display: grid;
   grid-template-columns: 40px  1fr 40px;
-  grid-template-rows: 40px 50px 5px 100px 25px 50px 1fr 100px;
-  grid-template-areas: ". . sidebarKnob_Area" "appTitle_Area appTitle_Area appTitle_Area" ". . ." ". userImg_Area ." ". userMsg_Area  ." ". line_Area ." " accordion_Area accordion_Area accordion_Area" ". . .";
+  grid-template-rows: 40px 50px 5px 100px 25px 25px  1fr 100px;
+  grid-template-areas: ". . sidebarKnob_Area" "appTitle_Area appTitle_Area appTitle_Area" ". . ." ". userImg_Area ." ". userMsg_Area  ." ". . ." " accordion_Area accordion_Area accordion_Area" ". . .";
 }
 
 .sidebar_Knob {
@@ -107,16 +107,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.lines {
-  grid-area: line_Area;
-}
-
-.lines hr {
-  color: white;
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
 }
 
 .accordion {
