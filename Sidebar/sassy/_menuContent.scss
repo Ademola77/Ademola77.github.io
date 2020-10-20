@@ -33,11 +33,21 @@ background-color: $sideBarColorInner;
       padding:10px 35px;
       display: flex;
       align-items: center;
-position: relative;
+      position: relative;
+      
 
-      i{
+      i:nth-child(1){
           margin-right: 15px;
+          color:white;
       }
+
+      i:nth-child(2){
+        position: absolute;
+       right: 10px;
+          color:white;
+      }
+
+      
    }
 
 
@@ -105,13 +115,39 @@ position: relative;
 };
 
 
-.item:target  .smenu
+/*
+   .item:target  .smenu
+    {
+      max-height:0em;
+    }
+
+   .ON.item:target  .smenu
+    {
+      max-height:10em;
+    }
+*/
+
+
+    
+
+.ON.item
 {
-    max-height:10em;
+    i:nth-child(2){
+      
+      color:greenyellow;
+          transform: rotate(180deg) ;
+      }
+
+    .btn 
+    {
+     color:greenyellow;
+     font-weight: bolder;
+    }
+
+    .smenu
+    {
+     max-height: 10em;
+    }
 }
-
-
-
-
 
 }

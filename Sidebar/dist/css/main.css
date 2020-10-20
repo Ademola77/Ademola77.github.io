@@ -95,7 +95,7 @@
 }
 
 .user_Img .imgx {
-  border-radius: 50px;
+  border-radius: 10px;
   width: 100px;
   height: 100px;
   border: 2px solid white;
@@ -116,6 +116,17 @@
   border: 1px solid #dadef0;
   border-radius: 8px;
   background-color: #0462a1;
+  /*
+   .item:target  .smenu
+    {
+      max-height:0em;
+    }
+
+   .ON.item:target  .smenu
+    {
+      max-height:10em;
+    }
+*/
 }
 
 .accordion .menu {
@@ -138,8 +149,15 @@
   position: relative;
 }
 
-.accordion .item .btn i {
+.accordion .item .btn i:nth-child(1) {
   margin-right: 15px;
+  color: white;
+}
+
+.accordion .item .btn i:nth-child(2) {
+  position: absolute;
+  right: 10px;
+  color: white;
 }
 
 .accordion .item .btn::before {
@@ -193,7 +211,17 @@
   opacity: 1;
 }
 
-.accordion .item:target .smenu {
+.accordion .ON.item i:nth-child(2) {
+  color: greenyellow;
+  transform: rotate(180deg);
+}
+
+.accordion .ON.item .btn {
+  color: greenyellow;
+  font-weight: bolder;
+}
+
+.accordion .ON.item .smenu {
   max-height: 10em;
 }
 
